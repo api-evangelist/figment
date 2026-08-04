@@ -42,5 +42,26 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Figment is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/figment_stock/
+Figment is an institutional staking infrastructure provider that runs validators and staking services
+across 40+ proof-of-stake networks for asset managers, exchanges, custodians, wallets, banks and
+protocol foundations.
+
+Its public developer surface is a single REST API at `https://api.figment.io` — Figment publishes an
+OpenAPI 3.1.0 document for it at <https://api.figment.io/openapi/figment-api.yaml> (126 paths, 129
+operations, 55 schemas). The API abstracts network-specific staking mechanics behind one contract:
+build ready-to-sign staking, delegation, undelegation, withdrawal, exit, compound and consolidation
+transactions; broadcast the signed payloads; and read back validators, stakes, activities, balances,
+rewards, reward rates, statements and portfolio data. Figment never holds customer keys — writes
+return an unsigned transaction the customer signs in its own custody.
+
+Coverage includes Ethereum (including Pectra 0x02 compounding validators and Figment Validator
+Vaults), Solana, Cardano, Cosmos, Osmosis, Injective, NEAR, Polkadot, Polygon, Avalanche, Sui, Aptos,
+Vaulta, OpenTrade stablecoin yield vaults, and an x402 payment facilitator. Figment also publishes
+Elements (`@figmentio/elements`), a React component library for embeddable staking widgets, and
+serves an OAuth-protected MCP endpoint at <https://docs.figment.io/mcp>.
+
+- Website: <https://www.figment.io/>
+- Documentation: <https://docs.figment.io/>
+- Status: <https://status.figment.io/>
+- Trust center: <https://trust.figment.io/>
+- Secondary-market listing this profile was harvested from: <https://forgeglobal.com/figment_stock/>

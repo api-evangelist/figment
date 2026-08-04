@@ -1,0 +1,68 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/changelog
+feed: https://docs.figment.io/changelog.rss
+description: >-
+  Figment publishes a dated developer changelog on its documentation host, with an RSS feed. Entries
+  are narrow and endpoint-scoped (new query parameters, response fields, parameter removals) rather
+  than release-numbered. The recent window is captured below verbatim from the feed and the entry
+  pages; the live changelog remains the source of truth.
+scheme:
+  versioned_entries: false
+  dated_entries: true
+  breaking_change_labels: false
+  current_api_version: 2.0.0+1190.1
+  note: >-
+    Entries carry a date and a title but no version number and no breaking/non-breaking label — a
+    consumer must read the prose to learn that a change removed a parameter.
+entries:
+- title: Track ETH and SOL addresses
+  date: '2025-11-14'
+  url: https://docs.figment.io/changelog/track-eth-and-sol-addresses
+  affects: [tracked-address-create]
+  breaking: true
+  additions: []
+  removals:
+  - '`address_type` is no longer required on the Track endpoint; the SOL stake-account/wallet option was removed.'
+  - 'ETH: tracking a single validator is no longer possible — only a wallet, interpreted as the validators'' withdrawal address.'
+  highlights: >-
+    Tracking a SOL wallet now auto-tracks every stake account for which that wallet is the stake
+    authority.
+- title: Validators Balances
+  date: '2025-10-09'
+  url: https://docs.figment.io/changelog/welcome-to-figment
+  affects: [get-validators]
+  breaking: false
+  additions:
+  - 'GET /validators returns a `balances` object per validator: actual, pending_deposit, pending_topups, pending_withdrawals.'
+  highlights: Opt-in via `&include_fields=balances` in the query URL.
+- title: Filtering by credentials prefix for ETH validators
+  date: '2025-09-24'
+  url: https://docs.figment.io/changelog/credentials_prefix-filter-in-get-validators
+  affects: [get-validators]
+  breaking: false
+  additions:
+  - 'Query parameter `credentials_prefix` accepting 0x01 or 0x02; other values are ignored.'
+- title: Filtering by authorities for SOL stakes
+  date: '2025-09-22'
+  url: https://docs.figment.io/changelog/filtering-by-authorities-for-sol-stakes
+  affects: [solana-stakes]
+  breaking: false
+  additions:
+  - 'Filtering by `stake_authority` and `withdraw_authority`.'
+coverage:
+  entries_published: 4
+  window: 2025-09-22 to 2025-11-14
+  note: >-
+    The public changelog holds only four entries, all from autumn 2025, while the API itself has
+    clearly moved on (Pectra 0x02 provisioning, Vaults, Vaulta, OpenTrade stablecoin vaults and the
+    x402 facilitator all ship in the current OpenAPI and none appear in the changelog). The changelog
+    is real but materially behind the contract.
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://docs.figment.io/changelog.rss
+    http_status: 200
+    content_type: application/rss+xml
+  - url: https://docs.figment.io/changelog
+    http_status: 200

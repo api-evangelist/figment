@@ -1,0 +1,61 @@
+generated: '2026-08-04'
+method: searched
+source: openapi/figment-api-openapi-original.yml
+docs: https://docs.figment.io/reference/authentication
+description: >-
+  Figment authenticates every API request with an organization-issued API key sent in the x-api-key
+  request header. HTTPS is mandatory — plain HTTP is redirected with a 301. Keys are issued and
+  rotated in the Developers section of the Figment app (app.figment.io) and carry two orthogonal
+  attributes: a permission (Read/Write or Read-Only) and an environment (test or production).
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+  openid_connect: false
+  mutual_tls: false
+schemes:
+- name: x-api-key
+  type: apiKey
+  in: header
+  parameter_name: x-api-key
+  sources: [https://docs.figment.io/reference/authentication]
+  spec_declared: false
+  note: >-
+    IMPORTANT contract gap: the published OpenAPI 3.1.0 declares NO components.securitySchemes and no
+    top-level or per-operation security[] requirement, even though every operation requires the
+    x-api-key header. The header is carried only as an x-readme extension block for the docs
+    explorer. This artifact is method:searched precisely because the mechanical derive from the spec
+    would have returned nothing. Raise with Figment: adding an ApiKeyAuth securityScheme + a global
+    security requirement would make the contract self-describing for SDK generators and agents.
+  spec_evidence:
+    x-readme:
+      headers:
+      - key: x-api-key
+        value: your-api-key-here
+permissions:
+- name: Read/Write
+  description: Works for all endpoints.
+- name: Read-Only
+  description: >-
+    Works for read endpoints only. Explicitly rejected on the Create Validators
+    (create-validators) and Exit Validators (exit-validators) endpoints.
+environments:
+- name: test
+  description: Keys scoped to test work only against testnets and devnets.
+- name: production
+  description: Keys scoped to production work only against mainnets.
+key_management:
+  console: https://app.figment.io/
+  location: Developers section of the Figment app
+  identity_provider: https://auth0.figment.io/ (Auth0 — console/human login, not API auth)
+transport:
+  https_required: true
+  http_behavior: 301 redirect to HTTPS
+example_request: |
+  curl --request GET \
+       --url 'https://api.figment.io/' \
+       --header 'x-api-key: your-api-key-here'
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://docs.figment.io/reference/authentication
+  http_status: 200

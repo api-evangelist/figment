@@ -1,0 +1,85 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/reference/authentication
+description: >-
+  Figment's test surface is environment-scoped API keys plus real public testnets, not synthetic
+  fixtures. There are no magic test card numbers or hosted mock tokens — a test-environment key
+  transacts against the real testnet/devnet of each supported protocol, so testing requires testnet
+  funds obtained from each protocol's own faucet. Values below are published by Figment; nothing here
+  is invented.
+separation:
+  mechanism: api-key-environment
+  environments:
+  - name: test
+    description: Keys with the test environment work ONLY with testnets and devnets.
+  - name: production
+    description: Keys with the production environment work ONLY with mainnets.
+  key_prefix: not published
+  console: https://app.figment.io/
+  docs: https://docs.figment.io/reference/authentication
+test_networks:
+  note: >-
+    Values taken verbatim from the `network` enums published in the OpenAPI 3.1.0 and from the
+    Elements documentation. Each is a public protocol testnet, not a Figment simulator.
+  networks:
+  - protocol: Ethereum
+    testnet: hoodi
+    mainnet: mainnet
+    source: openapi network enum; docs.figment.io/docs/elements
+  - protocol: Solana
+    testnet: devnet
+    mainnet: mainnet
+    source: openapi network enum; docs.figment.io/docs/elements
+  - protocol: Babylon (BTC staking)
+    testnet: signet
+    mainnet: mainnet
+    source: docs.figment.io/docs/elements
+  - protocol: Cardano
+    testnet: preprod
+    mainnet: mainnet
+    source: openapi network enum
+  - protocol: Avalanche
+    testnet: fuji
+    mainnet: mainnet
+    source: openapi network enum
+  - protocol: Polkadot
+    testnet: westend
+    mainnet: polkadot
+    source: openapi network enum
+  - protocol: Other (Cosmos, NEAR, Sui, Aptos, Vaulta, Osmosis, Injective)
+    testnet: testnet
+    mainnet: mainnet
+    source: openapi network enum
+elements_sandbox:
+  component_library: "@figmentio/elements"
+  requirement: >-
+    Figment issues an appId and allowlists the domain the widget renders on — the docs direct
+    integrators to contact Figment rather than self-serve. Testnet is supported (Hoodi for ETH,
+    Devnet for Solana, Signet for Babylon).
+  docs: https://docs.figment.io/docs/elements
+x402_test_surface:
+  present: true
+  recipe: https://docs.figment.io/recipes/test-x402-api-on-solana-devnet.md
+  description: >-
+    Figment publishes a recipe for exercising the x402 payment facilitator against Solana devnet.
+test_clocks: false
+fixture_tooling: false
+simulation_values:
+  published: false
+  note: >-
+    No decline/failure simulation identifiers, magic addresses, or forced-error triggers are
+    documented. Failure paths must be exercised against live testnet conditions.
+recipes:
+  url: https://docs.figment.io/recipes
+  note: >-
+    Eighteen runnable end-to-end recipes (hot-wallet and Fireblocks custody variants for ETH, SOL,
+    ADA, AVAX, NEAR, plus x402) are the closest thing Figment ships to a guided sandbox.
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://docs.figment.io/reference/authentication
+    http_status: 200
+  - url: https://docs.figment.io/docs/elements
+    http_status: 200
+  - url: https://api.figment.io/openapi/figment-api.yaml
+    http_status: 200

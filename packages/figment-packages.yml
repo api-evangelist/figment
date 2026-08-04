@@ -1,0 +1,62 @@
+generated: '2026-08-04'
+method: searched
+source: https://registry.npmjs.org/
+description: >-
+  First-party Figment client libraries found on the public package registries. Figment does not
+  publish per-language server SDKs for the REST API — the documented integration path is direct HTTP
+  with an x-api-key header — so the published packages are the browser/React Elements component
+  library and the Slate transaction decode/sign helper library, both under the @figmentio npm scope
+  and both sourced from the figment-networks GitHub organization.
+packages:
+- language: javascript
+  registry: npm
+  name: "@figmentio/elements"
+  version: 2.1.1
+  url: https://www.npmjs.com/package/@figmentio/elements
+  install: npm install @figmentio/elements
+  repository: https://github.com/figment-networks/elements
+  description: >-
+    Figment Elements — React UI components for embeddable staking (staking widget, rewards, activity).
+    Supports Ethereum, Solana and Babylon; defaults to WalletConnect (ETH), Wallet Adapter (SOL) and
+    OneKey (Babylon), with a `wallet` prop for custom wallet integration.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@figmentio/slate"
+  version: 1.22.4
+  url: https://www.npmjs.com/package/@figmentio/slate
+  install: npm install @figmentio/slate
+  repository: https://github.com/figment-networks/slate-node
+  description: >-
+    Node.js library for interacting with Slate from Figment — decode transaction payloads returned by
+    the Figment API and sign transaction payloads with private keys.
+  official: true
+registries_probed:
+- registry: npm
+  result: 2 first-party packages under the @figmentio scope
+- registry: pypi
+  result: no first-party Figment client library found
+- registry: rubygems
+  result: no first-party Figment client library found
+- registry: packagist
+  result: no first-party Figment client library found
+- registry: crates.io
+  result: no first-party Figment client library found
+  note: >-
+    The `figment` crate on crates.io is an unrelated Rust configuration library by SergioBenitez —
+    NOT this company. Do not associate it with Figment the staking provider.
+- registry: pkg.go.dev
+  result: no first-party Figment client library found
+- registry: maven-central
+  result: no first-party Figment client library found
+- registry: nuget
+  result: no first-party Figment client library found
+summary:
+  official_count: 2
+  languages: [javascript]
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - https://registry.npmjs.org/@figmentio%2Felements
+  - https://registry.npmjs.org/@figmentio%2Fslate
+  - https://docs.figment.io/docs/elements

@@ -1,0 +1,59 @@
+generated: '2026-08-04'
+method: searched
+probe: true
+url: https://trust.figment.io/
+alternate_url: https://trustpage.figment.io/
+platform: Vanta
+http_status: 200
+description: >-
+  Figment operates a Vanta-hosted trust center on its own subdomain. The page is a client-rendered
+  single-page app, so the mechanical keyword probe returns nothing — this artifact was written from
+  the served HTML metadata plus Figment's own published compliance announcements. Report artifacts
+  themselves are gated behind an NDA request flow, which is normal for this class of page.
+certifications:
+- name: SOC 2 Type II
+  status: attained
+  auditor: A-LIGN
+  scope_areas:
+  - information security
+  - access control
+  - vendor management
+  - system backup
+  - business continuity
+  - disaster recovery
+  availability: Report available to current or prospective customers on request under NDA.
+  evidence: https://www.figment.io/insights/announcing-figments-soc-2-type-ii-certification/
+- name: ISO Certificate
+  status: claimed-unverified
+  note: >-
+    Figment states an "ISO Certificate" is available on request alongside the SOC 2 report. The
+    specific standard (27001 vs another) and the certificate number are NOT published publicly, so
+    this is recorded as claimed and unverified rather than confirmed. Do not report this as
+    ISO 27001 certification without a document.
+  availability: On request under NDA.
+documents:
+  gated: true
+  mechanism: NDA request via the trust center / customer contact
+related_public_content:
+- title: Announcing Figment's SOC 2 Type II Certification
+  url: https://www.figment.io/insights/announcing-figments-soc-2-type-ii-certification/
+- title: The Ultimate Guide to SOC 2 Compliance & Certifications
+  url: https://www.figment.io/insights/the-ultimate-guide-to-soc-2-compliance-certifications/
+evidence:
+- source: https://trust.figment.io/
+  http_status: 200
+  signals:
+  - '<title>Figment Trust Center</title>'
+  - 'og:image https://app.vanta.com/doc?s=… (Vanta-hosted trust report)'
+  - 'assets.vanta.com index-trust-report stylesheets'
+- source: https://trustpage.figment.io/
+  http_status: 200
+  note: Second hostname serving the same Vanta trust report.
+- source: https://www.figment.io/insights/announcing-figments-soc-2-type-ii-certification/
+  http_status: 200
+  kind: first-party announcement
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://trust.figment.io/
+  http_status: 200
+  content_type: text/html

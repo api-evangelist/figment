@@ -1,18 +1,104 @@
 aid: figment
 name: Figment
-description: 'Figment is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Figment is an institutional staking infrastructure provider that runs validators and staking
+  services across 40+ proof-of-stake networks for asset managers, exchanges, custodians, wallets,
+  banks and protocol foundations. Its developer surface is a single REST API at api.figment.io that
+  abstracts network-specific staking mechanics behind one contract: build ready-to-sign staking,
+  delegation, undelegation, withdrawal, exit, compound and consolidation transactions; broadcast
+  them; and read back stakes, validators, activities, balances, rewards, reward rates, statements
+  and portfolio data. Coverage includes Ethereum (including Pectra 0x02 compounding validators and
+  Figment Validator Vaults), Solana, Cardano, Cosmos, Osmosis, Injective, NEAR, Polkadot, Polygon,
+  Avalanche, Sui, Aptos, Vaulta, OpenTrade stablecoin yield vaults, and an x402 payment facilitator.
+  Figment also publishes Elements, a React component library for embeddable staking widgets, and a
+  documentation MCP server for agents.
+image: https://www.figment.io/wp-content/uploads/2024/06/Site-Preview.jpg
 url: https://raw.githubusercontent.com/api-evangelist/figment/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+specificationVersion: '0.21'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
-- Company
-apis: []
+- staking
+- blockchain
+- digital-assets
+- proof-of-stake
+- validators
+- institutional-finance
+- rewards-reporting
+- ethereum
+- solana
+- web3-infrastructure
+- custody
+- x402
+apis:
+- name: Figment API
+  description: >-
+    Unified REST API for institutional staking across proof-of-stake networks. Endpoints build
+    ready-to-sign transactions (stake, delegate, undelegate, withdraw, exit, compound, consolidate,
+    transfer, claim rewards), broadcast signed payloads, and return validators, stakes, activities,
+    balances, rewards, reward rates, statements and portfolio data. Authenticated with an API key in
+    the x-api-key header, scoped Read/Write or Read-Only and bound to a test or production
+    environment. OpenAPI 3.1.0 is published by Figment at api.figment.io/openapi/figment-api.yaml.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - staking
+  - blockchain
+  - proof-of-stake
+  - validators
+  - rewards-reporting
+  - digital-assets
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-api-openapi-original.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: Overlay
+    url: overlays/figment-api-overlay.yaml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- name: Figment Documentation MCP Server
+  description: >-
+    Hosted Model Context Protocol server served from Figment's own documentation host at
+    docs.figment.io/mcp, exposing the Figment documentation and API reference to MCP clients. The
+    endpoint is OAuth-protected — RFC 9728 protected-resource metadata at
+    /.well-known/oauth-protected-resource/mcp names https://dash.readme.com/oidc as the authorization
+    server — so anonymous tools/list returns "Authorization required" and the live tool schemas
+    require authenticated introspection.
+  humanURL: https://docs.figment.io/mcp
+  baseURL: https://docs.figment.io/mcp
+  tags:
+  - mcp
+  - agent-native
+  - documentation
+  - staking
+  properties:
+  - type: MCPServer
+    url: mcp/figment-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/figment-tool-crosswalk.yml
+  - type: MCP
+    url: https://docs.figment.io/mcp
+  - type: LLMsTxt
+    url: https://docs.figment.io/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +106,89 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/figment_stock/
+  url: https://www.figment.io/
+- type: DeveloperPortal
+  url: https://docs.figment.io/
+- type: Documentation
+  url: https://docs.figment.io/
+- type: APIReference
+  url: https://docs.figment.io/reference/getting-started-1
+- type: GettingStarted
+  url: https://docs.figment.io/reference/getting-started-1
+- type: Support
+  url: https://www.figment.io/company/meet-with-us/
+- type: Blog
+  url: https://www.figment.io/insights/
+- type: GitHubOrganization
+  url: https://github.com/figment-networks
+- type: SignUp
+  url: https://app.figment.io/sign-up
+- type: Login
+  url: https://app.figment.io/
+- type: TermsOfService
+  url: https://www.figment.io/general-terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.figment.io/privacy-policy/
+- type: StatusPage
+  url: https://status.figment.io/
+- type: ChangeLog
+  url: https://docs.figment.io/changelog
+- type: ChangeLog
+  url: changelog/figment-changelog.yml
+- type: Compliance
+  url: https://trust.figment.io/
+- type: TrustCenter
+  url: security/figment-trust-center.yml
+- type: Security
+  url: https://www.figment.io/.well-known/security.txt
+- type: SecurityTxt
+  url: well-known/figment-security.txt
+- type: VulnerabilityDisclosure
+  url: security/figment-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/figment-domain-security.yml
+- type: WellKnown
+  url: well-known/figment-well-known.yml
+- type: LLMsTxt
+  url: llms/figment-llms.txt
+- type: LLMsTxt
+  url: llms/figment-www-llms.txt
+- type: Packages
+  url: packages/figment-packages.yml
+- type: SDKs
+  url: packages/figment-packages.yml
+- type: Components
+  url: components/figment-components.yml
+- type: Sandbox
+  url: sandbox/figment-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/figment-lifecycle.yml
+- type: Conformance
+  url: conformance/figment-conformance.yml
+- type: Conventions
+  url: conventions/figment-conventions.yml
+- type: Idempotency
+  url: conventions/figment-conventions.yml
+- type: Authentication
+  url: authentication/figment-authentication.yml
+- type: ErrorCatalog
+  url: errors/figment-problem-types.yml
+- type: DataModel
+  url: data-model/figment-data-model.yml
+- type: RateLimits
+  url: rate-limits/figment-rate-limits.yml
+- type: MCPServer
+  url: mcp/figment-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/figment-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/figment-agentic-access.yml
+- type: Overlay
+  url: overlays/figment-api-overlay.yaml
+x-enrichment:
+  date: '2026-08-04'
+  status: enriched
+  artifacts_added: 30
+  pass: local-v1

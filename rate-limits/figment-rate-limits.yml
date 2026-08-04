@@ -1,0 +1,35 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/reference/getting-started-1
+description: >-
+  Published rate limits for the Figment API. Stated in prose on the Getting Started reference page;
+  not expressed in the OpenAPI and not signalled back to clients in response headers.
+rate_limits:
+- name: Requests per second
+  limit_count: 200
+  window: 1s
+  scope: api-key
+  applies_to: https://api.figment.io
+  source: https://docs.figment.io/reference/getting-started-1
+- name: Requests per minute
+  limit_count: 3500
+  window: 60s
+  scope: api-key
+  applies_to: https://api.figment.io
+  source: https://docs.figment.io/reference/getting-started-1
+signalling:
+  status_code: 429
+  headers: []
+  retry_after: not published
+  spec_coverage:
+    operations_declaring_429: 2
+    operations_total: 129
+  note: >-
+    No RateLimit-* (RFC 9331 draft) or X-RateLimit-* headers are documented, and only two of 129
+    published operations declare a 429 response. A client cannot discover its remaining budget at
+    runtime; back-off must be inferred. This is the clearest single runtime-semantics gap in the
+    Figment contract.
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://docs.figment.io/reference/getting-started-1
+  http_status: 200

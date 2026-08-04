@@ -1,0 +1,175 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Figment API
+  version: 1.0.0
+extends: openapi/figment-api-openapi-original.yml
+x-generated: '2026-08-04'
+x-method: generated
+x-source: >-
+  Enhancements derived from Figment's own published documentation (Authentication, Pagination,
+  Idempotency Requests, Getting Started) applied over the verbatim OpenAPI 3.1.0 harvested from
+  https://api.figment.io/openapi/figment-api.yaml. The original spec is never mutated. Every value
+  below is documented by Figment; nothing here is invented.
+actions:
+- target: $.info
+  description: Provenance and API Evangelist artifact cross-links.
+  update:
+    x-apievangelist-provider: figment
+    x-apievangelist-harvested: '2026-08-04'
+    x-apievangelist-source: https://api.figment.io/openapi/figment-api.yaml
+    x-apievangelist-artifacts:
+      authentication: authentication/figment-authentication.yml
+      conventions: conventions/figment-conventions.yml
+      errors: errors/figment-problem-types.yml
+      lifecycle: lifecycle/figment-lifecycle.yml
+      rate_limits: rate-limits/figment-rate-limits.yml
+      data_model: data-model/figment-data-model.yml
+      sandbox: sandbox/figment-sandbox.yml
+      conformance: conformance/figment-conformance.yml
+      skills: skills/_index.yml
+- target: $.info
+  description: >-
+    Add a description to info — the published spec carries only title, version and termsOfService.
+  update:
+    description: >-
+      Unified REST API for institutional staking across proof-of-stake networks. Build ready-to-sign
+      staking, delegation, undelegation, withdrawal, exit, compound and consolidation transactions,
+      broadcast signed payloads, and read back validators, stakes, activities, balances, rewards,
+      reward rates, statements and portfolio data. Figment never holds customer keys — write
+      operations return an unsigned transaction that the caller signs in its own custody and posts
+      back to the relevant /broadcast endpoint.
+    contact:
+      name: Figment
+      url: https://www.figment.io/company/meet-with-us/
+- target: $.components
+  description: >-
+    Declare the API key security scheme Figment documents but does not express in the spec. The
+    published document has no components.securitySchemes at all, so generated clients and agents
+    cannot discover how to authenticate from the contract alone.
+  update:
+    securitySchemes:
+      ApiKeyAuth:
+        type: apiKey
+        in: header
+        name: x-api-key
+        description: >-
+          Organization API key issued in the Developers section of https://app.figment.io/. Carries a
+          permission (Read/Write or Read-Only) and an environment (test or production). Read-Only keys
+          are rejected on create-validators and exit-validators; test keys work only against testnets
+          and devnets, production keys only against mainnets. Source:
+          https://docs.figment.io/reference/authentication
+- target: $
+  description: Apply the API key requirement globally, as the documentation states.
+  update:
+    security:
+    - ApiKeyAuth: []
+- target: $
+  description: >-
+    Record the documented rate limits at the document level. Figment publishes 200 req/s and
+    3500 req/min in Getting Started but signals nothing in the spec or in response headers.
+  update:
+    x-rate-limits:
+    - limit: 200
+      window: 1s
+      scope: api-key
+    - limit: 3500
+      window: 60s
+      scope: api-key
+    x-rate-limit-headers: none-published
+    x-rate-limit-source: https://docs.figment.io/reference/getting-started-1
+- target: $
+  description: >-
+    Record the documented pagination contract at the document level so agents do not have to infer it
+    per operation.
+  update:
+    x-pagination:
+      style: page-based
+      request_params: ['page[number]', 'page[size]']
+      body_form: '{"page": {"number": 2, "size": 10}}'
+      default_size: 50
+      max_size: 100
+      response_envelope: meta.pagination
+      response_fields: [current_page, total_pages, total_item_count]
+      source: https://docs.figment.io/reference/pagination
+- target: $.paths['/ethereum/validators'].post
+  description: >-
+    Declare the documented idempotency header and the 409 conflict response on the standard Ethereum
+    validator provisioning operation. Both are specified on
+    https://docs.figment.io/reference/idempotency-requests but absent from the contract.
+  update:
+    parameters:
+    - name: X-Figment-Idempotency-Key
+      in: header
+      required: false
+      description: >-
+        Unique key (UUID v4 recommended) per logical provisioning operation, stable across retries.
+        Same key + same body returns the cached response without re-provisioning; same key + a
+        different body returns 409; a retry while the original is in flight returns 409. Only 2xx
+        responses are cached — on a 4xx/5xx the key is released and the same key may be reused.
+      schema:
+        type: string
+        format: uuid
+    responses:
+      '409':
+        description: >-
+          Idempotency conflict — either the idempotency key was replayed with a different request
+          body (fingerprint mismatch) or the original request is still being processed.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/error'
+- target: $.paths['/ethereum/validators/0x02'].post
+  description: >-
+    Same idempotency declaration for Pectra / 0x02 compounding-credential validator provisioning.
+  update:
+    parameters:
+    - name: X-Figment-Idempotency-Key
+      in: header
+      required: false
+      description: >-
+        Unique key (UUID v4 recommended) per logical provisioning operation, stable across retries.
+        See https://docs.figment.io/reference/idempotency-requests
+      schema:
+        type: string
+        format: uuid
+    responses:
+      '409':
+        description: >-
+          Idempotency conflict — key replayed with a different body, or the original request is still
+          in flight.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/error'
+- target: $.paths['/injective/transactions/broadcast'].post
+  description: >-
+    Supply the missing operationId. This operation ships with no operationId, so it cannot be
+    referenced by generated clients, Arazzo steps or MCP tool bindings.
+  update:
+    operationId: broadcast-injective-tx
+    x-apievangelist-note: operationId added by overlay — absent in the published spec.
+- target: $.paths['/x402/supported'].get
+  description: Supply the missing operationId for the x402 facilitator supported-kinds endpoint.
+  update:
+    operationId: x402-supported
+    x-apievangelist-note: operationId added by overlay — absent in the published spec.
+- target: $.paths['/x402/verify'].post
+  description: Supply the missing operationId for the x402 verify endpoint.
+  update:
+    operationId: x402-verify
+    x-apievangelist-note: operationId added by overlay — absent in the published spec.
+- target: $.paths['/x402/settle'].post
+  description: Supply the missing operationId for the x402 settle endpoint.
+  update:
+    operationId: x402-settle
+    x-apievangelist-note: operationId added by overlay — absent in the published spec.
+- target: $.paths['/x402/partner_analytics'].get
+  description: Supply the missing operationId for the x402 partner analytics endpoint.
+  update:
+    operationId: x402-partner-analytics
+    x-apievangelist-note: operationId added by overlay — absent in the published spec.
+- target: $.paths['/x402/settlement_reports'].get
+  description: Supply the missing operationId for the x402 settlement reports endpoint.
+  update:
+    operationId: x402-settlement-reports
+    x-apievangelist-note: operationId added by overlay — absent in the published spec.

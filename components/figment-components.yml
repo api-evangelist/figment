@@ -1,0 +1,74 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/docs/elements
+description: >-
+  Figment Elements is a first-party React component library for embeddable staking — client-side UI
+  surfaces, distinct from the server-side REST integration. It is the "no API integration required"
+  path: drop a component in, and Elements handles wallet connection, transaction construction,
+  signing hand-off and broadcast against the Figment API behind the scenes.
+families:
+- name: Elements
+  package: "@figmentio/elements"
+  version: 2.1.1
+  registry: npm
+  install: npm install @figmentio/elements
+  repository: https://github.com/figment-networks/elements
+  docs: https://docs.figment.io/docs/elements
+  framework: react
+  official: true
+  components:
+  - name: Staking
+    import: 'import { Staking } from "@figmentio/elements"'
+    description: >-
+      Staking widget. Renders wallet connection, stake amount entry, transaction signing and
+      broadcast, plus staking activity, staked balance and all-time rewards.
+    props:
+    - name: appId
+      required: true
+      description: Issued by Figment; the rendering domain must also be allowlisted by Figment.
+    - name: protocol
+      values: [ethereum, solana, babylon]
+    - name: network
+      values: [mainnet, and the protocol's testnet — hoodi (ETH), devnet (SOL), signet (Babylon)]
+    - name: wallet
+      required: false
+      description: >-
+        Custom wallet integration. Elements loads the wallet returned (including balance) and invokes
+        the supplied sign functions, then broadcasts the signed transaction itself.
+  wallets:
+    defaults:
+    - protocol: ethereum
+      wallet: WalletConnect
+    - protocol: solana
+      wallet: Wallet Adapter
+    - protocol: babylon
+      wallet: OneKey
+    custom: Supported via the `wallet` prop.
+  protocols: [ethereum, solana, babylon]
+  distribution: >-
+    Published to npm automatically on merge to the figment-networks/elements repository.
+  gating: >-
+    Not fully self-serve — an appId must be issued by Figment and the embedding domain allowlisted.
+hosted_surfaces:
+- name: Figment App
+  url: https://app.figment.io/
+  description: >-
+    Figment's own hosted staking application (portfolio, rewards, activity, API key management,
+    roles and permissions). Not embeddable; listed here as the hosted alternative to Elements.
+  docs: https://docs.figment.io/docs/figment-app-roles-and-permissions
+- name: Figment DApp
+  description: Listed as a distinct component on the public status page (status.figment.io).
+loader_libraries:
+- "@figmentio/elements"
+related:
+  packages: packages/figment-packages.yml
+  announcement: https://www.figment.io/insights/introducing-figment-elements-ui-widgets-for-embeddable-staking/
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://docs.figment.io/docs/elements
+    http_status: 200
+  - url: https://registry.npmjs.org/@figmentio%2Felements
+    http_status: 200
+  - url: https://github.com/figment-networks/elements
+    http_status: 200

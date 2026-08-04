@@ -1,0 +1,149 @@
+generated: '2026-08-04'
+method: derived
+source: openapi/figment-api-openapi-original.yml
+docs: https://docs.figment.io/reference/idempotency-requests
+format: proprietary-json
+rfc9457: false
+description: >-
+  Error catalogue derived from every 4xx/5xx response declared in Figment's published OpenAPI 3.1.0,
+  enriched with the documented idempotency conflict semantics. Figment does NOT use RFC 9457
+  application/problem+json — errors are a proprietary `{error: {...}}` JSON envelope, and the shape
+  of that envelope differs across four schemas depending on which product surface answers.
+envelopes:
+- name: error
+  used_by: Core staking/transaction endpoints
+  media_type: application/json
+  shape: '{error: {message, details: [{param, message, code, context}]}}'
+  detail_fields: [param, message, code, context]
+  numeric_code: true
+  example_code: 1000
+  note: >-
+    The richest envelope — per-parameter validation detail with an integer `code`. Figment publishes
+    no registry mapping those integer codes to meanings, so a client cannot branch on them reliably.
+- name: staking_api_error
+  used_by: Staking Flows and some staking endpoints
+  media_type: application/json
+  shape: '{error: {message, details: [{param, message, context}]}}'
+  detail_fields: [param, message, context]
+  numeric_code: false
+- name: rewards_error
+  used_by: Rewards endpoints (ADA, DOT, MATIC, SOL, ETH, AVAX, SUI, INJ rewards)
+  media_type: application/json
+  shape: '{error: {message}}'
+  detail_fields: []
+  numeric_code: false
+  note: Message only — no machine-actionable field.
+- name: FigmentError
+  used_by: x402 payment facilitator endpoints
+  media_type: application/json
+  shape: '{error: {code, message, request_id}}'
+  detail_fields: [code, message, request_id]
+  string_code: true
+  example_code: invalid_request
+  correlation_id: request_id
+  note: >-
+    The only envelope in the API that carries a string error `code` AND a correlatable `request_id`.
+    The newest surface is the best-designed one; the core staking surface would benefit from the
+    same shape.
+problems:
+- status: 400
+  title: Bad Request
+  operations_declaring: 74
+  descriptions_used: [Bad Request, Bad request, Parameter error, Invalid request, Invalid params, Invalid parameters]
+  envelopes: [error, rewards_error, FigmentError, staking_api_error]
+  remediation: >-
+    Correct the request parameters or body. Where the `error` envelope is returned, the details[]
+    array names the offending `param`.
+- status: 401
+  title: Invalid API key
+  operations_declaring: 58
+  descriptions_used: [Invalid API key, Unauthorized, unauthorized]
+  envelopes: [rewards_error, error]
+  remediation: >-
+    Send a valid key in the x-api-key header. Confirm the key's environment matches the target
+    network (test keys reject mainnet, production keys reject testnets) and that a Read-Only key is
+    not being used on create-validators or exit-validators.
+  cross_reference: authentication/figment-authentication.yml
+- status: 403
+  title: Missing or malformed tenant header
+  operations_declaring: 1
+  descriptions_used: ['Missing or malformed tenant header (staging/production).']
+  envelopes: [FigmentError]
+  source_operation: openapi/figment-api-openapi-original.yml#GET /x402/partner_analytics
+  remediation: Supply the required tenant header on the x402 partner analytics endpoint.
+- status: 404
+  title: Not found
+  operations_declaring: 6
+  descriptions_used: [Not found, 'Activity not found.', 'Endpoint hidden when feature flag is disabled', Not Found, Vault not found]
+  remediation: >-
+    Verify the identifier. Note one documented 404 is not a missing resource at all — it is a
+    feature-flagged endpoint hidden from the organization, which is indistinguishable from a genuine
+    404 to the caller.
+- status: 409
+  title: Conflict
+  operations_declaring: 1
+  descriptions_used: [Already tracked]
+  source_operation: openapi/figment-api-openapi-original.yml#tracked-address-create
+  remediation: The address is already tracked; no action needed.
+- status: 409
+  title: Idempotency conflict
+  operations_declaring: 0
+  documented_only: true
+  docs: https://docs.figment.io/reference/idempotency-requests
+  applies_to: [create-validators, create-pectra-validators]
+  causes:
+  - Same X-Figment-Idempotency-Key replayed with a DIFFERENT request body (fingerprint mismatch)
+  - Same key replayed while the original request is still in flight
+  example_envelope: |
+    {
+      "error": {
+        "message": "a request with this idempotency key is currently being processed",
+        "details": [ ... ]
+      }
+    }
+  remediation: >-
+    On a fingerprint mismatch, generate a new UUID key for the new operation. On an in-flight
+    conflict, wait briefly and retry with the same key and the same body.
+  note: >-
+    CONTRACT GAP — this 409 is documented on the Idempotency Requests page but is NOT declared as a
+    response on create-validators or create-pectra-validators in the OpenAPI. An agent or generated
+    client reading only the spec will not know to handle it.
+- status: 422
+  title: Unprocessable Entity
+  operations_declaring: 57
+  descriptions_used: [Invalid network, Unprocessable entity, Invalid request, Unprocessable Content, Unprocessable Entity, Unsupported Network]
+  envelopes: [error, staking_api_error]
+  remediation: >-
+    Most commonly an unsupported or mismatched `network` value for the protocol being called. Check
+    the operation's network enum (mainnet, hoodi, testnet, devnet, preprod, fuji, westend, polkadot).
+- status: 429
+  title: Rate limit exceeded
+  operations_declaring: 2
+  descriptions_used: ['when it reaches the rate limit']
+  remediation: Back off and retry. Published limits are 200 req/s and 3500 req/min.
+  cross_reference: rate-limits/figment-rate-limits.yml
+  note: >-
+    CONTRACT GAP — the rate limit applies API-wide but only 2 of 129 operations declare a 429
+    response, and no RateLimit-*/Retry-After headers are documented.
+- status: 500
+  title: System error
+  operations_declaring: 14
+  descriptions_used: [System error, 'Unexpected enumeration failure.']
+  envelopes: [rewards_error, staking_api_error, FigmentError]
+  remediation: Retry with backoff; escalate via https://www.figment.io/company/meet-with-us/ if persistent.
+gaps:
+- No published error-code registry — the integer `code` in the core `error` envelope (example 1000) is undocumented.
+- Four different error envelopes across one API; only the x402 one carries a request_id for support correlation.
+- Errors are not RFC 9457; no `type` URI, no `instance`, no stable machine-readable problem identity.
+- The documented idempotency 409 is absent from the spec.
+coverage:
+  operations_total: 129
+  operations_with_4xx_or_5xx: 88
+  distinct_statuses: [400, 401, 403, 404, 409, 422, 429, 500]
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://api.figment.io/openapi/figment-api.yaml
+    http_status: 200
+  - url: https://docs.figment.io/reference/idempotency-requests
+    http_status: 200

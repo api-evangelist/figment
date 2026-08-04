@@ -1,0 +1,44 @@
+generated: '2026-08-04'
+method: generated
+source: openapi/figment-api-openapi-original.yml
+description: >-
+  Packaged Agent Skills for the Figment API — one per marquee flow. Every step is grounded in an
+  operationId that exists verbatim in Figment's published OpenAPI 3.1.0, and every convention
+  (idempotency, pagination, error envelope, rate limits, key permissions and environments) is taken
+  from Figment's own documentation. Figment publishes no AGENTS.md or first-party skill files; these
+  are API Evangelist generations over the provider's real contract.
+skills:
+- file: figment-stake-ethereum.md
+  name: Provision and fund Ethereum validators with Figment
+  api: openapi/figment-api-openapi-original.yml
+  operations: [create-validators, create-pectra-validators, broadcast-staking-tx, get-validators, get-validator, ethereum-validators-summary, ethereum-activities]
+- file: figment-exit-ethereum-validators.md
+  name: Exit Ethereum validators and reconcile withdrawals with Figment
+  api: openapi/figment-api-openapi-original.yml
+  operations: [exit-validators, broadcast-exit-message, get-validators, get-validator, eth-withdrawals, ethereum-activities, ethereum-withdrawal-transaction]
+- file: figment-stake-solana.md
+  name: Stake, unstake and withdraw SOL with Figment
+  api: openapi/figment-api-openapi-original.yml
+  operations: [solana-stake, solana-broadcast, solana-stakes, solana-undelegate, solana-withdraw, build-solana-merge-tx, build-solana-split-tx, solana-activities, sol-rewards, sol-rewards-rates]
+- file: figment-report-rewards.md
+  name: Report staking rewards and reconcile statements with Figment
+  api: openapi/figment-api-openapi-original.yml
+  operations: [eth-rewards, get-ethereum-net-rewards, eth-rewards-rates, eth-withdrawals, sol-rewards, sol-rewards-rates, ada-rewards, get-cardano-rewards, atom-rewards, near-rewards, polkadot-rewards, matic-rewards, get-avalanche-rewards, get-injective-rewards, get-sui-rewards, get-opentrade-rewards, get-statements, portfolio, tracked-address-create]
+- file: figment-manage-vaults.md
+  name: Operate Figment Validator Vaults for omnibus ETH staking
+  api: openapi/figment-api-openapi-original.yml
+  operations: [list-vaults, create-vault-transactions, configure-figment-vault, set-region, show-allowlist, update-allowlist-transactions, deposit-transactions, create-withdraw-transactions, create-claim-withdrawal-transactions, create-withdraw-commission-transactions, show-address-balance, show-address-actions, show-address-exit-requests, list-address-rewards, show-commission-balance, show-commission-actions, show-commission-exit_requests, assets-to-shares, shares-to-assets]
+coverage:
+  skills: 5
+  distinct_operations_referenced: 65
+  operations_total: 129
+provider_published_skills:
+  found: false
+  probed:
+  - https://docs.figment.io/llms.txt
+  - https://www.figment.io/llms.txt
+  - https://github.com/figment-networks
+  note: >-
+    Figment publishes no AGENTS.md, skill files, or agent operating instructions. It does publish 18
+    runnable "recipes" at https://docs.figment.io/recipes, which are the nearest first-party
+    equivalent and are referenced from the skills above.

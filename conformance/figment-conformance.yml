@@ -1,0 +1,168 @@
+generated: '2026-08-04'
+method: searched
+source: openapi/figment-api-openapi-original.yml
+description: >-
+  Which cross-cutting and industry standards the Figment API conforms to. Derived from the published
+  OpenAPI 3.1.0 and the documentation, and searched against Figment's published compliance posture.
+  Absence is recorded as valid data.
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    OpenAPI 3.1.0 published by Figment at https://api.figment.io/openapi/figment-api.yaml (585 KB,
+    126 paths, 129 operations, 55 component schemas); linked from the Authentication reference page.
+- id: openapi-operationid-uniqueness
+  conforms: false
+  evidence: >-
+    6 of 129 operations have NO operationId — POST /injective/transactions/broadcast and all five
+    x402 endpoints (GET /x402/supported, POST /x402/verify, POST /x402/settle,
+    GET /x402/partner_analytics, GET /x402/settlement_reports). The remaining 123 ids are unique.
+- id: openapi-security-schemes
+  conforms: false
+  evidence: >-
+    components.securitySchemes is absent and no operation declares security[]. The required x-api-key
+    header appears only in the x-readme docs-explorer extension, so the contract does not describe
+    its own authentication.
+- id: api-keys
+  conforms: true
+  evidence: API key in the x-api-key header, with Read/Write vs Read-Only permission and test vs production environment scoping.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    The staking API uses no OAuth. The only OAuth surface on a Figment host is the hosted MCP
+    endpoint at docs.figment.io/mcp, whose RFC 9728 protected-resource metadata delegates to ReadMe's
+    issuer (https://dash.readme.com/oidc) — that is the documentation platform's OAuth, not Figment's.
+- id: oidc
+  conforms: false
+  evidence: No /.well-known/openid-configuration on any Figment host. Auth0 is used for human console login only.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on every probed host.
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    https://docs.figment.io/.well-known/oauth-protected-resource/mcp returns 200 with
+    {"resource":"https://docs.figment.io/mcp","authorization_servers":["https://dash.readme.com/oidc"]}.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    All errors are application/json with a proprietary {error:{...}} envelope across four different
+    schemas (error, staking_api_error, rewards_error, FigmentError). No application/problem+json,
+    no type URI, no instance.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    https://www.figment.io/.well-known/security.txt returns 200 with Contact: mailto:secops@figment.io
+    and Expires: 2027-01-28T05:00:00.000Z.
+  gaps: >-
+    Minimal file — only Contact and Expires. No Policy, Encryption, Acknowledgments, Preferred-Languages
+    or Canonical fields.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support documented; no deprecation policy published.
+- id: idempotency-key
+  conforms: partial
+  evidence: >-
+    Idempotency is supported via the X-Figment-Idempotency-Key header with documented replay,
+    fingerprint-mismatch and in-flight semantics — but the header is vendor-prefixed rather than the
+    IETF-draft `Idempotency-Key`, and coverage is limited to two provisioning operations.
+  docs: https://docs.figment.io/reference/idempotency-requests
+- id: pagination
+  conforms: true
+  evidence: >-
+    Documented page-based pagination — page[number]/page[size] query params (bracket syntax borrowed
+    from JSON:API), default 50 / max 100, with meta.pagination {current_page, total_pages,
+    total_item_count} in the response.
+- id: json-api
+  conforms: false
+  evidence: >-
+    Borrows JSON:API's page[…] bracket parameter syntax and a {data, meta} envelope, but is not
+    application/vnd.api+json and has no type/id resource objects, relationships, links or included.
+- id: rate-limit-headers
+  conforms: false
+  evidence: >-
+    Limits are published in prose (200 req/s, 3500 req/min) but no RateLimit-*/X-RateLimit-* or
+    Retry-After headers are documented, and only 2 of 129 operations declare a 429.
+- id: x402
+  conforms: true
+  evidence: >-
+    Figment operates an x402 payment facilitator with /x402/supported, /x402/verify, /x402/settle
+    endpoints implementing the x402 protocol bodies (PaymentPayload, PaymentRequirements,
+    VerifyResponse, SettleResponse), plus Figment-added settlement reporting and partner analytics.
+  docs: https://docs.figment.io/reference/x402
+- id: mcp
+  conforms: true
+  evidence: >-
+    Hosted MCP endpoint at https://docs.figment.io/mcp (auth-gated). Documentation MCP served by the
+    ReadMe platform on Figment's own host.
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on www.figment.io,
+    api.figment.io and docs.figment.io. No agent card published.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document and no webhook catalog. Marketing copy on
+    https://www.figment.io/products/apis/ references tracking state changes "via webhooks", but no
+    webhook reference page, event catalogue or `webhooks:` block exists in the docs or the OpenAPI —
+    so there is nothing public to capture. N/A rather than a failure.
+- id: graphql
+  conforms: false
+  evidence: No GraphQL endpoint published.
+- id: grpc
+  conforms: false
+  evidence: No .proto definitions published on the figment-networks GitHub organization or buf.build.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    Two published llms.txt files — https://docs.figment.io/llms.txt (full documentation index, 210
+    lines, ReadMe-generated with per-page .md variants) and https://www.figment.io/llms.txt (a
+    hand-written marketing-site index with explicit "Notes for AI Systems").
+- id: soc2-type-ii
+  conforms: true
+  evidence: >-
+    SOC 2 Type II audit completed, examination performed by A-LIGN; report available under NDA via
+    the trust center. Announced at
+    https://www.figment.io/insights/announcing-figments-soc-2-type-ii-certification/.
+  detail: security/figment-trust-center.yml
+- id: iso-27001
+  conforms: unverified
+  evidence: >-
+    Figment states an "ISO Certificate" is available on request alongside the SOC 2 report. The
+    specific ISO standard and certificate number are NOT published publicly, so this is recorded as
+    claimed-but-unverified rather than conformant.
+- id: pci-dss
+  conforms: false
+  evidence: Not claimed.
+- id: hipaa
+  conforms: false
+  evidence: Not applicable to this business.
+- id: fedramp
+  conforms: false
+  evidence: Not claimed.
+- id: gdpr
+  conforms: unverified
+  evidence: >-
+    A privacy policy is published at https://www.figment.io/privacy-policy/; no explicit GDPR
+    certification or DPA is surfaced on the public trust center landing page.
+summary:
+  conformant: [openapi-3.1, api-keys, rfc9728-oauth-protected-resource-metadata, rfc9116-security-txt, pagination, x402, mcp, llms-txt, soc2-type-ii]
+  partial: [idempotency-key]
+  not_conformant: [openapi-operationid-uniqueness, openapi-security-schemes, oauth2, oidc, rfc8414-oauth-authorization-server-metadata, rfc9457-problem-details, rfc8594-sunset-header, json-api, rate-limit-headers, a2a, asyncapi, graphql, grpc, pci-dss, hipaa, fedramp]
+  unverified: [iso-27001, gdpr]
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://api.figment.io/openapi/figment-api.yaml
+    http_status: 200
+  - url: https://www.figment.io/.well-known/security.txt
+    http_status: 200
+  - url: https://docs.figment.io/.well-known/oauth-protected-resource/mcp
+    http_status: 200
+  - url: https://docs.figment.io/mcp
+    http_status: 401
+  - url: https://trust.figment.io/
+    http_status: 200
+  - url: https://www.figment.io/insights/announcing-figments-soc-2-type-ii-certification/
+    http_status: 200

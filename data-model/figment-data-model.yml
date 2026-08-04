@@ -1,0 +1,211 @@
+generated: '2026-08-04'
+method: derived
+source: openapi/figment-api-openapi-original.yml
+description: >-
+  Entity-relationship view of the Figment API, derived from the 55 schemas and 129 operations in the
+  published OpenAPI 3.1.0 plus the path/id-field references between them. Figment's model is
+  protocol-partitioned rather than centrally normalized: the same conceptual entity (a stake, a
+  reward, an activity) is expressed by protocol-specific schemas and paths. The one genuinely shared
+  spine is the ORGANIZATION implied by the API key — every list endpoint is implicitly scoped to
+  "the authenticated organization" and there is no organization resource in the API.
+notes:
+- >-
+  Only 5 of 55 schemas reference another schema by $ref; the graph below is therefore reconstructed
+  primarily from id-carrying fields and path parameters, not from $ref links.
+- >-
+  Schema naming leaks the implementation: the Ethereum vault entities are named `stake_wise_*` after
+  the underlying StakeWise vault contracts, while the API paths and docs call them Vaults.
+entities:
+- name: organization
+  implicit: true
+  identified_by: the API key (x-api-key)
+  description: >-
+    Never returned as a resource. Every collection endpoint ("visible to the calling organization")
+    is scoped by it. No self/whoami operation exists.
+- name: validator
+  schema: validator
+  domain: Ethereum
+  id_fields: [id, index, pubkey]
+  key_fields: [network, withdrawal_address, withdrawal_credentials, fee_recipient_address, net_fee_payout_address, region, status, deposit_data, status_history, status_estimates, on_demand_exit, balances]
+  status_values: [provisioned, funding_requested, deposited, deposited_not_finalized, pending_initialized, pending_queued, active_ongoing, active_exiting, active_slashed, exited_slashed, exited_unslashed, withdrawal_possible, withdrawal_done]
+  operations: [create-validators, create-pectra-validators, get-validators, get-validator, exit-validators, ethereum-validators-summary, list-validators, partner_ethereum_validators]
+- name: validator_provision_response
+  schema: validator_provision_response
+  domain: Ethereum
+  description: Provisioning projection of `validator`, returned by create-validators with validators_create_meta.
+- name: vault
+  schema: vault
+  domain: Ethereum (Figment Validator Vaults / StakeWise)
+  id_fields: [id, address]
+  key_fields: [network, fee_recipient_address, region, vault_admin_id, vault_admin_address, validators_manager_address, fee_bps, capacity_wei, own_mev_escrow, reward_splitter_contract_address]
+  operations: [list-vaults, create-vault-transactions, set-region, configure-figment-vault]
+- name: vault_allowlist_entry
+  schema: stake_wise_allowlist_entry
+  domain: Ethereum vaults
+  key_fields: [address, created_at]
+  operations: [show-allowlist, update-allowlist-transactions]
+- name: vault_depositor_position
+  schemas: [stake_wise_depositor_balance, stake_wise_depositor_actions, stake_wise_depositor_exit_requests, stake_wise_depositor_rewards]
+  domain: Ethereum vaults
+  operations: [show-address-balance, show-address-actions, show-address-exit-requests, list-address-rewards]
+- name: vault_commission_position
+  schemas: [stake_wise_shareholder_balance, stake_wise_shareholder_actions, stake_wise_shareholder_exit_requests]
+  domain: Ethereum vaults
+  operations: [show-commission-balance, show-commission-actions, show-commission-exit_requests]
+- name: tracked_validator
+  schema: tracked_validator
+  id_fields: [id, pubkey]
+  key_fields: [network, withdrawal_address]
+  operations: [track-validator, untrack-validator, tracked-address-create]
+- name: tracked_solana_stake_account
+  schema: tracked_solana_stake_account
+  id_fields: [id, stake_account]
+  key_fields: [network, vote_account, stake_authority, withdraw_authority, balance, active_balance, inactive_balance, balance_usd]
+  operations: [solana-stakes, tracked-address-create]
+- name: staking_activity
+  schemas: [staking_activity_stake, staking_activity_unstake]
+  id_fields: [id, tx_hash]
+  key_fields: [action, timestamp, network, currency, status, amount]
+  status_values: [in_progress, confirmed, failed, expired]
+  type_values: [stake, unstake, delegation, undelegation, consolidation, upgrade, withdrawal]
+  operations: [ethereum-activities, ethereum-activity-v2, ethereum-activity, solana-activities, get-solana-activity]
+- name: flow
+  schema: flow
+  domain: Staking Flows (protocol-agnostic state machine)
+  id_fields: [id]
+  key_fields: [protocol, network, operation, state, actions, data, created_at, updated_at]
+  operations: [create-flow, get-flows, get-flow, flow-next]
+  description: >-
+    The one abstraction that spans protocols — a server-side state machine of actions/inputs/payloads
+    that lets a client build dynamic staking forms without hard-coding per-network logic.
+- name: unsigned_transaction
+  schemas: [ethereum_transaction, solana_transaction]
+  key_fields: [unsigned_transaction_serialized, unsigned_transaction_hash, signing_payload, max_transaction_cost, calldata, stake_account, last_valid_block_height, nonce_value, is_durable_nonce]
+  description: >-
+    The core product output. Almost every write operation RETURNS an unsigned transaction rather than
+    executing one — the customer signs with their own custody and posts it back to a broadcast
+    endpoint. Figment never holds keys.
+- name: broadcast_result
+  schemas: [broadcast_transaction, ethereum_broadcast_transaction, broadcast_exit_message]
+  key_fields: [network, transaction_hash, activity, epoch, validator_index, signature]
+- name: reward
+  domain: cross-protocol (per-protocol response shapes)
+  operations: [eth-rewards, get-ethereum-net-rewards, sol-rewards, solana-allocated-rewards, ada-rewards, get-cardano-rewards, atom-rewards, near-rewards, polkadot-rewards, matic-rewards, get-avalanche-rewards, get-injective-rewards, get-sui-rewards, get-opentrade-rewards]
+  request_variants: [sol_rewards_req_by_groups, sol_rewards_req_by_stake_account, sol_rewards_req_by_stake_authority, sol_rewards_req_by_withdraw_authority, sol_rewards_req_common]
+- name: reward_rate
+  domain: cross-protocol
+  operations: [eth-rewards-rates, sol-rewards-rates, polkadot-rewards-rates, get-cardano-rewards-rates, get-sui-rewards-rates, cardano-srr, opentrade-apr]
+- name: monthly_statement
+  schema: monthly_statement
+  key_fields: [id, type, month, csv_data]
+  operations: [get-statements]
+- name: blockfrost_project
+  schema: blockfrost_project
+  domain: Cardano
+  key_fields: [id, network, project_id, created]
+  operations: [get-blockfrost-projects, add-blockfrost-project, remove-blockfrost-projects]
+- name: nomination_proxy
+  schemas: [nomination_proxy, revoke_proxy]
+  domain: Polkadot
+  key_fields: [stash_account_address, controller_account_address, proxy_account_address, qtx_dot_bonded, network]
+  operations: [polkadot-add-nomination-proxy, polkadot-revoke-nomination-proxy]
+- name: x402_payment
+  schemas: [ProtocolBody, PaymentPayload, PaymentRequirements, VerifyResponse, SettleResponse, SupportedResponse, SupportedKind, SettlementReportResponse, SettlementReportRow, PartnerAnalyticsResponse, PartnerUsageRow]
+  domain: x402 payment facilitator
+  description: >-
+    A structurally separate product inside the same API — the only surface with a string error code,
+    a request_id, and camelCase field naming.
+relationships:
+- from: organization
+  to: validator
+  type: has_many
+  via: implicit API-key scoping
+- from: organization
+  to: vault
+  type: has_many
+  via: implicit API-key scoping
+- from: validator
+  to: withdrawal_address
+  type: belongs_to
+  via: withdrawal_address
+- from: validator
+  to: staking_activity
+  type: has_many
+  via: pubkey / withdrawal_address
+- from: validator_provision_response
+  to: validators_create_meta
+  type: has_one
+  via: '$ref meta (staking_request, staking_transaction)'
+- from: vault
+  to: vault_allowlist_entry
+  type: has_many
+  via: vault_address path parameter
+- from: vault
+  to: vault_depositor_position
+  type: has_many
+  via: /vaults/{vault_address}/address/{id}
+- from: vault
+  to: vault_commission_position
+  type: has_many
+  via: /vaults/{vault_address}/commission/{commission_address}
+- from: tracked_solana_stake_account
+  to: stake_authority
+  type: belongs_to
+  via: stake_authority
+- from: tracked_solana_stake_account
+  to: vote_account
+  type: belongs_to
+  via: vote_account
+- from: staking_activity
+  to: broadcast_result
+  type: has_one
+  via: tx_hash
+- from: flow
+  to: unsigned_transaction
+  type: has_many
+  via: flow actions/payloads
+- from: unsigned_transaction
+  to: broadcast_result
+  type: has_one
+  via: signed payload posted to the protocol's /broadcast endpoint
+- from: blockfrost_project
+  to: organization
+  type: belongs_to
+  via: implicit API-key scoping
+- from: PartnerAnalyticsResponse
+  to: PartnerUsageRow
+  type: has_many
+  via: $ref data[]
+- from: SettlementReportResponse
+  to: SettlementReportRow
+  type: has_many
+  via: $ref data[]
+- from: ProtocolBody
+  to: PaymentPayload
+  type: has_one
+  via: $ref paymentPayload
+- from: ProtocolBody
+  to: PaymentRequirements
+  type: has_one
+  via: $ref paymentRequirements
+- from: SupportedResponse
+  to: SupportedKind
+  type: has_many
+  via: $ref kinds[]
+identifier_conventions:
+  uuid: Activity ids and idempotency keys are UUIDs.
+  chain_native: >-
+    Most identifiers are chain-native, not Figment-issued — ETH validator pubkeys (0x…), withdrawal
+    and fee-recipient addresses, Solana stake/vote accounts and authorities, Cardano stash accounts,
+    vault contract addresses.
+  id_prefixes: none published
+coverage:
+  schemas: 55
+  entities_modelled: 20
+  relationships: 20
+  operations: 129
+render: null
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://api.figment.io/openapi/figment-api.yaml
+  http_status: 200

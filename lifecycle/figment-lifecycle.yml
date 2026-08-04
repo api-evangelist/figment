@@ -1,0 +1,86 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/
+description: >-
+  Versioning, deprecation and operational-transparency posture for the Figment API, searched across
+  the documentation, the OpenAPI, the changelog and the public status page.
+versioning:
+  scheme: document-version
+  current: 2.0.0+1190.1
+  location: OpenAPI info.version
+  in_path: false
+  in_header: false
+  in_query: false
+  docs: https://docs.figment.io/reference/getting-started-1
+  note: >-
+    The live API is unversioned at the request level — https://api.figment.io/<resource>, no /v2
+    segment and no version header. The build-numbered info.version (2.0.0+1190.1) tells a consumer
+    which build the spec came from but gives no negotiation mechanism.
+  generations:
+  - version: '1.0'
+    docs: https://docs.figment.io/v1.0/
+    status: archived-documentation
+  - version: legacy DataHub / Staking API
+    docs: https://docs-archive.figment.io/
+    status: archived-documentation
+    note: >-
+      The previous documentation generation (DataHub-era Staking API, learn.figment.io guides) is
+      preserved on a separate host. Figment publishes no migration guide or end-of-life date
+      connecting the archived generation to the current one.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  rfc8594: unknown
+  deprecated_operations: []
+  spec_deprecated_flags: 0
+  note: >-
+    NO deprecation policy is published, no operation in the OpenAPI carries `deprecated: true`, and
+    no Sunset/Deprecation header support is documented. Changelog entries do record removals in
+    practice — e.g. `address_type` was dropped from the Track endpoint and single-validator tracking
+    was removed for ETH — so breaking changes DO ship without a stated notice window. This is the
+    clearest operational-transparency gap; no Deprecation pointer is emitted in apis.yml because
+    there is no policy to point at.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: >-
+    Figment markets a 99.9% uptime design target for its Staking Indexer on
+    https://www.figment.io/products/staking-data/, but publishes no contractual SLA document for the
+    API.
+status_page:
+  url: https://status.figment.io/
+  platform: Instatus
+  http_status: 200
+  components:
+  - Figment API
+  - Figment App
+  - Figment DApp
+  - Figment Docs
+  alternate: https://figment.statuspage.io/
+  note: Both hosts resolve; status.figment.io is the branded Instatus page.
+changelog:
+  url: https://docs.figment.io/changelog
+  feed: https://docs.figment.io/changelog.rss
+  detail: changelog/figment-changelog.yml
+support:
+  contact: https://www.figment.io/company/meet-with-us/
+  security: mailto:secops@figment.io
+terms:
+  general: https://www.figment.io/general-terms-of-use/
+  staking: https://www.figment.io/staking-terms-of-use/
+  referenced_in_spec: https://figment.io/staking-terms-of-use
+  note: The OpenAPI info.termsOfService points at the staking terms.
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://status.figment.io/
+    http_status: 200
+  - url: https://docs.figment.io/changelog.rss
+    http_status: 200
+  - url: https://api.figment.io/openapi/figment-api.yaml
+    http_status: 200
+  - url: https://www.figment.io/general-terms-of-use/
+    http_status: 200

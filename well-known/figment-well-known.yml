@@ -1,0 +1,74 @@
+generated: '2026-08-04'
+method: probed
+source: https://www.figment.io/.well-known/
+description: >-
+  Probe of the /.well-known/ discovery surface on every Figment host in apis.yml (website, API host,
+  docs host) plus the OpenAPI servers[] host. Absence is recorded as valid data.
+hosts:
+- host: https://www.figment.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: figment-security.txt
+    note: RFC 9116 — Contact secops@figment.io, Expires 2027-01-28. Same body served on the apex figment.io.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.figment.io
+  note: >-
+    API gateway host from OpenAPI servers[]. Every unrouted path returns HTTP 404 with the JSON body
+    {"message":"no route matched for the request"} — no /.well-known/ surface is served here.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://docs.figment.io
+  documents:
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    file: figment-oauth-protected-resource-mcp.json
+    note: >-
+      RFC 9728 OAuth 2.0 Protected Resource Metadata for the hosted MCP server at
+      https://docs.figment.io/mcp. Names https://dash.readme.com/oidc as the authorization server.
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+    note: Docs host returns the ReadMe SPA shell (HTML) — not a security.txt.
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+summary:
+  security_txt: true
+  openid_configuration: false
+  oauth_authorization_server: false
+  oauth_protected_resource: true
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+x-evidence:
+  fetched: '2026-08-04'
+  hosts_probed:
+  - www.figment.io
+  - figment.io
+  - api.figment.io
+  - docs.figment.io

@@ -1,0 +1,54 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/mcp
+status: published
+server:
+  name: figment-docs
+  transport: http
+  url: https://docs.figment.io/mcp
+  platform: ReadMe (hosted documentation MCP, served from Figment's own docs host)
+  description: >-
+    Model Context Protocol endpoint served at Figment's documentation host. A GET returns
+    "This URL can only be accessed with a MCP client." (HTTP 200, text/html); a JSON-RPC POST returns
+    HTTP 401 with {"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"}}.
+authorization:
+  gated: true
+  scheme: oauth2
+  protected_resource_metadata: https://docs.figment.io/.well-known/oauth-protected-resource/mcp
+  resource: https://docs.figment.io/mcp
+  authorization_servers:
+  - https://dash.readme.com/oidc
+  note: >-
+    RFC 9728 protected-resource metadata is served anonymously and names ReadMe's OIDC issuer as the
+    authorization server. Anonymous initialize and tools/list are both rejected, so the live tool set
+    and per-tool inputSchema require authenticated introspection.
+tools:
+  discovered: []
+  note: >-
+    NO TOOLS RECORDED. tools/list is auth-gated (HTTP 401) and Figment publishes no tool list in
+    docs.figment.io/llms.txt or elsewhere, so there is nothing to record without fabricating it. The
+    crosswalk in mcp/figment-tool-crosswalk.yml therefore maps the REST surface only and carries no
+    invented tool names.
+probes:
+- url: https://docs.figment.io/mcp
+  method: GET
+  http_status: 200
+  body: This URL can only be accessed with a MCP client.
+- url: https://docs.figment.io/mcp
+  method: POST
+  rpc: initialize
+  http_status: 401
+  body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'
+- url: https://api.figment.io/mcp
+  method: GET
+  http_status: 404
+  body: '{"message":"no route matched for the request"}'
+- url: https://mcp.figment.io/
+  method: GET
+  http_status: 0
+  note: host does not resolve
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://docs.figment.io/mcp
+  http_status: 401
+  content_type: application/json; charset=utf-8

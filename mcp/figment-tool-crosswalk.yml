@@ -1,0 +1,266 @@
+generated: '2026-08-04'
+method: derived
+source: openapi/figment-api-openapi-original.yml
+description: >-
+  Crosswalk between Figment's agent-facing MCP surface and its machine-readable REST core. Figment
+  serves a hosted MCP endpoint at https://docs.figment.io/mcp, but tools/list is OAuth-protected
+  (HTTP 401, authorization server https://dash.readme.com/oidc) and Figment publishes no tool list in
+  llms.txt or the docs, so the live tool set could not be observed. NOTHING IS INVENTED HERE: the
+  crosswalk[] and mcp_only[] tables are empty because no tool names exist to map, and the full REST
+  surface is recorded under rest_only[] so the divergence is captured honestly rather than papered
+  over. Re-run this artifact once an authenticated tools/list is available.
+surfaces:
+  openapi:
+    file: openapi/figment-api-openapi-original.yml
+    source: https://api.figment.io/openapi/figment-api.yaml
+    spec: OpenAPI 3.1.0
+    server: https://api.figment.io
+    gated: false
+    note: The spec document itself is served anonymously; calling the API requires an x-api-key.
+  graphql:
+    present: false
+    note: Figment publishes no GraphQL endpoint.
+  mcp:
+    url: https://docs.figment.io/mcp
+    gated: true
+    reason: >-
+      Anonymous JSON-RPC initialize and tools/list both return HTTP 401
+      {"code":-32001,"message":"Authorization required"}.
+crosswalk: []
+mcp_only: []
+rest_only:
+- capability: (untagged)
+  count: 4
+  operations:
+  - ethereum-fee-recipient-update-create
+  - ethereum-network-estimates
+  - portfolio
+  - tracked-address-create
+- capability: Aptos
+  count: 1
+  operations:
+  - aptos-stake
+- capability: Avalanche
+  count: 5
+  operations:
+  - broadcast-avalanche-tx
+  - build-avalanche-delegate-tx
+  - build-avalanche-export-tx
+  - build-avalanche-import-tx
+  - build-avalanche-self-bond-tx
+- capability: Blockfrost Projects
+  count: 3
+  operations:
+  - add-blockfrost-project
+  - get-blockfrost-projects
+  - remove-blockfrost-projects
+- capability: Cardano
+  count: 12
+  operations:
+  - ada-rewards
+  - cardano-broadcast-fireblocks-transaction
+  - cardano-broadcast-transaction
+  - cardano-delegate
+  - cardano-epoch
+  - cardano-pools
+  - cardano-rewards-withdrawals
+  - cardano-transfer
+  - cardano-transfers
+  - cardano-unstake
+  - cardano-withdraw-rewards
+  - get-cardano-rewards
+- capability: Cosmos
+  count: 6
+  operations:
+  - atom-rewards
+  - broadcast-cosmos-tx
+  - createCosmosClaimRewardsTransaction
+  - createCosmosDelegateTransaction
+  - createCosmosTransferTransaction
+  - createCosmosUndelegateTransaction
+- capability: Ethereum
+  count: 19
+  operations:
+  - broadcast-exit-message
+  - broadcast-staking-tx
+  - create-pectra-validators
+  - create-validators
+  - eth-rewards
+  - eth-rewards-rates
+  - eth-withdrawals
+  - ethereum-activities
+  - ethereum-activity
+  - ethereum-activity-v2
+  - ethereum-compound-transaction
+  - ethereum-consolidation-transaction
+  - ethereum-validators-summary
+  - ethereum-withdrawal-transaction
+  - exit-validators
+  - get-validator
+  - get-validators
+  - track-validator
+  - untrack-validator
+- capability: NEAR
+  count: 1
+  operations:
+  - near-rewards
+- capability: Near
+  count: 5
+  operations:
+  - near-broadcast-tx
+  - near-delegate
+  - near-get-stakes
+  - near-undelegate
+  - near-withdraw
+- capability: Osmosis
+  count: 3
+  operations:
+  - broadcast-osmosis-tx
+  - createOsmosisDelegateTransaction
+  - createOsmosisUndelegateTransaction
+- capability: Partners - Ethereum
+  count: 1
+  operations:
+  - partner_ethereum_validators
+- capability: Polkadot
+  count: 4
+  operations:
+  - polkadot-add-nomination-proxy
+  - polkadot-revoke-nomination-proxy
+  - polkadot-rewards
+  - polkadot-rewards-rates
+- capability: Polygon
+  count: 1
+  operations:
+  - matic-rewards
+- capability: Rewards
+  count: 6
+  operations:
+  - get-avalanche-rewards
+  - get-cardano-rewards-rates
+  - get-ethereum-net-rewards
+  - get-injective-rewards
+  - get-sui-rewards
+  - get-sui-rewards-rates
+- capability: Solana
+  count: 12
+  operations:
+  - build-solana-merge-tx
+  - build-solana-split-tx
+  - get-solana-activity
+  - sol-rewards
+  - sol-rewards-rates
+  - solana-activities
+  - solana-allocated-rewards
+  - solana-broadcast
+  - solana-stake
+  - solana-stakes
+  - solana-undelegate
+  - solana-withdraw
+- capability: Stablecoins
+  count: 6
+  operations:
+  - get-opentrade-rewards
+  - opentrade-approve-tx
+  - opentrade-apr
+  - opentrade-deposit-tx
+  - opentrade-get-address-balance
+  - opentrade-redeem-tx
+- capability: Staking Flows
+  count: 4
+  operations:
+  - create-flow
+  - flow-next
+  - get-flow
+  - get-flows
+- capability: Statements
+  count: 1
+  operations:
+  - get-statements
+- capability: Sui
+  count: 4
+  operations:
+  - broadcast-sui-tx
+  - build-sui-stake-tx
+  - sui-get-stakes
+  - sui-withdraw-tx
+- capability: Validators
+  count: 1
+  operations:
+  - list-validators
+- capability: Vaulta
+  count: 5
+  operations:
+  - broadcast-vaulta-tx
+  - vaulta-stake-tx
+  - vaulta-unstake-tx
+  - vaulta-vote-tx
+  - vaulta-withdraw-tx
+- capability: Vaults
+  count: 19
+  operations:
+  - assets-to-shares
+  - configure-figment-vault
+  - create-claim-withdrawal-transactions
+  - create-vault-transactions
+  - create-withdraw-commission-transactions
+  - create-withdraw-transactions
+  - deposit-transactions
+  - list-address-rewards
+  - list-vaults
+  - set-region
+  - shares-to-assets
+  - show-address-actions
+  - show-address-balance
+  - show-address-exit-requests
+  - show-allowlist
+  - show-commission-actions
+  - show-commission-balance
+  - show-commission-exit_requests
+  - update-allowlist-transactions
+unmapped_operations:
+  note: >-
+    Operations published in the OpenAPI with NO operationId. They cannot be bound to a tool, an
+    Arazzo step, or a generated SDK method by id, and are recorded here as a contract-quality gap to
+    raise with Figment.
+  operations:
+  - method: POST
+    path: /injective/transactions/broadcast
+    tag: Transactions
+    summary: 'Broadcast a transaction'
+  - method: GET
+    path: /x402/supported
+    tag: x402
+    summary: 'Supported'
+  - method: POST
+    path: /x402/verify
+    tag: x402
+    summary: 'Verify'
+  - method: POST
+    path: /x402/settle
+    tag: x402
+    summary: 'Settle'
+  - method: GET
+    path: /x402/partner_analytics
+    tag: x402
+    summary: 'Partner Analytics'
+  - method: GET
+    path: /x402/settlement_reports
+    tag: x402
+    summary: 'Settlement Reports'
+coverage:
+  mcp_tools_named: 0
+  mcp_tools_bound: 0
+  mcp_only: 0
+  rest_operations_total: 129
+  rest_operations_with_operationid: 123
+  rest_operations_without_operationid: 6
+  rest_operations_with_a_tool: 0
+  confidence: >-
+    Cannot be assessed — the MCP tool surface is auth-gated and unpublished.
+x-evidence:
+  fetched: '2026-08-04'
+  mcp_probe: https://docs.figment.io/mcp
+  mcp_http_status: 401
+  openapi_source: https://api.figment.io/openapi/figment-api.yaml
+  openapi_http_status: 200

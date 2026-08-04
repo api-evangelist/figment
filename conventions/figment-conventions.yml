@@ -1,0 +1,172 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.figment.io/reference/getting-started-1
+description: >-
+  Cross-cutting request/response semantics for the Figment API, searched from the documentation's
+  Authentication, Pagination and Idempotency Requests reference pages and cross-checked against the
+  published OpenAPI 3.1.0.
+authentication:
+  style: api-key-header
+  header: x-api-key
+  https_required: true
+  detail: authentication/figment-authentication.yml
+idempotency:
+  supported: true
+  opt_in: true
+  header: X-Figment-Idempotency-Key
+  value: String, UUID v4 recommended — one key per logical operation, stable across retries
+  docs: https://docs.figment.io/reference/idempotency-requests
+  scope: >-
+    Per key + request-body fingerprint. Only successful (HTTP 2xx) responses are cached; on a 4xx/5xx
+    or an exception the key is released so the same key + body can safely be retried.
+  supported_operations:
+  - method: POST
+    path: /ethereum/validators
+    operationId: create-validators
+    description: Provision Ethereum validators (standard 0x01)
+  - method: POST
+    path: /ethereum/validators/0x02
+    operationId: create-pectra-validators
+    description: Provision Ethereum validators (Pectra / 0x02 compounding withdrawal credentials)
+  behavior:
+  - scenario: First request succeeds
+    status: 201
+    result: Request processed; response cached against the key.
+  - scenario: Retry — same key, same body
+    status: 201
+    result: Cached response returned; the operation is NOT re-executed.
+  - scenario: Retry — same key, different body
+    status: 409
+    result: Fingerprint mismatch. A new key must be generated for the new operation.
+  - scenario: Retry while the first request is still in flight
+    status: 409
+    result: In-flight. Wait briefly and retry with the same key and body.
+  - scenario: Header omitted
+    status: (operation's own status)
+    result: Idempotency skipped entirely; no duplicate protection.
+  retention: not published
+  note: >-
+    Idempotency is deliberately narrow — it covers the two irreversible, costly provisioning
+    operations rather than the whole write surface. Broadcast endpoints are NOT idempotency-protected
+    at the API layer; on-chain nonce/replay semantics govern there instead.
+pagination:
+  style: page-based
+  docs: https://docs.figment.io/reference/pagination
+  request:
+    query_params:
+    - name: page[number]
+      type: number
+      description: The page number.
+    - name: page[size]
+      type: number
+      default: 50
+      max: 100
+      description: >-
+        Items per page. A value above the maximum is ignored and the default is returned.
+    body_form: >-
+      POST endpoints that paginate take the same values as a nested object in the request body:
+      {"page": {"number": 2, "size": 10}}
+  response:
+    envelope: meta.pagination
+    fields:
+    - current_page
+    - total_pages
+    - total_item_count
+  example: |
+    {
+      "data": [ "..." ],
+      "meta": {
+        "pagination": {
+          "current_page": 1,
+          "total_pages": 4,
+          "total_item_count": 40
+        }
+      }
+    }
+response_envelope:
+  shape: '{data, meta}'
+  data: Resource object or array of resource objects.
+  meta: Pagination, aggregates, and endpoint-specific metadata.
+  note: >-
+    The x402 facilitator endpoints are the documented exception — they return bare x402 protocol
+    bodies rather than the {data, meta} envelope, except for the Figment-added Partner Analytics
+    endpoint which does use {data, meta}.
+error_envelope:
+  shape: '{error: {message, details[]}}'
+  media_type: application/json
+  rfc9457: false
+  note: >-
+    Errors are a proprietary JSON envelope, not RFC 9457 application/problem+json. See
+    errors/figment-problem-types.yml.
+field_selection:
+  supported: true
+  param: include_fields
+  example: GET /ethereum/validators?include_fields=balances
+  note: >-
+    Opt-in expansion of expensive computed fields (e.g. validator balances: actual, pending_deposit,
+    pending_topups, pending_withdrawals). Not a general sparse-fieldset mechanism.
+filtering:
+  common_params:
+  - network
+  - status
+  - start / end
+  - start_date / end_date
+  - credentials_prefix (0x01 | 0x02, ETH validators)
+  - stake_authority / withdraw_authority (SOL stakes)
+  - operated_by
+  - tx_hash
+metadata:
+  supported: false
+  note: No customer-defined metadata/annotation surface is documented on Figment resources.
+request_tracing:
+  request_id_header: not published
+  request_id_in_body: partial
+  where: >-
+    The FigmentError envelope used by the x402 facilitator endpoints carries a required `request_id`
+    (UUID) field. No other product surface returns a correlation identifier, and no request-id
+    RESPONSE HEADER is documented anywhere in the API.
+  note: >-
+    Raise as a gap — agentic and high-volume integrations need one correlatable identifier across
+    the whole API, not just on the newest surface.
+versioning:
+  scheme: document-version
+  current: 2.0.0 (OpenAPI info.version 2.0.0+1190.1)
+  in_path: false
+  in_header: false
+  docs_archive: https://docs-archive.figment.io/
+  legacy_docs: https://docs.figment.io/v1.0/
+  note: >-
+    The API is unversioned at the URL and header level — https://api.figment.io/<resource> with no
+    /v2 segment. Version is carried only in the OpenAPI info.version and in the documentation
+    channel (the v1.0 / docs-archive sites hold the previous generation).
+  detail: lifecycle/figment-lifecycle.yml
+rate_limiting:
+  documented: true
+  limits:
+  - 200 requests/second
+  - 3500 requests/minute
+  docs: https://docs.figment.io/reference/getting-started-1
+  response_status: 429
+  headers: not published
+  detail: rate-limits/figment-rate-limits.yml
+  note: >-
+    Limits are stated in prose in Getting Started. No RateLimit-* / X-RateLimit-* response headers or
+    Retry-After semantics are documented, so a client cannot discover remaining budget at runtime —
+    only two of 129 operations even declare a 429 response in the spec.
+cross_links:
+  errors: errors/figment-problem-types.yml
+  lifecycle: lifecycle/figment-lifecycle.yml
+  authentication: authentication/figment-authentication.yml
+  rate_limits: rate-limits/figment-rate-limits.yml
+  sandbox: sandbox/figment-sandbox.yml
+x-evidence:
+  fetched: '2026-08-04'
+  sources:
+  - url: https://docs.figment.io/reference/getting-started-1
+    http_status: 200
+  - url: https://docs.figment.io/reference/authentication
+    http_status: 200
+  - url: https://docs.figment.io/reference/pagination
+    http_status: 200
+  - url: https://docs.figment.io/reference/idempotency-requests
+    http_status: 200
