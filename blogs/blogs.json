@@ -1,0 +1,14 @@
+{
+  "repo": "figment",
+  "feeds": [
+    {
+      "source": "https://www.figment.io/company/meet-with-us/",
+      "feed_url": "https://www.figment.io/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-08-06T14:08:46Z"
+}

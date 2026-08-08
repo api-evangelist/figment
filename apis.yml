@@ -95,7 +95,7 @@ apis:
     url: mcp/figment-mcp.yml
   - type: ToolCrosswalk
     url: mcp/figment-tool-crosswalk.yml
-  - type: MCP
+  - type: Documentation
     url: https://docs.figment.io/mcp
   - type: LLMsTxt
     url: https://docs.figment.io/llms.txt
