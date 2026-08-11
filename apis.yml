@@ -33,26 +33,39 @@ tags:
 - custody
 - x402
 apis:
-- name: Figment API
+- name: Figment Documentation MCP Server
   description: >-
-    Unified REST API for institutional staking across proof-of-stake networks. Endpoints build
-    ready-to-sign transactions (stake, delegate, undelegate, withdraw, exit, compound, consolidate,
-    transfer, claim rewards), broadcast signed payloads, and return validators, stakes, activities,
-    balances, rewards, reward rates, statements and portfolio data. Authenticated with an API key in
-    the x-api-key header, scoped Read/Write or Read-Only and bound to a test or production
-    environment. OpenAPI 3.1.0 is published by Figment at api.figment.io/openapi/figment-api.yaml.
+    Hosted Model Context Protocol server served from Figment's own documentation host at docs.figment.io/mcp,
+    exposing the Figment documentation and API reference to MCP clients. The endpoint is OAuth-protected
+    — RFC 9728 protected-resource metadata at /.well-known/oauth-protected-resource/mcp names https://dash.readme.com/oidc
+    as the authorization server — so anonymous tools/list returns "Authorization required" and the live
+    tool schemas require authenticated introspection.
+  humanURL: https://docs.figment.io/mcp
+  baseURL: https://docs.figment.io/mcp
+  tags:
+  - mcp
+  - agent-native
+  - documentation
+  - staking
+  properties:
+  - type: MCPServer
+    url: mcp/figment-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/figment-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.figment.io/mcp
+  - type: LLMsTxt
+    url: https://docs.figment.io/llms.txt
+- aid: figment:figment-addresses-api
+  name: Figment Addresses API
+  description: The Addresses API from Figment — 1 operation(s) for addresses.
   humanURL: https://docs.figment.io/reference/getting-started-1
   baseURL: https://api.figment.io
   tags:
-  - staking
-  - blockchain
-  - proof-of-stake
-  - validators
-  - rewards-reporting
-  - digital-assets
+  - Addresses
   properties:
   - type: OpenAPI
-    url: openapi/figment-api-openapi-original.yml
+    url: openapi/figment-addresses-api-openapi.yml
   - type: Documentation
     url: https://docs.figment.io/
   - type: APIReference
@@ -71,34 +84,698 @@ apis:
     url: data-model/figment-data-model.yml
   - type: RateLimits
     url: rate-limits/figment-rate-limits.yml
-  - type: Overlay
-    url: overlays/figment-api-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/figment-agentic-access.yml
-- name: Figment Documentation MCP Server
-  description: >-
-    Hosted Model Context Protocol server served from Figment's own documentation host at
-    docs.figment.io/mcp, exposing the Figment documentation and API reference to MCP clients. The
-    endpoint is OAuth-protected — RFC 9728 protected-resource metadata at
-    /.well-known/oauth-protected-resource/mcp names https://dash.readme.com/oidc as the authorization
-    server — so anonymous tools/list returns "Authorization required" and the live tool schemas
-    require authenticated introspection.
-  humanURL: https://docs.figment.io/mcp
-  baseURL: https://docs.figment.io/mcp
+- aid: figment:figment-aptos-api
+  name: Figment Aptos API
+  description: The Aptos API from Figment — 1 operation(s) for aptos.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
   tags:
-  - mcp
-  - agent-native
-  - documentation
-  - staking
+  - Aptos
   properties:
-  - type: MCPServer
-    url: mcp/figment-mcp.yml
-  - type: ToolCrosswalk
-    url: mcp/figment-tool-crosswalk.yml
+  - type: OpenAPI
+    url: openapi/figment-aptos-api-openapi.yml
   - type: Documentation
-    url: https://docs.figment.io/mcp
-  - type: LLMsTxt
-    url: https://docs.figment.io/llms.txt
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-avalanche-api
+  name: Figment Avalanche API
+  description: The Avalanche API from Figment — 5 operation(s) for avalanche.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Avalanche
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-avalanche-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-blockfrost-projects-api
+  name: Figment Blockfrost Projects API
+  description: The Blockfrost Projects API from Figment — 2 operation(s) for blockfrost projects.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Blockfrost Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-blockfrost-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-cardano-api
+  name: Figment Cardano API
+  description: The Cardano API from Figment — 12 operation(s) for cardano.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Cardano
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-cardano-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-cosmos-api
+  name: Figment Cosmos API
+  description: The Cosmos API from Figment — 6 operation(s) for cosmos.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Cosmos
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-cosmos-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-ethereum-api
+  name: Figment Ethereum API
+  description: The Ethereum API from Figment — 20 operation(s) for ethereum.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Ethereum
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-ethereum-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-near-api
+  name: Figment NEAR API
+  description: The NEAR API from Figment — 6 operation(s) for near.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - NEAR
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-near-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-osmosis-api
+  name: Figment Osmosis API
+  description: The Osmosis API from Figment — 3 operation(s) for osmosis.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Osmosis
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-osmosis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-partners-ethereum-api
+  name: Figment Partners - Ethereum API
+  description: The Partners - Ethereum API from Figment — 1 operation(s) for partners - ethereum.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Partners - Ethereum
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-partners-ethereum-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-polkadot-api
+  name: Figment Polkadot API
+  description: The Polkadot API from Figment — 4 operation(s) for polkadot.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Polkadot
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-polkadot-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-polygon-api
+  name: Figment Polygon API
+  description: The Polygon API from Figment — 1 operation(s) for polygon.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Polygon
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-polygon-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-portfolio-api
+  name: Figment Portfolio API
+  description: The Portfolio API from Figment — 1 operation(s) for portfolio.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Portfolio
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-portfolio-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-rewards-api
+  name: Figment Rewards API
+  description: The Rewards API from Figment — 6 operation(s) for rewards.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Rewards
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-rewards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-solana-api
+  name: Figment Solana API
+  description: The Solana API from Figment — 12 operation(s) for solana.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Solana
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-solana-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-stablecoins-api
+  name: Figment Stablecoins API
+  description: The Stablecoins API from Figment — 6 operation(s) for stablecoins.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Stablecoins
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-stablecoins-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-staking-flows-api
+  name: Figment Staking Flows API
+  description: The Staking Flows API from Figment — 3 operation(s) for staking flows.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Staking Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-staking-flows-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-statements-api
+  name: Figment Statements API
+  description: The Statements API from Figment — 1 operation(s) for statements.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Statements
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-statements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-sui-api
+  name: Figment Sui API
+  description: The Sui API from Figment — 4 operation(s) for sui.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Sui
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-sui-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-transactions-api
+  name: Figment Transactions API
+  description: The Transactions API from Figment — 1 operation(s) for transactions.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-validators-api
+  name: Figment Validators API
+  description: The Validators API from Figment — 1 operation(s) for validators.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Validators
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-validators-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-vaulta-api
+  name: Figment Vaulta API
+  description: The Vaulta API from Figment — 5 operation(s) for vaulta.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Vaulta
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-vaulta-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-vaults-api
+  name: Figment Vaults API
+  description: The Vaults API from Figment — 19 operation(s) for vaults.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - Vaults
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-vaults-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
+- aid: figment:figment-x402-api
+  name: Figment X402 API
+  description: The x402 API from Figment — 5 operation(s) for x402.
+  humanURL: https://docs.figment.io/reference/getting-started-1
+  baseURL: https://api.figment.io
+  tags:
+  - x402
+  properties:
+  - type: OpenAPI
+    url: openapi/figment-x402-api-openapi.yml
+  - type: Documentation
+    url: https://docs.figment.io/
+  - type: APIReference
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: GettingStarted
+    url: https://docs.figment.io/reference/getting-started-1
+  - type: Authentication
+    url: authentication/figment-authentication.yml
+  - type: Conventions
+    url: conventions/figment-conventions.yml
+  - type: Idempotency
+    url: conventions/figment-conventions.yml
+  - type: ErrorCatalog
+    url: errors/figment-problem-types.yml
+  - type: DataModel
+    url: data-model/figment-data-model.yml
+  - type: RateLimits
+    url: rate-limits/figment-rate-limits.yml
+  - type: AgenticAccess
+    url: agentic-access/figment-agentic-access.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
