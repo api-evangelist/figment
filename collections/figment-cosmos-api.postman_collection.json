@@ -1,0 +1,1012 @@
+{
+  "item": [
+    {
+      "id": "11967c34-4013-45ba-a824-bbda6810d617",
+      "name": "Cosmos",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "21f01a7b-dbef-45e7-93fa-e5aa5d339ca1",
+          "name": "Broadcast Tx",
+          "request": {
+            "name": "Broadcast Tx",
+            "description": {},
+            "url": {
+              "path": [
+                "cosmos",
+                "broadcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"signed_transaction\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "637baa84-8ae4-4c11-860b-23d4585991ff",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signed_transaction\": \"928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"transaction_hash\": \"8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8e27674-4e5b-4738-bf1a-da15e3ee946b",
+              "name": "Invalid network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signed_transaction\": \"928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd1df6e6-1576-4190-9788-c8d09b024d4b",
+          "name": "Claim Rewards",
+          "request": {
+            "name": "Claim Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "cosmos",
+                "claim_rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_addresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pubkey\": \"<string>\",\n  \"pubkey_type\": \"<string>\",\n  \"gas_limit\": \"<string>\",\n  \"gas_price\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e83471f2-a7dd-4f07-9f07-3750db4b3f3d",
+              "name": "Claim rewards transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "claim_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1xgfzh9cs5hu4y9pzgclrwgz4ecsjwy2xzd22m4\",\n  \"validator_addresses\": [\n    \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\"\n  ],\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7da6ed1b-126f-4c6e-9aed-c847b75ee9d1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "claim_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1xgfzh9cs5hu4y9pzgclrwgz4ecsjwy2xzd22m4\",\n  \"validator_addresses\": [\n    \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\"\n  ],\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60aeb3e2-1a2f-4543-8010-e3a69283418a",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "claim_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1xgfzh9cs5hu4y9pzgclrwgz4ecsjwy2xzd22m4\",\n  \"validator_addresses\": [\n    \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\"\n  ],\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37c8ca06-a13e-4bac-8774-0e5af731fb73",
+          "name": "Delegate",
+          "request": {
+            "name": "Delegate",
+            "description": {},
+            "url": {
+              "path": [
+                "cosmos",
+                "delegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"pubkey\": \"<string>\",\n  \"pubkey_type\": \"<string>\",\n  \"gas_limit\": \"<string>\",\n  \"gas_price\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e94889f-26ef-4597-ab1e-f2b6f09c38b1",
+              "name": "Delegate transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75d5e8f4-6bcf-4361-860c-de7573798cc2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7a88d7d-9c22-4d63-bae9-c4a85640ce9c",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ade735bd-8c49-4017-8521-076dcc31c9a4",
+          "name": "Transfer",
+          "request": {
+            "name": "Transfer",
+            "description": {},
+            "url": {
+              "path": [
+                "cosmos",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"from_account_address\": \"<string>\",\n  \"to_account_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"pubkey\": \"<string>\",\n  \"pubkey_type\": \"<string>\",\n  \"gas_limit\": \"<string>\",\n  \"gas_price\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5da735f-9c51-469d-b7bf-e87dee950772",
+              "name": "Transfer transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"from_account_address\": \"cosmos1xgfzh9cs5hu4y9pzgclrwgz4edhywy2xzd22m4\",\n  \"to_account_address\": \"cosmos1yy84cezg6he54uklmr32kysalfhua9n3t8nwpg\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c7c0bc8-f918-4929-bebb-2ebc46b18c4d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"from_account_address\": \"cosmos1xgfzh9cs5hu4y9pzgclrwgz4edhywy2xzd22m4\",\n  \"to_account_address\": \"cosmos1yy84cezg6he54uklmr32kysalfhua9n3t8nwpg\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6409a9f0-a941-447c-9b21-a4c15eb71f2e",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"from_account_address\": \"cosmos1xgfzh9cs5hu4y9pzgclrwgz4edhywy2xzd22m4\",\n  \"to_account_address\": \"cosmos1yy84cezg6he54uklmr32kysalfhua9n3t8nwpg\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b081c49-58af-4a05-9823-f434d47257ac",
+          "name": "Undelegate",
+          "request": {
+            "name": "Undelegate",
+            "description": {},
+            "url": {
+              "path": [
+                "cosmos",
+                "undelegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"pubkey\": \"<string>\",\n  \"pubkey_type\": \"<string>\",\n  \"gas_limit\": \"<string>\",\n  \"gas_price\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67a6750a-1bc5-465d-8c05-33c7e2cef5ce",
+              "name": "Undelegate transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3106e99c-5c0a-41fa-ac2c-75207b28e5aa",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5679bc4e-db40-4f6b-a5f1-eca233c39023",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b9a8bba-dca0-4af3-a099-8cc3f0fb5cad",
+          "name": "ATOM Rewards",
+          "request": {
+            "name": "ATOM Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "cosmos",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_addresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7dcca5a0-41eb-4c54-8562-3fd9c4db0c28",
+              "name": "A rewards result set with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\",\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"delegator_address\": \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\",\n      \"validator\": \"cosmosvaloper1wqy2s6nwnxj57l0l5rdjxxr646p3al6y70435m\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"0.61414845761237760744712\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 6.141484576123776e+23,\n          \"exp\": 24\n        },\n        {\n          \"text\": \"0.61414845761237760744712\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 6.141484576123776e+23,\n          \"exp\": 24\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"1000.07592\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 1000075920,\n          \"exp\": 6\n        },\n        {\n          \"text\": \"1000.07592\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 1000075920,\n          \"exp\": 6\n        }\n      ]\n    },\n    {\n      \"delegator_address\": \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\",\n      \"validator\": \"cosmosvaloper1wqy2s6nwnxj57l0l5rdjxxr646p3al6y70435m\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"0.61414845761237760744712\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 6.141484576123776e+23,\n          \"exp\": 24\n        },\n        {\n          \"text\": \"0.61414845761237760744712\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 6.141484576123776e+23,\n          \"exp\": 24\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"1000.07592\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 1000075920,\n          \"exp\": 6\n        },\n        {\n          \"text\": \"1000.07592\",\n          \"currency\": \"ATOM\",\n          \"numeric\": 1000075920,\n          \"exp\": 6\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"protocol\": \"cosmos\",\n    \"network\": \"cosmoshub-4\",\n    \"time_rollup\": \"daily\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d8a6268-42d6-4462-96ec-af81a1f428a2",
+              "name": "Parameter error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\",\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3c8fe42-ea8e-4109-a8e3-6d2a229c90fc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\",\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8077b33-4306-4d1b-904c-202b0b345518",
+              "name": "System error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cosmos",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\",\n    \"cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e334b222-a3ba-4368-a586-36ddf6000215",
+    "name": "Figment Cosmos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

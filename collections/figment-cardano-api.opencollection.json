@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Cardano API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cardano",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Broadcast Transaction (Fireblocks)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/broadcast/fireblocks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Transaction (Fireblocks)"
+        },
+        {
+          "info": {
+            "name": "Broadcast Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Transaction"
+        },
+        {
+          "info": {
+            "name": "Epoch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/cardano/epochs/:epoch_number",
+            "params": [
+              {
+                "name": "epoch_number",
+                "value": "",
+                "type": "path",
+                "description": "Epoch number or \"latest\" for the latest epoch"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network name (mainnet or preprod)"
+              }
+            ]
+          },
+          "docs": "Epoch"
+        },
+        {
+          "info": {
+            "name": "Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/cardano/pools",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Pools"
+        },
+        {
+          "info": {
+            "name": "Rewards Withdrawals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/cardano/rewards_withdrawals",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network to get the rewards withdrawals from. Default is mainnet."
+              },
+              {
+                "name": "tx_hash",
+                "value": "",
+                "type": "query",
+                "description": "Transaction hash of the rewards withdrawal."
+              }
+            ]
+          },
+          "docs": "Rewards Withdrawals"
+        },
+        {
+          "info": {
+            "name": "Delegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/delegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate"
+        },
+        {
+          "info": {
+            "name": "Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer"
+        },
+        {
+          "info": {
+            "name": "Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/cardano/transfers",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tx_hash",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Transfers"
+        },
+        {
+          "info": {
+            "name": "Unstake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/unstake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unstake"
+        },
+        {
+          "info": {
+            "name": "Withdraw Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/withdraw_rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw Rewards"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/rewards_all",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "ADA Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ADA Rewards"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

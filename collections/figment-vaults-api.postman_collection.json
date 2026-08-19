@@ -1,0 +1,3517 @@
+{
+  "item": [
+    {
+      "id": "10c82d2d-1ac1-4a4c-95b2-53b5c735e2e4",
+      "name": "Vaults",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f3668f1-59d0-4e4c-9803-e9eb9fb3fe60",
+          "name": "Create Vault",
+          "request": {
+            "name": "Create Vault",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                "transactions",
+                "create_vault"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"admin_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3942e9d4-4e18-4bfb-b40c-56b5a00fe002",
+              "name": "Transaction payload to create a Vault.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "transactions",
+                    "create_vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"admin_address\": \"0xdb007d02efef6640f9cfcfc8d2e0ba39fe4457de\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36df7969-2fd4-4258-8233-212b2f4341f9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "transactions",
+                    "create_vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"admin_address\": \"0xdb007d02efef6640f9cfcfc8d2e0ba39fe4457de\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f1141a8-e1b8-48ab-a2f3-122f951322b7",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "transactions",
+                    "create_vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"admin_address\": \"0xdb007d02efef6640f9cfcfc8d2e0ba39fe4457de\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f1e1663-6680-49e3-8408-cbb686cd3cf3",
+              "name": "Invalid transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    "transactions",
+                    "create_vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"admin_address\": \"0xdb007d02efef6640f9cfcfc8d2e0ba39fe4457de\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c30b6136-673c-457d-99f6-e47f6de99882",
+          "name": "Set Region",
+          "request": {
+            "name": "Set Region",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"region\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9010db6-7b5c-4431-bc35-d3454a77c855",
+              "name": "Set Region",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"region\": \"ca-central-1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"031af36c-508a-4f3d-84dd-f46d9e59428f\",\n    \"network\": \"hoodi\",\n    \"address\": \"0xE40F80618324C814cD444434670a44ba4583aE38\",\n    \"fee_recipient_address\": \"0x781462762B706AA7c1DA71FBA1a545724928b81f\",\n    \"region\": \"ca-central-1\",\n    \"vault_admin_id\": \"031af36c-508a-4f3d-84dd-f46d9e59428f\",\n    \"vault_admin_address\": \"0x781462762B706AA7c1DA71FBA1a545724928b81f\",\n    \"validators_manager_address\": \"031af36c-508a-4f3d-84dd-f46d9e59428f\",\n    \"fee_bps\": 500,\n    \"capacity_wei\": 500,\n    \"own_mev_escrow\": true,\n    \"reward_splitter_contract_address\": \"0xa73bacbb54faac0144fe749273a552026d0ff334\",\n    \"created_at\": \"2023-07-01T00:00:00.000Z\",\n    \"updated_at\": \"2023-07-01T00:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8a58bf8-8711-4808-91ad-ed30b3627637",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"region\": \"ca-central-1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "102f489b-0f4c-4502-8869-777ba4c21ac4",
+          "name": "Configure Figment Validator Vault",
+          "request": {
+            "name": "Configure Figment Validator Vault",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "transactions",
+                "configure_figment_vault"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e811fc3-f8ff-422b-9d7b-5451b637b0af",
+              "name": "Transaction payload to set validator manager and fee recipient address.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "configure_figment_vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dafbb5d8-2676-48bf-bf10-21d25f69d6f0",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "configure_figment_vault"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "942fa6de-0df8-488f-91f3-c20ddb1efaf8",
+          "name": "Update Allowlist",
+          "request": {
+            "name": "Update Allowlist",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "transactions",
+                "update_allowlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"wallet_address\": \"<array>\",\n  \"allowed\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8d6610a-bb4e-49da-a2f7-06f0a63b7412",
+              "name": "Transaction payload to update a Vault allow list.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "update_allowlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"wallet_address\": \"<array>\",\n  \"allowed\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f53fd557-c0fb-4e24-9a89-88fd04e31770",
+              "name": "Failed request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "update_allowlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"wallet_address\": \"<array>\",\n  \"allowed\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ea4fc30-2b5a-4db2-8033-3097255e7f3a",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "update_allowlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"wallet_address\": \"<array>\",\n  \"allowed\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a7e86c10-d631-4ea7-92c2-b178d20b8eab",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "update_allowlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"wallet_address\": \"<array>\",\n  \"allowed\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e791627-6b32-4ac3-a891-742d34c0badc",
+          "name": "Deposit",
+          "request": {
+            "name": "Deposit",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "transactions",
+                "deposit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"from_address\": \"<string>\",\n  \"receiver_address\": \"<string>\",\n  \"amount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31e78700-0578-421f-8ae5-c54b26934b1a",
+              "name": "Transaction payload to deposit Eth.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45660197-e90f-449a-b420-83570c3bfb59",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36871eb7-14c2-4ef8-8216-f91e4fc43ef4",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8147555e-29e2-4168-8aab-bf1cc1b6199d",
+              "name": "Transaction failed due to invalid input parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a91d311-b511-4bf6-83a3-f49162e3456c",
+          "name": "Withdraw",
+          "request": {
+            "name": "Withdraw",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "transactions",
+                "withdraw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"from_address\": \"<string>\",\n  \"receiver_address\": \"<string>\",\n  \"assets\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6dfa6043-b3a4-4c76-a99a-b1c7d1e722ba",
+              "name": "Transaction payload to enter in the exit queue.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"assets\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ba1e9a1-df71-4ab1-8466-5b783c0491d9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"assets\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7220c90-7af0-4d2a-bbc0-182e46b50db2",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"assets\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32bcbe51-a084-4468-bf44-b2c0666c0553",
+          "name": "Claim Withdrawal",
+          "request": {
+            "name": "Claim Withdrawal",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "transactions",
+                "claim_withdrawal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"position_ticket\": \"<string>\",\n  \"timestamp\": \"<string>\",\n  \"from_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edc2d7f8-70ef-4447-84b1-ffef5fb3185b",
+              "name": "Transaction payload to claim the withdrawal.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "claim_withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"position_ticket\": \"1234\",\n  \"timestamp\": \"1717010271\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c85e21a2-8a87-4b24-b983-8445e533511f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "claim_withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"position_ticket\": \"1234\",\n  \"timestamp\": \"1717010271\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0dc7a32a-5652-4104-a5b4-6bc6a1c7850f",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "claim_withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"position_ticket\": \"1234\",\n  \"timestamp\": \"1717010271\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d8a4efd-9c95-4b17-9964-dba8e858d6ef",
+          "name": "Allowlist",
+          "request": {
+            "name": "Allowlist",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "allowlist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d93e025-21f7-4122-8921-7c1508ebdff6",
+              "name": "Allowlist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "allowlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"created_at\": 1719345504000,\n      \"address\": \"0xE373733544a50A5Ea8A4Aa0209d30d1Eab13fD2b\"\n    },\n    {\n      \"created_at\": 1719345504000,\n      \"address\": \"0xE373733544a50A5Ea8A4Aa0209d30d1Eab13fD2b\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc5f89fc-2f0d-49c4-a7ea-2af96e445611",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "allowlist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "372ed5f3-b52d-4176-affd-dacfdee65d22",
+          "name": "Address Actions",
+          "request": {
+            "name": "Address Actions",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "address",
+                ":id",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "740e0e86-3c08-4a7e-a237-ef740acd0bc5",
+              "name": "Address Actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"stakerActions\": [\n      {\n        \"assets\": \"0.1\",\n        \"shares\": \"0.1\",\n        \"createdAt\": 1716914868000,\n        \"actionType\": \"Redeemed\",\n        \"link\": \"https://hoodi.etherscan.io/tx/0x08cbc471958019c940ca822b8a6e29a1425ce3574cdd2e5644789a24caea0072\"\n      },\n      {\n        \"assets\": \"0.1\",\n        \"shares\": \"0.1\",\n        \"createdAt\": 1716327696000,\n        \"actionType\": \"Deposited\",\n        \"link\": \"https://hoodi.etherscan.io/tx/0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab\"\n      },\n      {\n        \"assets\": \"0.1\",\n        \"shares\": \"0.1\",\n        \"createdAt\": 1716295452000,\n        \"actionType\": \"Deposited\",\n        \"link\": \"https://hoodi.etherscan.io/tx/0x2954b40c0aa829d07e9ab5209d52cb01ffef6737cd81e8327c1895e9ec518a85\"\n      },\n      {\n        \"assets\": \"0.1\",\n        \"shares\": \"0.1\",\n        \"createdAt\": 1716295128000,\n        \"actionType\": \"Deposited\",\n        \"link\": \"https://hoodi.etherscan.io/tx/0x67b822d7cae981e74f369400ef3b87e61c8d8616031fd4c413e310b6fc76167f\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f2255ee-0250-45f0-b7d8-cf2861200a90",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae608666-1a8f-4c0a-8681-c1222612f645",
+          "name": "Address Balance",
+          "request": {
+            "name": "Address Balance",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "address",
+                ":id",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7355d648-95dd-4cd0-8f36-0ffab3e2bdf6",
+              "name": "Address Balance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"balance\": \"0.2\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f76a3fd-cb63-47d5-8a06-60c171f61809",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a539ed8-84d2-454e-be11-7a5411e584da",
+          "name": "List Address Rewards",
+          "request": {
+            "name": "List Address Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "address",
+                ":id",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54caf9e6-3b36-40b4-b57a-2471102cb441",
+              "name": "Address Rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2024-02-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"rewards\": [\n      {\n        \"date\": \"2024-08-14T00:00:00Z\",\n        \"sum_rewards\": \"0.008092870114883128\",\n        \"daily_rewards\": \"0.003493495227587289\",\n        \"daily_rewards_eur\": \"8.54\",\n        \"daily_rewards_gbp\": \"7.33\",\n        \"daily_rewards_usd\": \"9.41\"\n      },\n      {\n        \"date\": \"2024-08-14T00:00:00Z\",\n        \"sum_rewards\": \"0.008092870114883128\",\n        \"daily_rewards\": \"0.003493495227587289\",\n        \"daily_rewards_eur\": \"8.54\",\n        \"daily_rewards_gbp\": \"7.33\",\n        \"daily_rewards_usd\": \"9.41\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62caccbc-ad0a-4cf6-9522-dcd60d20a388",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2024-02-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46eadda4-ffd4-48ff-893c-325cbab9364c",
+          "name": "Commission Actions",
+          "request": {
+            "name": "Commission Actions",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "commission",
+                ":commission_address",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commission_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b4060f6-c3bd-427a-a600-e25606019ed8",
+              "name": "Commission Actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "commission",
+                    ":commission_address",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commission_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"actions\": [\n      {\n        \"assets\": \"0.000000999999999999\",\n        \"shares\": \"0.0\",\n        \"created_at\": \"2024-08-15T14:21:36Z\",\n        \"action_type\": \"ExitedAssetsClaimed\",\n        \"link\": \"https://hoodi.etherscan.io/tx/0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26d31886-ca5a-4dc3-aa3b-5bcc35113814",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "commission",
+                    ":commission_address",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commission_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "017abaaf-4cfc-41b8-8310-421f9f17dbc0",
+          "name": "Commission Balance",
+          "request": {
+            "name": "Commission Balance",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "commission",
+                ":commission_address",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commission_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c260d6fb-6b4f-4490-94ec-c6c0e3ed0ee4",
+              "name": "Commission Balance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "commission",
+                    ":commission_address",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commission_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"balance\": \"0.000216504418283007\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b32b53a3-3205-40c2-bdab-bf7d0ad3299e",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "commission",
+                    ":commission_address",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commission_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7ca423a-52dc-4a4a-89d0-fb54d890719a",
+          "name": "Withdraw commission",
+          "request": {
+            "name": "Withdraw commission",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "transactions",
+                "withdraw_commission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"from_address\": \"<string>\",\n  \"receiver_address\": \"<string>\",\n  \"amount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd119cf8-4fe3-44e8-9977-5e3f5347398a",
+              "name": "Transaction payload to withdraw comission.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "withdraw_commission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"unsigned_transaction_serialized\": \"0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0\",\n    \"unsigned_transaction_hash\": \"0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7\",\n    \"max_transaction_cost\": 3999034319785598,\n    \"calldata\": \"0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0e212a2-c47a-4878-9d11-d4b13b1e1e9d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "withdraw_commission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d94e780-1a50-483c-8df1-0092eb8a4bc9",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "transactions",
+                    "withdraw_commission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"from_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"receiver_address\": \"0xa067dace6d518235489d9dcee8d9879703fd99f24\",\n  \"amount\": \"10.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdde74d2-d3b1-46ee-bffe-da71a53dda04",
+          "name": "Assets to Shares",
+          "request": {
+            "name": "Assets to Shares",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "information",
+                "assets_to_shares"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"assets\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edccfb96-6253-41b9-a66c-0470b248f8fe",
+              "name": "Amount of assets converted to shares",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "information",
+                    "assets_to_shares"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"assets\": \"0.3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"shares\": \"100148521403922573\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcd439a1-63b6-4dca-a9dd-c42622c77c94",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "information",
+                    "assets_to_shares"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"assets\": \"0.3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0282a1bc-e948-426d-889b-7fc60cc894dc",
+          "name": "Shares to Assets",
+          "request": {
+            "name": "Shares to Assets",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "information",
+                "shares_to_assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"shares\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e1d8933-0e9d-4662-9966-bfd76460a2a5",
+              "name": "Amount of shares converted to assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "information",
+                    "shares_to_assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"shares\": \"0.3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"assets\": \"0.100148521403922573\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "935a1b1f-f70d-46a7-9c93-fe627a79564e",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "information",
+                    "shares_to_assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"shares\": \"0.3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24f1364b-8cb4-4026-8df0-af67e72c86d9",
+          "name": "Commission Exit Requests",
+          "request": {
+            "name": "Commission Exit Requests",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "commission",
+                ":commission_address",
+                "exit_requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commission_address",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b7d81e0-80bf-41ea-8072-3646ee05ecbb",
+              "name": "Commission Exit Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "commission",
+                    ":commission_address",
+                    "exit_requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commission_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"exit_requests\": [\n      {\n        \"position_ticket\": \"1011053000346910311\",\n        \"owner\": \"0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8\",\n        \"receiver\": \"0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8\",\n        \"total_assets\": \"0.009999999999999999\",\n        \"exited_assets\": \"0.009999999999999999\",\n        \"timestamp\": \"1726068324\",\n        \"claimable\": true,\n        \"claimed\": false,\n        \"withdrawal_timestamp\": \"0\"\n      },\n      {\n        \"position_ticket\": \"1021053000346910310\",\n        \"owner\": \"0xce3460f63e3c7d4cb06bf11a6e980f7231bfc89a\",\n        \"receiver\": \"0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8\",\n        \"total_assets\": \"0.000009999999999999\",\n        \"exited_assets\": \"0.000009999999999999\",\n        \"timestamp\": \"1726081992\",\n        \"claimable\": true,\n        \"claimed\": false,\n        \"withdrawal_timestamp\": \"0\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7c94b44-e7c2-4a50-b572-bd61838638e8",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "commission",
+                    ":commission_address",
+                    "exit_requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commission_address",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d849ed6-5dd7-4bb7-8ae8-124661d8c3c2",
+          "name": "Address Exit Requests",
+          "request": {
+            "name": "Address Exit Requests",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults",
+                ":vault_address",
+                "address",
+                ":id",
+                "exit_requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c34247f-83f9-42eb-9b85-ee325951451c",
+              "name": "Address Exit Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "exit_requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"exit_requests\": [\n      {\n        \"position_ticket\": \"1011053000346910311\",\n        \"owner\": \"0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8\",\n        \"receiver\": \"0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8\",\n        \"total_assets\": \"0.009999999999999999\",\n        \"exited_assets\": \"0.009999999999999999\",\n        \"timestamp\": \"1726068324\",\n        \"claimable\": true,\n        \"claimed\": false,\n        \"withdrawal_timestamp\": \"0\"\n      },\n      {\n        \"position_ticket\": \"1021053000346910310\",\n        \"owner\": \"0xce3460f63e3c7d4cb06bf11a6e980f7231bfc89a\",\n        \"receiver\": \"0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8\",\n        \"total_assets\": \"0.000009999999999999\",\n        \"exited_assets\": \"0.000009999999999999\",\n        \"timestamp\": \"1726081992\",\n        \"claimable\": true,\n        \"claimed\": false,\n        \"withdrawal_timestamp\": \"0\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc0fd6a5-ea6e-424f-bcc9-8bad9f705843",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults",
+                    ":vault_address",
+                    "address",
+                    ":id",
+                    "exit_requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "963767ca-f52a-45c9-a90f-981bb2550cd4",
+          "name": "List Vaults",
+          "request": {
+            "name": "List Vaults",
+            "description": {},
+            "url": {
+              "path": [
+                "vaults"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55c09c03-5688-48bc-893c-4ed1b15d5a1b",
+              "name": "Validators list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"0xb67c867f975e9b6a022dd6b69672345268f0c877\",\n      \"fee_recipient_address\": \"0xa6372f319628bef9ad7a902a52e59c14797184be\",\n      \"network\": \"hoodi\",\n      \"region\": \"ca-central-1\",\n      \"vault_admin_id\": \"703a145f-a034-469e-a0a9-624130d462d8\",\n      \"admin_address\": \"0xa73bacbb54faac0144fe749273a552026d0ff334\",\n      \"validators_manager_address\": \"0xdd1b638b81b8e447b3acb96e9fa7c7a39e6dc3d7\",\n      \"fee_bps\": 500,\n      \"capacity_wei\": 1,\n      \"own_mev_escrow\": true,\n      \"reward_splitter_contract_address\": \"0xa73bacbb54faac0144fe749273a552026d0ff334\",\n      \"created_at\": \"2024-05-21T16:32:45Z\",\n      \"updated_at\": \"2024-05-21T16:32:45Z\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"total_item_count\": 1\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a5015be-12db-48e0-81af-25a1a83c0f39",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vaults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "93d5fb2b-4299-4f6c-84ae-914b88bcbca2",
+    "name": "Figment Vaults API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

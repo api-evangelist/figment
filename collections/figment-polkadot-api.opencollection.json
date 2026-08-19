@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Polkadot API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Polkadot",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "DOT Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/polkadot/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns Polkadot rewards for the given stash accounts and time range."
+        },
+        {
+          "info": {
+            "name": "Add Nomination proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/polkadot/nomination_proxy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Nomination proxy"
+        },
+        {
+          "info": {
+            "name": "Revoke Nomination Proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/polkadot/nomination_proxy/revoke_proxy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke Nomination Proxy"
+        },
+        {
+          "info": {
+            "name": "DOT Reward Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/polkadot/rewards_rates",
+            "params": [
+              {
+                "name": "figment",
+                "value": "",
+                "type": "query",
+                "description": "If true is passed, we will return the reward rate for Figment validators only. If omitted or any other value is passed, we will return the reward rate of the network as a whole."
+              },
+              {
+                "name": "avg",
+                "value": "",
+                "type": "query",
+                "description": "Returns the 7 day moving average. The only value accepted is 7d, if no value is passed, the original behavior of returning a single day average ARR is used."
+              },
+              {
+                "name": "decimal",
+                "value": "",
+                "type": "query",
+                "description": "Adds decimal places to the returned values. Accepts values 2, 3, 4, 5. If nothing is passed, it will default to 2."
+              }
+            ]
+          },
+          "docs": "DOT Reward Rates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

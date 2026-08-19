@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Vaulta API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vaulta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Broadcast Staking Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaulta/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Staking Tx"
+        },
+        {
+          "info": {
+            "name": "Stake Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaulta/stake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stake Tx"
+        },
+        {
+          "info": {
+            "name": "Unstake Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaulta/unstake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unstake Tx"
+        },
+        {
+          "info": {
+            "name": "Vote Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaulta/vote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Vote Tx"
+        },
+        {
+          "info": {
+            "name": "Withdraw Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaulta/withdraw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw Tx"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

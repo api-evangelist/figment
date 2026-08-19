@@ -1,0 +1,1948 @@
+{
+  "item": [
+    {
+      "id": "3a18d99b-dad7-4df1-a71c-7f517b619f9e",
+      "name": "Cardano",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8d67123-91f9-4cc9-80d2-fd1a286bdc54",
+          "name": "Broadcast Transaction (Fireblocks)",
+          "request": {
+            "name": "Broadcast Transaction (Fireblocks)",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "broadcast",
+                "fireblocks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"unsigned_transaction_serialized\": \"<string>\",\n  \"signed_messages\": [\n    {\n      \"publicKey\": \"<string>\",\n      \"signature\": {\n        \"fullSig\": \"<string>\"\n      }\n    },\n    {\n      \"publicKey\": \"<string>\",\n      \"signature\": {\n        \"fullSig\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "acc974ba-c4c7-45c2-a2f9-9cb168e8126a",
+              "name": "Broadcast Transaction (Fireblocks)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "broadcast",
+                    "fireblocks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"preprod\",\n  \"unsigned_transaction_serialized\": \"84a50081825820870fdc8c57849ac1038e22578eae6d0c0f5be5bf64a1c1cd39a0644c6594717800018182583900e0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed7884acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f1b0000000253e61e4b021a0002ad55048183028200581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f581c8ed5ab11e76094fa2a2ab29fc3a57498d07e68f6fde6f326162eea880e82581ce0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed78581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2fa0f5f6\",\n  \"signed_messages\": [\n    {\n      \"publicKey\": \"372425b3404e0bfae60b33c9563ae012d826066eecb3ddca16678\",\n      \"signature\": {\n        \"fullSig\": \"dca8342d19e00ba20e5070c378184222d97bb024496cddbf6d2905bdd503e252ec65fcee1da8b0a023f383cae7e17a87694447ec\"\n      }\n    },\n    {\n      \"publicKey\": \"372425b3404e0bfae60b33c9563ae012d826066eecb3ddca16678\",\n      \"signature\": {\n        \"fullSig\": \"dca8342d19e00ba20e5070c378184222d97bb024496cddbf6d2905bdd503e252ec65fcee1da8b0a023f383cae7e17a87694447ec\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"tx_hash\": \"aaf020d48ba7ade4a96488f49a206e56329e59b53c38ce5be10fe7594356fb9a\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a352d5c2-2211-42eb-b477-7942dd784a98",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "broadcast",
+                    "fireblocks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"preprod\",\n  \"unsigned_transaction_serialized\": \"84a50081825820870fdc8c57849ac1038e22578eae6d0c0f5be5bf64a1c1cd39a0644c6594717800018182583900e0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed7884acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f1b0000000253e61e4b021a0002ad55048183028200581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f581c8ed5ab11e76094fa2a2ab29fc3a57498d07e68f6fde6f326162eea880e82581ce0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed78581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2fa0f5f6\",\n  \"signed_messages\": [\n    {\n      \"publicKey\": \"372425b3404e0bfae60b33c9563ae012d826066eecb3ddca16678\",\n      \"signature\": {\n        \"fullSig\": \"dca8342d19e00ba20e5070c378184222d97bb024496cddbf6d2905bdd503e252ec65fcee1da8b0a023f383cae7e17a87694447ec\"\n      }\n    },\n    {\n      \"publicKey\": \"372425b3404e0bfae60b33c9563ae012d826066eecb3ddca16678\",\n      \"signature\": {\n        \"fullSig\": \"dca8342d19e00ba20e5070c378184222d97bb024496cddbf6d2905bdd503e252ec65fcee1da8b0a023f383cae7e17a87694447ec\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51477985-ce4c-4055-9faa-2c8bba858e16",
+          "name": "Broadcast Transaction",
+          "request": {
+            "name": "Broadcast Transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "broadcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"signed_transaction\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8711655-0f38-4f2f-b51a-e17adee4dd58",
+              "name": "Broadcast Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"preprod\",\n  \"signed_transaction\": \"84a500818258205b740bb52ad83d9215bc29d6f3722957e5eb259a2c457901e932babef6aa3476000181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253dab14d021a0002ad55048183028200581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b581cba2edef7d8bceb725ac92dde87900116a458a32667fe27bb412c49e50e82581c4341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc5029581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5ba100818258209ae0eab30411b9b3157e0928379958fc0ad93bf9102215531e65d1582e9f68445840b23a1e2f697ac38f71acd21562c67bb227c73302eb82ddb0ee275f728aae67da33990a0807967a1547ce12a99443e678b7df94c6e5d0afb4b8d5aaf395b72409f5f6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"tx_hash\": \"3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c52276f-3431-49f0-9129-b0b0ae2bbeeb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"preprod\",\n  \"signed_transaction\": \"84a500818258205b740bb52ad83d9215bc29d6f3722957e5eb259a2c457901e932babef6aa3476000181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253dab14d021a0002ad55048183028200581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b581cba2edef7d8bceb725ac92dde87900116a458a32667fe27bb412c49e50e82581c4341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc5029581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5ba100818258209ae0eab30411b9b3157e0928379958fc0ad93bf9102215531e65d1582e9f68445840b23a1e2f697ac38f71acd21562c67bb227c73302eb82ddb0ee275f728aae67da33990a0807967a1547ce12a99443e678b7df94c6e5d0afb4b8d5aaf395b72409f5f6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3199d28a-f48f-49dc-88a9-1522a9ccb22b",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"preprod\",\n  \"signed_transaction\": \"84a500818258205b740bb52ad83d9215bc29d6f3722957e5eb259a2c457901e932babef6aa3476000181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253dab14d021a0002ad55048183028200581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b581cba2edef7d8bceb725ac92dde87900116a458a32667fe27bb412c49e50e82581c4341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc5029581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5ba100818258209ae0eab30411b9b3157e0928379958fc0ad93bf9102215531e65d1582e9f68445840b23a1e2f697ac38f71acd21562c67bb227c73302eb82ddb0ee275f728aae67da33990a0807967a1547ce12a99443e678b7df94c6e5d0afb4b8d5aaf395b72409f5f6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfc35886-e190-4e63-bdd9-c02c26f3f308",
+          "name": "Epoch",
+          "request": {
+            "name": "Epoch",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "epochs",
+                ":epoch_number"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) Network name (mainnet or preprod)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "epoch_number",
+                  "description": "(Required) Epoch number or \"latest\" for the latest epoch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54d5fd73-67a6-4a73-b6e6-666dcc669188",
+              "name": "Returns successful epoch information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "epochs",
+                    ":epoch_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epoch_number",
+                      "description": "(Required) Epoch number or \"latest\" for the latest epoch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"epoch\": 263,\n    \"start_time\": 1767657600,\n    \"end_time\": 1768089600,\n    \"first_block_time\": 1767657602,\n    \"last_block_time\": 1767908074,\n    \"block_count\": 9163,\n    \"tx_count\": 7959,\n    \"output\": \"2948355933234693\",\n    \"fees\": \"3314569711\",\n    \"active_stake\": \"467156126908100\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14d6fbba-5fa0-49f2-8ba3-4c8a4dd4f8f8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "epochs",
+                    ":epoch_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epoch_number",
+                      "description": "(Required) Epoch number or \"latest\" for the latest epoch"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0eccea8b-5936-49a6-a9fc-ace64e6e8b34",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "epochs",
+                    ":epoch_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epoch_number",
+                      "description": "(Required) Epoch number or \"latest\" for the latest epoch"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c38e793-14a1-4048-9855-c2d37d54f7fe",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "epochs",
+                    ":epoch_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epoch_number",
+                      "description": "(Required) Epoch number or \"latest\" for the latest epoch"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2bc34215-4b80-451f-bb4a-be92e5af05ac",
+              "name": "when it reaches the rate limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "epochs",
+                    ":epoch_number"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epoch_number",
+                      "description": "(Required) Epoch number or \"latest\" for the latest epoch"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18a62eca-342a-45ed-b881-40ef847200c5",
+          "name": "Pools",
+          "request": {
+            "name": "Pools",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78517e52-da58-4336-b0ca-b1271e6c5f3d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pools\": [\n    {\n      \"pool_id\": \"pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv\",\n      \"live_stake\": \"77952719419020\",\n      \"live_saturation\": 102.01,\n      \"active_stake\": \"77941719419016\",\n      \"active_saturation\": 99,\n      \"public\": true\n    },\n    {\n      \"pool_id\": \"pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v\",\n      \"live_stake\": \"49009362050188\",\n      \"live_saturation\": 64.141,\n      \"active_stake\": \"49008262050188\",\n      \"active_saturation\": 60,\n      \"public\": true\n    },\n    {\n      \"pool_id\": \"pool15v22rpfg6qx9l0gx0m955gfv7tes0jpa9sy0gjs3a04lv6x9jdr\",\n      \"live_stake\": \"40698810068260\",\n      \"live_saturation\": 53.12,\n      \"active_stake\": \"40588810068260\",\n      \"active_saturation\": 51.1,\n      \"public\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5f846b9-5045-49c5-a77f-2b6dc8a7aeed",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "153b2c83-a156-4db5-b79a-482bcea2a586",
+              "name": "when it reaches the rate limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07fc6713-2d38-4884-99d8-936a63f4c83b",
+          "name": "Rewards Withdrawals",
+          "request": {
+            "name": "Rewards Withdrawals",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "rewards_withdrawals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "Network to get the rewards withdrawals from. Default is mainnet."
+                },
+                {
+                  "disabled": false,
+                  "key": "tx_hash",
+                  "value": "<string>",
+                  "description": "Transaction hash of the rewards withdrawal."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "caf962bf-6836-442f-8a1c-cce204897274",
+              "name": "Returns the rewards withdrawals",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards_withdrawals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    },
+                    {
+                      "key": "tx_hash",
+                      "value": "3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rewards_withdrawals\": [\n    {\n      \"timestamp\": \"2026-01-16 21:35:47\",\n      \"amount_quantity\": \"38529434\",\n      \"amount_units\": \"lovelace\",\n      \"tx_status\": \"confirmed\",\n      \"pool_id\": \"pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv\",\n      \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n      \"destination_address\": \"addr_1qzmwrkqkr7g5qyyvxwteqhkqs4wwy9k5fpx6j2q7x2q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt\",\n      \"tx_hash\": \"3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 10,\n      \"total_item_count\": 1000,\n      \"has_next\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9752f96-3093-48dd-b6c7-dea47ba53f27",
+          "name": "Delegate",
+          "request": {
+            "name": "Delegate",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "delegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87a3da2c-1b58-4171-8c23-75c87fc5fca4",
+              "name": "Delegate Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"delegator_address\",\n  \"validator_address\": \"validator_address\",\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"preprod\",\n    \"unsigned_transaction_serialized\": \"unsigned_transaction_serialized\",\n    \"signing_payload\": \"signing_payload\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70de51b8-add1-4352-968d-62d20d920464",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"delegator_address\",\n  \"validator_address\": \"validator_address\",\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ae32f43-ae7d-4e9a-a123-d7272b5fff6d",
+              "name": "Unsupported Network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"delegator_address\",\n  \"validator_address\": \"validator_address\",\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81c61fd4-4785-4a1e-ae09-e81ba0753fee",
+          "name": "Transfer",
+          "request": {
+            "name": "Transfer",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4bb117a-7d97-4926-a1ae-52188a57a6f7",
+              "name": "Transfer Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"from\",\n  \"to\": \"to\",\n  \"amount\": 10,\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"preprod\",\n    \"unsigned_transaction_serialized\": \"unsigned_transaction_serialized\",\n    \"signing_payload\": \"signing_payload\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a6585fc-2018-4624-9367-0d2f6ced53d6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"from\",\n  \"to\": \"to\",\n  \"amount\": 10,\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d698ffd7-ab2d-4d52-b792-720af04a4384",
+              "name": "Unsupported Network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"from\",\n  \"to\": \"to\",\n  \"amount\": 10,\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1c113fb-ef0d-4015-ba1b-10dc571127db",
+          "name": "Transfers",
+          "request": {
+            "name": "Transfers",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tx_hash",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fde9db5-edcc-491f-8460-64be12fb8d2d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "preprod"
+                    },
+                    {
+                      "key": "tx_hash",
+                      "value": "3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transfers\": [\n    {\n      \"from\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n      \"to\": \"addr_1qzmwrkqkr7g5qyyvxwteqhkqs4wwy9k5fpx6j2q7x2q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt\",\n      \"amount_quantity\": \"1000000000000000000\",\n      \"amount_units\": \"lovelace\",\n      \"tx_epoch\": 998,\n      \"active_epoch\": 1000,\n      \"pool_id\": \"pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv\",\n      \"tx_hash\": \"3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7\",\n      \"tx_status\": \"confirmed\",\n      \"timestamp\": \"2025-10-29T23:18:56.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c165eded-5c1d-4a75-b376-aae4512b2de8",
+          "name": "Unstake",
+          "request": {
+            "name": "Unstake",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "unstake"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_address\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a6fa14c-72d5-4326-9a2f-a1b2a9ecaf3f",
+              "name": "Unstake Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "unstake"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"preprod\",\n    \"unsigned_transaction_serialized\": \"unsigned_transaction_serialized\",\n    \"signing_payload\": \"signing_payload\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f872d2bf-77b1-47db-8027-f94ea2548d60",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "unstake"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "edf686cb-690f-42fc-906a-d9570cfba088",
+              "name": "Unsupported Network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "unstake"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n  \"network\": \"preprod\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa551d5f-5774-45cf-9760-72c55add952b",
+          "name": "Withdraw Rewards",
+          "request": {
+            "name": "Withdraw Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "withdraw_rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_address\": \"<string>\",\n  \"network\": \"<string>\",\n  \"target_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a44e4b63-e5fe-4125-ab1d-158932210cb9",
+              "name": "Withdraw Rewards Transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "withdraw_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n  \"network\": \"preprod\",\n  \"target_address\": \"addr_test1qpp5rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m79q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"preprod\",\n    \"unsigned_transaction_serialized\": \"84a4008182582055e97e4581db985557fd6f3eb0cbd3637d82e9ad1abb3e676cd594f193c19e35010181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253a9a4c2021a00029d2d05a1581de094857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b00a0f5f6\",\n    \"signing_payload\": \"8af4e801d3023835fd709c1623df3a6103bc682871a5ab5b9563815cb2c30340\",\n    \"amount\": \"307120.360000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e63c3a3a-ebc2-4e70-b8d6-776ff6bfbabc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "withdraw_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n  \"network\": \"preprod\",\n  \"target_address\": \"addr_test1qpp5rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m79q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ccb4d5e-6b7e-4cc3-836c-e16161895188",
+              "name": "Unsupported Network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "withdraw_rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc\",\n  \"network\": \"preprod\",\n  \"target_address\": \"addr_test1qpp5rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m79q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66959a12-601d-44f7-a9ef-4c8eba4af481",
+          "name": "Rewards",
+          "request": {
+            "name": "Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "rewards_all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start\": \"<string,integer>\",\n  \"end\": \"<string,integer>\",\n  \"delegator_addresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"network\": \"mainnet\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3c25678-94c9-4b68-96e3-d263f76e94bf",
+              "name": "Got rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards_all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"2024-10-10 or 8\",\n  \"end\": \"2024-10-16 or 11\",\n  \"delegator_addresses\": [\n    \"'addr1...'\",\n    \"'addr2...'\"\n  ],\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"delegator_address\": \"string\",\n      \"pool_id\": \"string\",\n      \"stake_key_hash\": \"string\",\n      \"epoch\": 450,\n      \"timestamp\": \"2024-10-11\",\n      \"rewards\": [\n        {\n          \"text\": \"1.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"type\": \"member\",\n          \"exp\": 6\n        },\n        {\n          \"text\": \"1.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"type\": \"member\",\n          \"exp\": 6\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"1000.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"exp\": 6\n        },\n        {\n          \"text\": \"1000.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"exp\": 6\n        }\n      ]\n    },\n    {\n      \"delegator_address\": \"string\",\n      \"pool_id\": \"string\",\n      \"stake_key_hash\": \"string\",\n      \"epoch\": 450,\n      \"timestamp\": \"2024-10-11\",\n      \"rewards\": [\n        {\n          \"text\": \"1.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"type\": \"member\",\n          \"exp\": 6\n        },\n        {\n          \"text\": \"1.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"type\": \"member\",\n          \"exp\": 6\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"1000.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"exp\": 6\n        },\n        {\n          \"text\": \"1000.0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 1000000,\n          \"exp\": 6\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"network\": \"mainnet\",\n    \"time_rollup\": \"epoch\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d01d718-659a-4d1a-bf36-ed78cce2a800",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards_all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"2024-10-10 or 8\",\n  \"end\": \"2024-10-16 or 11\",\n  \"delegator_addresses\": [\n    \"'addr1...'\",\n    \"'addr2...'\"\n  ],\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae11374f-b4d8-4afa-8149-805c1573e3aa",
+          "name": "ADA Rewards",
+          "request": {
+            "name": "ADA Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_addresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4063493-663d-42ed-9366-42d47a5c687f",
+              "name": "A rewards result set with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\",\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"delegator_addresses\": \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\",\n      \"validator\": \"pool1fqwnqk3phwa2s5thgym8dw34pv0z67m526uqprnjh93cvzxymef\",\n      \"epoch\": \"417\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"823.370257 ADA\",\n          \"currency\": \"ADA\",\n          \"numeric\": 823370257,\n          \"exp\": 6,\n          \"type\": \"member\"\n        },\n        {\n          \"text\": \"823.370257 ADA\",\n          \"currency\": \"ADA\",\n          \"numeric\": 823370257,\n          \"exp\": 6,\n          \"type\": \"member\"\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 0,\n          \"exp\": 6\n        },\n        {\n          \"text\": \"0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 0,\n          \"exp\": 6\n        }\n      ],\n      \"stake_key_hash\": \"b1bc146a5fb0683c4e3836712d115b98619048bc307cc059b6adc76e\"\n    },\n    {\n      \"delegator_addresses\": \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\",\n      \"validator\": \"pool1fqwnqk3phwa2s5thgym8dw34pv0z67m526uqprnjh93cvzxymef\",\n      \"epoch\": \"417\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"823.370257 ADA\",\n          \"currency\": \"ADA\",\n          \"numeric\": 823370257,\n          \"exp\": 6,\n          \"type\": \"member\"\n        },\n        {\n          \"text\": \"823.370257 ADA\",\n          \"currency\": \"ADA\",\n          \"numeric\": 823370257,\n          \"exp\": 6,\n          \"type\": \"member\"\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 0,\n          \"exp\": 6\n        },\n        {\n          \"text\": \"0\",\n          \"currency\": \"ADA\",\n          \"numeric\": 0,\n          \"exp\": 6\n        }\n      ],\n      \"stake_key_hash\": \"b1bc146a5fb0683c4e3836712d115b98619048bc307cc059b6adc76e\"\n    }\n  ],\n  \"meta\": {\n    \"protocol\": \"cardano\",\n    \"network\": \"mainnet\",\n    \"time_rollup\": \"epoch\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea334a32-f89c-40ba-96ad-88fe62b0012f",
+              "name": "Parameter error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\",\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cec52bcc-70c1-4cf5-a407-8b445540a3d2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\",\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b6973db-9016-4caf-9585-511d62a911b0",
+              "name": "System error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\",\n    \"stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4\"\n  ],\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e1f86c38-99d2-4d9d-8587-e7551fb0acc4",
+    "name": "Figment Cardano API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

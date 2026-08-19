@@ -1,0 +1,219 @@
+{
+  "item": [
+    {
+      "id": "4e28f1da-e910-4d95-b5f1-dad4a364cea1",
+      "name": "Statements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43def4d8-91b5-41b4-a35d-4c8e32ddbebe",
+          "name": "Statements",
+          "request": {
+            "name": "Statements",
+            "description": {},
+            "url": {
+              "path": [
+                "statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "month",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73d9a9b0-8de7-4d9e-95a6-271210262557",
+              "name": "List of statements for the given month.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "month",
+                      "value": "2024-04"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"staking_rewards\",\n      \"month\": \"2024-04\",\n      \"csv_data\": \"ID,ACCOUNT_ID,ORGANIZATION_ID,CUSTOMER,PROTOCOL,ADDRESS,DATE,PRICE,TOTAL_STAKED,REWARDS_IN_PERIOD,GROSS_INFLATIONARY_REWARD,GROSS_TRANSACTION_REWARD,GROSS_REWARDS,ON_CHAIN_COMMISSION,FIGMENT_COMMISSION,NET_REWARDS,NET_REWARDS_USD,STAKING_INFO,REBATE\\n12,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,\\n13,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,\\n14,abc123,{organization_2_id},Org Number 2,DOT,djnbg7yjcwmwcdxje67k7mjcy5f6wcakowy7y8n1jtbq,2023-06-01,21.312226788443700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,\\n\"\n    },\n    {\n      \"type\": \"revenue_share\",\n      \"month\": \"2024-04\",\n      \"csv_data\": \"ID,ACCOUNT_ID,ORGANIZATION_ID,CUSTOMER,PROTOCOL,ADDRESS,DATE,PRICE,TOTAL_STAKED,REWARDS_IN_PERIOD,GROSS_INFLATIONARY_REWARD,GROSS_TRANSACTION_REWARD,GROSS_REWARDS,ON_CHAIN_COMMISSION,FIGMENT_COMMISSION,NET_REWARDS,NET_REWARDS_USD,STAKING_INFO,REBATE\\n12,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,\\n13,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,\\n14,abc123,{organization_2_id},Org Number 2,DOT,djnbg7yjcwmwcdxje67k7mjcy5f6wcakowy7y8n1jtbq,2023-06-01,21.312226788443700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,\\n\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 1,\n      \"total_item_count\": 2\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3ec10b1-d9de-4913-9e1f-5c81298b203f",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "month",
+                      "value": "2024-04"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0cd150b6-fff5-456d-962c-5b703df2d810",
+              "name": "Invalid month",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "month",
+                      "value": "2024-04"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7577c7a5-0897-4d17-a783-dec5cb72681b",
+    "name": "Figment Statements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

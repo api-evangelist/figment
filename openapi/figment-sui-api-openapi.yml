@@ -1,0 +1,344 @@
+openapi: 3.2.0
+info:
+  title: Figment Sui API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Sui
+paths:
+  /sui/broadcast:
+    post:
+      summary: Broadcast Tx
+      tags:
+      - Sui
+      operationId: broadcast-sui-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      transaction_hash:
+                        type: string
+                        description: Transaction hash
+                example:
+                  data:
+                    transaction_hash: 8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: Invalid params
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Unsigned Transaction + Signature
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                unsigned_transaction_serialized:
+                  type: string
+                  example: '0x02f902d7050f8459682f008459682f9083010fb59494a2da805867c962148d3832d9afc512034a62c58901bc16d674ec800000b902a44f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a000000000000000000000000000000000000000000000000000000000000002600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000308dc141dc3a91a5b09dca7e9eb1c0f1f6cac2cad68ffc478956b741b1d9318285f31434fbcd7b3ae31697d772ba9d767600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020010000000000000000000000f60e717ce428e7d1d61e147aa34f1595caa56669000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000060b29edc85070d565b7a5e4f1d86443979231b4152be44b03cfe94c5b96101f51e70eaa488030dd5a8ae10412ae0c64d9716fb7248cc9e94adb8b62e9025de645a46f05b767d9100ef5587c3bc0ebb78f12ff3b821417e97e36dcd8ff2376ca9c400000000000000000000000000000000000000000000000000000000000000010cf3e3a73ec22d7278d7b54ba88ae24013e5370bc263e4b3a26fef09b1b1946dc0'
+                  description: The unsigned transaction received from the staking endpoint.
+                signature:
+                  type: string
+                  example: 001f5402db8b788d3170d8ced5dc82b7cd70a3e85d0890bbf7a4083a05d4a15948274e1e680284bd980e9075ee6da726dde03e642f64d1511de7e74aa899b193f48c
+                  description: The signature corresponding to the unsigned transaction.
+              required:
+              - network
+              - unsigned_transaction_serialized
+              - signature
+  /sui/stake:
+    post:
+      summary: Stake
+      tags:
+      - Sui
+      operationId: build-sui-stake-tx
+      parameters: []
+      responses:
+        '201':
+          description: transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: mainnet
+                        description: Sui network to build transaction for, mainnet or testnet
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Hex encoding of the built transaction
+                      signing_payload:
+                        type: string
+                        example: ''
+                        optional: true
+                example:
+                  data:
+                    network: mainnet
+                    unsigned_transaction_serialized: 0000020008002f68590000000001010000000000000000000000000000000000000000000000000000000000000005010000000000000011002022b35a7481fb136e5585c43421cf8ab49d0e219e902dedc40c2778acdcc7bc9c020200010100000000000000000000000000000000000000000000000000000000000000000000030a7375695f73797374656d11726571756573745f6164645f7374616b6500030101000300000000010200dab0f88cdcc6281a1b74fa3c446d7998c0661c5a3caf37aad9251084aac6704d0344884f0461ab5e78d6690949921757b5c4fe19a081870fda3e597df1c66d630b8811d01400000000209aea917ded43a1145b2f857de7e43b0cf80eca2521bb8ee2e42f1dfaea17ad9b9348579e59a296d072b82d689826b8fc9aa5d910131bbb17d9ae5b63b29c485c8011d014000000002005ef066056d418d07485520e95768c0e5534817fbb35c9ca74d3bf3cc3756679a04f3df578ee6b82df8f6bec1ebef360d373ca4dcdfabbc4362a009d41cccd8b8011d0140000000020c11e6d6cb8d6f7c447bc3a4643e7fab83eeefa4f52257278c543807f4ec916f7dab0f88cdcc6281a1b74fa3c446d7998c0661c5a3caf37aad9251084aac6704de80300000000000000e1f5050000000000
+                    signing_payload: ''
+        '422':
+          description: Invalid request
+        '400':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - testnet
+                  - mainnet
+                  description: Sui network to build transaction for, mainnet or testnet
+                delegator_address:
+                  type: string
+                  example: '0x5abfae57b89d93ddaa8f39b52ea2ea7b2b93d967e3eb6f4d3c194f3b67756123'
+                  description: Signer address
+                validator_address:
+                  type: string
+                  example: '0xdabfae57b89d93ddaa8f39b52ea2ea7b2b93d967e3eb6f4d3c194f3b67756123'
+                  description: Validator address
+                amount:
+                  type: string
+                  example: '10.0'
+                  description: Amount of Sui to delegate
+                gas_budget:
+                  type: string
+                  example: '0.1'
+                  description: Gas budget in Sui for the transaction. Default is 0.1
+                  optional: true
+                  default: '0.1'
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+  /sui/stakes:
+    get:
+      summary: Get Stakes
+      tags:
+      - Sui
+      operationId: sui-get-stakes
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          example: testnet
+          enum:
+          - testnet
+          - mainnet
+          description: Network stake is on.
+        required: true
+      - name: delegator_address
+        in: query
+        schema:
+          type: string
+          description: Wallet address used to stake
+        required: true
+      responses:
+        '200':
+          description: Sui Stakes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/pagination'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stake_id:
+                          type: string
+                          description: Stake ID of the staking record
+                        delegator_address:
+                          type: string
+                          description: Wallet address used to stake
+                        validator_address:
+                          type: string
+                          description: Validator address to withdraw from
+                        network:
+                          type: string
+                          description: Network stake is on
+                        status:
+                          type: string
+                          description: Status of the Sui stake
+                        tx_hash:
+                          type: string
+                          description: Transaction hash of the delegation on Sui chain
+                        amount:
+                          type: float
+                          description: Staked amount in Sui
+                example:
+                  data:
+                  - stake_id: '0xabc8822e0aadb358697f049f51c734bf02e992fa8864e13eded521d0f58b0123'
+                    delegator_address: '0xabcfae57b89d93ddaa8f39b52ea2ea7b2b93d967e3eb6f4d3c194f3b67756123'
+                    validator_address: '0xabc1b319e23495995fc837dafd28fc6af8b645edddff0fc1467f1ad631362123'
+                    network: mainnet
+                    status: active
+                    tx_hash: 4Se1rgNoA5GXDY5A5dqPqyGnKuizMju3dp6jvJmPaabc
+                    amount: 3.5
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /sui/withdraw:
+    post:
+      summary: Withdraw Tx
+      tags:
+      - Sui
+      operationId: sui-withdraw-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: mainnet
+                        description: Network withdrawn from
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Hex encoding of the built transaction
+                      signing_payload:
+                        type: string
+                        example: ''
+                        optional: true
+                example:
+                  data:
+                    network: mainnet
+                    unsigned_transaction_serialized: 0000020008002f68590000000001010000000000000000000000000000000000000000000000000000000000000005010000000000000011002022b35a7481fb136e5585c43421cf8ab49d0e219e902dedc40c2778acdcc7bc9c020200010100000000000000000000000000000000000000000000000000000000000000000000030a7375695f73797374656d11726571756573745f6164645f7374616b6500030101000300000000010200dab0f88cdcc6281a1b74fa3c446d7998c0661c5a3caf37aad9251084aac6704d0344884f0461ab5e78d6690949921757b5c4fe19a081870fda3e597df1c66d630b8811d01400000000209aea917ded43a1145b2f857de7e43b0cf80eca2521bb8ee2e42f1dfaea17ad9b9348579e59a296d072b82d689826b8fc9aa5d910131bbb17d9ae5b63b29c485c8011d014000000002005ef066056d418d07485520e95768c0e5534817fbb35c9ca74d3bf3cc3756679a04f3df578ee6b82df8f6bec1ebef360d373ca4dcdfabbc4362a009d41cccd8b8011d0140000000020c11e6d6cb8d6f7c447bc3a4643e7fab83eeefa4f52257278c543807f4ec916f7dab0f88cdcc6281a1b74fa3c446d7998c0661c5a3caf37aad9251084aac6704de80300000000000000e1f5050000000000
+                    signing_payload: ''
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delegator_address:
+                  type: string
+                  example: '0x3abfae57b89d93ddaa8f39b52ea2ea7b2b93d967e3eb6f4d3c194f3b67756123'
+                  description: Address of the wallet that created the stake
+                stake_id:
+                  type: string
+                  example: '0x13a0a2dbd053366fa3938035aa013ba4791ae22ab85f12a29717bd34062da123'
+                  description: ID of stake to withdraw
+                network:
+                  type: string
+                  example: testnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  description: Network withdraw is on.
+              required:
+              - delegator_address
+              - stake_id
+              - network
+              example:
+                data:
+                  address: '0x3abfae57b89d93ddaa8f39b52ea2ea7b2b93d967e3eb6f4d3c194f3b67756123'
+                  stake_id: '0x13a0a2dbd053366fa3938035aa013ba4791ae22ab85f12a29717bd34062da123'
+                  network: testnet
+        required: true
+components:
+  schemas:
+    pagination:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 1000
+            has_next:
+              type: boolean
+              example: true
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

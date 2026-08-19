@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Partners - Ethereum API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partners - Ethereum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Ethereum Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/partners/ethereum/validators",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Ethereum Validators"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,159 @@
+openapi: 3.2.0
+info:
+  title: Figment Polygon API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Polygon
+paths:
+  /polygon/rewards:
+    post:
+      summary: MATIC Rewards
+      operationId: matic-rewards
+      tags:
+      - Polygon
+      parameters: []
+      responses:
+        '200':
+          description: A rewards result set with metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        delegator_address:
+                          type: string
+                          example: '0xA722e1F10Bc95c102251A13c2bbCB61A67257003'
+                          description: The account that received the reward. This is a checksummed ethereum address including lower case and capital letters.
+                        validator:
+                          type: string
+                          example: '0xF9e9b98dd99114C6C1B5C28Ae101849880E9542f'
+                          description: The "owner address" of the validator which distributed the rewards.
+                        checkpoint:
+                          type: string
+                          example: '45500'
+                          description: The checkpoint number.
+                        timestamp:
+                          type: string
+                          example: '2023-07-21T00:00:00Z'
+                          description: The timestamp of the end of the checkpoint.
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            description: The formula to compute the final rewards in the currency unit is numeric x 10^(-exp).
+                            properties:
+                              text:
+                                type: string
+                                example: '0.000817335418355351'
+                                description: The textual version of the other fields in the rewards object.
+                              currency:
+                                type: string
+                                example: MATIC
+                              numeric:
+                                type: integer
+                                example: 817335418355351
+                              exp:
+                                type: integer
+                                example: 18
+                        balances:
+                          type: array
+                          items:
+                            type: object
+                            description: The account's current balance.
+                            properties:
+                              text:
+                                type: string
+                                example: '302.56'
+                                description: The textual version of the other fields in the balances object.
+                              currency:
+                                type: string
+                                example: MATIC
+                              numeric:
+                                type: integer
+                                example: 302560000000000000000
+                              exp:
+                                type: integer
+                                example: 18
+                                description: The exponent used to calculate the final MATIC amount.
+                  meta:
+                    type: object
+                    properties:
+                      protocol:
+                        type: string
+                        example: polygon
+                        description: The name of the protocol queried.
+                      network:
+                        type: string
+                        example: mainnet
+                        description: The name of the network queried.
+                      time_rollup:
+                        type: string
+                        example: checkpoint
+                        description: The unit of the period.
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delegator_addresses:
+                  type: array
+                  description: Delegator addresses.
+                  items:
+                    type: string
+                    example: '0xA722e1F10Bc95c102251A13c2bbCB61A67257003'
+                start:
+                  type: integer
+                  example: 45500
+                  description: Either checkpoint (number) or timestamps (strings formatted like "YYYY-MM-DD").
+                end:
+                  type: integer
+                  example: 45501
+                  description: Either checkpoint (number) or timestamps (strings formatted like "YYYY-MM-DD").
+              required:
+              - delegator_addresses
+              - start
+              - end
+components:
+  schemas:
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

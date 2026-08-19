@@ -1,0 +1,177 @@
+{
+  "item": [
+    {
+      "id": "de1bf897-2fb7-4004-ae0b-f6b3719235b5",
+      "name": "Partners - Ethereum",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c19c28e-fd81-42b6-9d88-0264c3e34624",
+          "name": "List Ethereum Validators",
+          "request": {
+            "name": "List Ethereum Validators",
+            "description": {},
+            "url": {
+              "path": [
+                "partners",
+                "ethereum",
+                "validators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85a338c9-09ec-4fc7-9c7b-ebf06c8a0ca5",
+              "name": "Tracked validators list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partners",
+                    "ethereum",
+                    "validators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"pubkey\": \"0xd1ef8d468ef53d82368d2026e321ab2c6d44f44c33b7b9f22369bf6dcf37fb0208f82dd6b485325ce1bbf5aec7ad45bb\",\n      \"withdrawal_address\": \"0xE40F80618324C814cD444434670a44ba4583aE38\"\n    },\n    {\n      \"pubkey\": \"0xd1ef8d468ef53d82368d2026e321ab2c6d44f44c33b7b9f22369bf6dcf37fb0208f82dd6b485325ce1bbf5aec7ad45bb\",\n      \"withdrawal_address\": \"0xE40F80618324C814cD444434670a44ba4583aE38\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 10,\n      \"total_item_count\": 1000,\n      \"has_next\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d9a1153-1222-4e7e-9d06-502348ff45ec",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "partners",
+                    "ethereum",
+                    "validators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "hoodi"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "2"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bf88c46b-675e-4326-8807-fdf1c82735fa",
+    "name": "Figment Partners - Ethereum API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

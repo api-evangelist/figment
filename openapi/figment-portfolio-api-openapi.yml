@@ -1,0 +1,64 @@
+openapi: 3.2.0
+info:
+  title: Figment Portfolio API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Portfolio
+paths:
+  /portfolio:
+    get:
+      summary: Portfolio
+      operationId: portfolio
+      responses:
+        '401':
+          description: Invalid API key
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        protocol:
+                          type: string
+                          description: Protocol rewards and balances are reported for, e.g. ethereum, solana etc.
+                        updated_at:
+                          type: string
+                          description: UTC Timestamp of the latest data included in the result
+                        started_at:
+                          type: string
+                          description: UTC Timestamp of the earliest data included in the result
+                        total_rewards_received:
+                          type: string
+                          description: Total amount of rewards received by the organization from started_at to updated_at. Expressed in the native token of the protocol.
+                        balance:
+                          type: string
+                          description: Sum of the latest balances of organization's delegations/validators at the updated_at timestamp. Expressed in the native token of the protocol.
+                example:
+                  data:
+                  - protocol: ethereum
+                    updated_at: '2023-12-22T23:56:36Z'
+                    started_at: '2023-12-21T23:56:48Z'
+                    total_rewards_received: '30.298559165000000000'
+                    balance: '1120.000000000000000000'
+                  - protocol: solana
+                    updated_at: '2024-05-29T00:00:00Z'
+                    started_at: '2021-02-13T15:46:44Z'
+                    total_rewards_received: '4442.628005617'
+                    balance: '0.000000000'
+      tags:
+      - Portfolio
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

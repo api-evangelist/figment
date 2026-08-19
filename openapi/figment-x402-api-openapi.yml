@@ -1,0 +1,641 @@
+openapi: 3.2.0
+info:
+  title: Figment X402 API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: x402
+paths:
+  /x402/supported:
+    get:
+      summary: Supported
+      tags:
+      - x402
+      responses:
+        '200':
+          description: Supported kinds enumerated by the facilitator.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedResponse'
+        '500':
+          description: Unexpected enumeration failure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FigmentError'
+  /x402/verify:
+    post:
+      summary: Verify
+      description: Protocol-level rejections return HTTP 200 with `{isValid:false}`. Only malformed envelopes return 4xx. Scheme-specific payload shape is enforced by the registered scheme, not at the HTTP layer.
+      tags:
+      - x402
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProtocolBody'
+            examples:
+              svm-exact:
+                summary: Solana, `exact` scheme
+                value:
+                  x402Version: 2
+                  paymentPayload:
+                    x402Version: 2
+                    resource:
+                      url: https://example.com/protected-resource
+                      description: Example protected resource being paid for.
+                    accepted:
+                      scheme: exact
+                      network: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+                      amount: '1000000'
+                      asset: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+                      payTo: MerchantAddr11111111111111111111111111111111
+                      maxTimeoutSeconds: 120
+                      extra:
+                        feePayer: FacilitatorSigner1111111111111111111111111
+                    payload:
+                      transaction: AQAB...base64-encoded-partially-signed-solana-tx...
+                  paymentRequirements:
+                    scheme: exact
+                    network: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+                    amount: '1000000'
+                    asset: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+                    payTo: MerchantAddr11111111111111111111111111111111
+                    maxTimeoutSeconds: 120
+                    extra:
+                      feePayer: FacilitatorSigner1111111111111111111111111
+      responses:
+        '200':
+          description: Verification result (valid or invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyResponse'
+        '400':
+          description: Malformed request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FigmentError'
+  /x402/settle:
+    post:
+      summary: Settle
+      description: Screens payer + payee, reserves a dedup key, broadcasts the transaction, and records the settlement. Protocol-level failures return HTTP 200 with `{success:false, errorReason}`.
+      tags:
+      - x402
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProtocolBody'
+            examples:
+              svm-exact:
+                summary: Solana, `exact` scheme
+                value:
+                  x402Version: 2
+                  paymentPayload:
+                    x402Version: 2
+                    resource:
+                      url: https://example.com/protected-resource
+                      description: Example protected resource being paid for.
+                    accepted:
+                      scheme: exact
+                      network: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+                      amount: '1000000'
+                      asset: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+                      payTo: MerchantAddr11111111111111111111111111111111
+                      maxTimeoutSeconds: 120
+                      extra:
+                        feePayer: FacilitatorSigner1111111111111111111111111
+                    payload:
+                      transaction: AQAB...base64-encoded-partially-signed-solana-tx...
+                  paymentRequirements:
+                    scheme: exact
+                    network: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+                    amount: '1000000'
+                    asset: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+                    payTo: MerchantAddr11111111111111111111111111111111
+                    maxTimeoutSeconds: 120
+                    extra:
+                      feePayer: FacilitatorSigner1111111111111111111111111
+      responses:
+        '200':
+          description: Settlement result (success or protocol-level failure).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettleResponse'
+        '400':
+          description: Malformed request body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FigmentError'
+  /x402/partner_analytics:
+    get:
+      summary: Partner Analytics
+      description: Returns settlement counts and USDC volume grouped by merchant + endpoint for the partner org identified. This is a Figment-added endpoint, so responses use the `{data, meta}` envelope, not a bare protocol body.
+      tags:
+      - x402
+      parameters:
+      - schema:
+          type: string
+          enum:
+          - 1d
+          - 7d
+          - 30d
+          - 90d
+          description: Lookback window. Defaults to `7d`.
+          example: 7d
+        required: false
+        name: range
+        in: query
+      - schema:
+          type: string
+          description: Required. CAIP-2 network filter, or the alias solana-mainnet / solana-devnet.
+          example: solana-mainnet
+        required: true
+        name: network
+        in: query
+      responses:
+        '200':
+          description: Usage rows for the partner, newest window first.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerAnalyticsResponse'
+        '400':
+          description: Unsupported `range` value, or missing/invalid `network`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FigmentError'
+        '403':
+          description: Missing or malformed tenant header (staging/production).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FigmentError'
+  /x402/settlement_reports:
+    get:
+      summary: Settlement Reports
+      description: Pull your organization's settled payments as a daily rollup, grouped by buyer, merchant address, network, and token.
+      tags:
+      - x402
+      parameters:
+      - schema:
+          type: string
+          description: YYYY-MM-DD, inclusive. Defaults to 60 days before today. Must not be more than 60 days before today.
+          example: '2026-05-10'
+        required: false
+        name: start_date
+        in: query
+      - schema:
+          type: string
+          description: YYYY-MM-DD, inclusive. Defaults to today (UTC).
+          example: '2026-07-09'
+        required: false
+        name: end_date
+        in: query
+      - schema:
+          type: string
+          description: Your own comma-separated merchant wallet addresses.
+          example: 3fX8pQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9Pus
+        required: false
+        name: merchant_addresses
+        in: query
+      - schema:
+          type: string
+          description: CAIP-2 network filter, or the alias solana-mainnet / solana-devnet.
+          example: solana-mainnet
+        required: false
+        name: network
+        in: query
+      - schema:
+          type: string
+          description: Payment token ticker, e.g. USDC.
+          example: USDC
+        required: false
+        name: token
+        in: query
+      responses:
+        '200':
+          description: Daily settlement rollup rows for the tenant, newest day first.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SettlementReportResponse'
+        '400':
+          description: Invalid date, network, or token filter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FigmentError'
+components:
+  schemas:
+    SupportedKind:
+      type: object
+      properties:
+        x402Version:
+          type: number
+        scheme:
+          type: string
+        network:
+          type: string
+          description: CAIP-2-like network identifier in the form `scheme:network`.
+          pattern: ^[^:]+:[^:]+$
+          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+        extra:
+          type: object
+          additionalProperties: {}
+      required:
+      - x402Version
+      - scheme
+      - network
+    SettlementReportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SettlementReportRow'
+        meta:
+          type: object
+          properties:
+            start_date:
+              type: string
+              example: '2026-05-10'
+            end_date:
+              type: string
+              example: '2026-07-09'
+            network:
+              type:
+              - string
+              - 'null'
+              example: null
+            token:
+              type:
+              - string
+              - 'null'
+              example: USDC
+            merchant_addresses:
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+              example: null
+          required:
+          - start_date
+          - end_date
+          - network
+          - token
+          - merchant_addresses
+      required:
+      - data
+      - meta
+    ProtocolBody:
+      type: object
+      properties:
+        x402Version:
+          type: number
+          enum:
+          - 2
+          description: x402 protocol version. Must be 2; this facilitator does not accept V1.
+        paymentPayload:
+          $ref: '#/components/schemas/PaymentPayload'
+        paymentRequirements:
+          $ref: '#/components/schemas/PaymentRequirements'
+      required:
+      - x402Version
+      - paymentPayload
+      - paymentRequirements
+    SupportedResponse:
+      type: object
+      properties:
+        kinds:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedKind'
+        extensions:
+          type: array
+          items:
+            type: string
+        signers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      required:
+      - kinds
+      - extensions
+      - signers
+    VerifyResponse:
+      type: object
+      properties:
+        isValid:
+          type: boolean
+        invalidReason:
+          type: string
+        invalidMessage:
+          type: string
+        payer:
+          type: string
+        extensions:
+          type: object
+          additionalProperties: {}
+        extra:
+          type: object
+          additionalProperties: {}
+      required:
+      - isValid
+    PaymentRequirements:
+      type: object
+      properties:
+        scheme:
+          type: string
+          minLength: 1
+        network:
+          type: string
+          minLength: 3
+        amount:
+          type: string
+          minLength: 1
+        asset:
+          type: string
+          minLength: 1
+        payTo:
+          type: string
+          minLength: 1
+        maxTimeoutSeconds:
+          type: number
+          exclusiveMinimum: 0
+        extra:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+      required:
+      - scheme
+      - network
+      - amount
+      - asset
+      - payTo
+      - maxTimeoutSeconds
+      description: x402 V2 payment requirements envelope. The `extra` field is scheme-specific; see the examples for each supported (scheme, network) combination.
+      example:
+        scheme: exact
+        network: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+        amount: '1000000'
+        asset: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+        payTo: MerchantAddr11111111111111111111111111111111
+        maxTimeoutSeconds: 120
+        extra:
+          feePayer: FacilitatorSigner1111111111111111111111111
+    PaymentPayload:
+      type: object
+      properties:
+        x402Version:
+          type: number
+          enum:
+          - 2
+        resource:
+          type: object
+          properties:
+            url:
+              type: string
+              minLength: 1
+            description:
+              type: string
+            mimeType:
+              type: string
+            serviceName:
+              type: string
+              minLength: 1
+              maxLength: 32
+              pattern: ^[\x20-\x7e]+$
+            tags:
+              type: array
+              items:
+                type: string
+                minLength: 1
+                maxLength: 32
+                pattern: ^[\x20-\x7e]+$
+              maxItems: 5
+            iconUrl:
+              type: string
+              maxLength: 2048
+          required:
+          - url
+        accepted:
+          type: object
+          properties:
+            scheme:
+              type: string
+              minLength: 1
+            network:
+              type: string
+              minLength: 3
+            amount:
+              type: string
+              minLength: 1
+            asset:
+              type: string
+              minLength: 1
+            payTo:
+              type: string
+              minLength: 1
+            maxTimeoutSeconds:
+              type: number
+              exclusiveMinimum: 0
+            extra:
+              type:
+              - object
+              - 'null'
+              additionalProperties: {}
+          required:
+          - scheme
+          - network
+          - amount
+          - asset
+          - payTo
+          - maxTimeoutSeconds
+        payload:
+          type: object
+          additionalProperties: {}
+        extensions:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+      required:
+      - x402Version
+      - accepted
+      - payload
+      description: x402 V2 payment payload envelope. The inner `payload` field is scheme-specific; see the examples for each supported (scheme, network) combination.
+      example:
+        x402Version: 2
+        resource:
+          url: https://example.com/protected-resource
+          description: Example protected resource being paid for.
+        accepted:
+          scheme: exact
+          network: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+          amount: '1000000'
+          asset: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+          payTo: MerchantAddr11111111111111111111111111111111
+          maxTimeoutSeconds: 120
+          extra:
+            feePayer: FacilitatorSigner1111111111111111111111111
+        payload:
+          transaction: AQAB...base64-encoded-partially-signed-solana-tx...
+    SettlementReportRow:
+      type: object
+      properties:
+        date:
+          type: string
+          description: YYYY-MM-DD, UTC day
+          example: '2026-07-01'
+        buyer_address:
+          type: string
+          example: 9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin
+        merchant_address:
+          type: string
+          example: 3fX8pQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9Pus
+        network:
+          type: string
+          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+        payment_token_ticker:
+          type: string
+          example: USDC
+        settled_count:
+          type: number
+          example: 42
+        gross_settlement:
+          type: string
+          example: '1234.560000'
+        gross_facilitator_fee_usd:
+          type: string
+          example: '1.234560'
+      required:
+      - date
+      - buyer_address
+      - merchant_address
+      - network
+      - payment_token_ticker
+      - settled_count
+      - gross_settlement
+      - gross_facilitator_fee_usd
+    SettleResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorReason:
+          type: string
+        errorMessage:
+          type: string
+        payer:
+          type: string
+        transaction:
+          type: string
+        network:
+          type: string
+          description: CAIP-2-like network identifier in the form `scheme:network`.
+          pattern: ^[^:]+:[^:]+$
+          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+        amount:
+          type: string
+        extensions:
+          type: object
+          additionalProperties: {}
+        extra:
+          type: object
+          additionalProperties: {}
+      required:
+      - success
+      - transaction
+      - network
+    PartnerUsageRow:
+      type: object
+      properties:
+        merchantOrganizationId:
+          type:
+          - string
+          - 'null'
+        merchantOrganizationName:
+          type:
+          - string
+          - 'null'
+        endpoint:
+          type: string
+          example: https://api.merchant.test/widget
+        count:
+          type: number
+          example: 42
+        volumeUsd:
+          type: string
+          example: '1234.560000'
+      required:
+      - merchantOrganizationId
+      - merchantOrganizationName
+      - endpoint
+      - count
+      - volumeUsd
+    PartnerAnalyticsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartnerUsageRow'
+        meta:
+          type: object
+          properties:
+            range:
+              type: string
+              example: 7d
+            network:
+              type: string
+              example: solana-mainnet
+            partnerOrganizationId:
+              type: string
+              example: 22222222-2222-4222-8222-222222222222
+          required:
+          - range
+          - network
+          - partnerOrganizationId
+      required:
+      - data
+      - meta
+    FigmentError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: invalid_request
+            message:
+              type: string
+              example: missing paymentPayload or paymentRequirements
+            request_id:
+              type: string
+              example: 0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f
+          required:
+          - code
+          - message
+          - request_id
+      required:
+      - error
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

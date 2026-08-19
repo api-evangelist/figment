@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Aptos API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Aptos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get staking transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/aptos/stakes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get staking transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

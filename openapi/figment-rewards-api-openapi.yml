@@ -1,0 +1,456 @@
+openapi: 3.2.0
+info:
+  title: Figment Rewards API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Rewards
+paths:
+  /ethereum/rewards_net:
+    post:
+      summary: Net Rewards
+      tags:
+      - Rewards
+      operationId: get-ethereum-net-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Got rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        wallet:
+                          type: string
+                          description: Address the rewards were received on
+                        timestamp:
+                          type: string
+                          description: Date reward was received on
+                        rewards:
+                          type: array
+                          description: Execution and Consensus rewards received by address
+                          items:
+                            oneOf:
+                            - type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: execution
+                                  description: type of reward
+                                pubkey:
+                                  type: string
+                                  example: '0x9027ebabf426534ae093b552880616acf5c487a89fb6de124785387200719f17c4161a07a933c335a16b38b2ce907e7f'
+                                  description: Pubkey of validator
+                                index:
+                                  type: integer
+                                  example: 2345
+                                  description: Index of validator
+                                tx_hash:
+                                  type: string
+                                  example: '0x3a340300942ea74c8d8029dc82160609f36c27196e9daf7dd3e69dae81447463'
+                                  description: TxHash of reward transaction
+                                timestamp:
+                                  type: string
+                                  example: '2024-10-24T00:01:00Z'
+                                  description: Timestamp when reward happend
+                                block:
+                                  type: integer
+                                  example: 2000034
+                                  description: Block number reward occured at
+                                payees:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      address:
+                                        type: string
+                                        description: Address payout was sent to
+                                      amount:
+                                        type: string
+                                        description: Amount in WEI of payout
+                                network:
+                                  type: string
+                                  example: hoodi
+                                  description: Network where reward occurred
+                            - type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: withdrawal
+                                  description: type of reward
+                                pubkey:
+                                  type: string
+                                  example: '0x9027ebabf426534ae093b552880616acf5c487a89fb6de124785387200719f17c4161a07a933c335a16b38b2ce907e7f'
+                                  description: Pubkey of validator
+                                index:
+                                  type: integer
+                                  example: 2345
+                                  description: Index of validator
+                                amount:
+                                  type: string
+                                  description: Amount in WEI of payout
+                                withdrawal_address:
+                                  type: string
+                                  example: '0xe86154635fd73979fef12b65a5683f06054ae8a3'
+                                  description: Address payout was sent to
+                                block:
+                                  type: integer
+                                  example: 2000034
+                                  description: Block number reward occured at
+                                epoch:
+                                  type: integer
+                                  example: 2345
+                                  description: Epoch when reward occurred
+                                slot:
+                                  type: integer
+                                  example: 234
+                                  description: Slot when reward occurred
+                                network:
+                                  oneOf:
+                                  - type: string
+                                  - type: 'null'
+                                  example: hoodi
+                                  description: Network where reward occurred
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network to stake on.
+                start:
+                  type: string
+                  example: '2024-10-10'
+                  description: Rewards received after this date
+                end:
+                  type: string
+                  example: '2024-10-16'
+                  description: Rewards received before this date
+              required:
+              - network
+              - start
+              - end
+        required: true
+  /injective/rewards:
+    post:
+      summary: Rewards
+      tags:
+      - Rewards
+      operationId: get-injective-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Got rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: Address that received rewards
+                        validator:
+                          type: string
+                          description: Validator address
+                        timestamp:
+                          type: string
+                          example: '2024-10-24T00:01:00Z'
+                          description: Timestamp when reward happend
+                        reward:
+                          type: float
+                          example: 0.008
+                          description: Reward amount
+                        reward_usd:
+                          type: float
+                          example: 0.02
+                          description: Reward amount in USD
+                        total_staked:
+                          type: float
+                          example: 2.0
+                          description: Total staked to injective
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  description: Network Rewards are on.
+                start:
+                  type: string
+                  example: '2024-10-10'
+                  description: Rewards received on or after this date
+                end:
+                  type: string
+                  example: '2024-10-16'
+                  description: Rewards received on or before this date
+              required:
+              - network
+              - start
+              - end
+        required: true
+  /sui/rewards:
+    post:
+      summary: Rewards
+      tags:
+      - Rewards
+      operationId: get-sui-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Got rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: Address that received rewards
+                        validator:
+                          type: string
+                          description: Validator's staking pool address
+                        timestamp:
+                          type: string
+                          example: '2024-10-24T00:01:00Z'
+                          description: Timestamp when reward happend
+                        reward:
+                          type: float
+                          example: 0.008
+                          description: Reward amount
+                        reward_usd:
+                          type: float
+                          example: 0.02
+                          description: Reward amount in USD
+                        total_staked:
+                          type: float
+                          example: 2.0
+                          description: Total staked to sui
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  description: Network Rewards are on.
+                start:
+                  type: string
+                  example: '2024-10-10'
+                  description: Rewards received on or after this date
+                end:
+                  type: string
+                  example: '2024-10-16'
+                  description: Rewards received on or before this date
+              required:
+              - network
+              - start
+              - end
+        required: true
+  /avalanche/rewards:
+    post:
+      summary: Rewards
+      tags:
+      - Rewards
+      operationId: get-avalanche-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Got rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: Address that received rewards
+                        validator:
+                          type: string
+                          description: Validator address
+                        timestamp:
+                          type: string
+                          example: '2024-10-24T00:01:00Z'
+                          description: Timestamp when reward happend
+                        reward:
+                          type: float
+                          example: 0.008
+                          description: Reward amount
+                        reward_usd:
+                          type: float
+                          example: 0.02
+                          description: Reward amount in USD
+                        total_staked:
+                          type: float
+                          example: 2.0
+                          description: Total staked to avalanche
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  description: Network Rewards are on.
+                start:
+                  type: string
+                  example: '2024-10-10'
+                  description: Rewards received on or after this date
+                end:
+                  type: string
+                  example: '2024-10-16'
+                  description: Rewards received on or before this date
+              required:
+              - network
+              - start
+              - end
+        required: true
+  /sui/rewards_rates:
+    get:
+      summary: Rewards Rates
+      tags:
+      - Rewards
+      operationId: get-sui-rewards-rates
+      parameters:
+      - name: avg
+        in: query
+        schema:
+          type: string
+          enum:
+          - 7d
+          default: 7d
+        description: If 7d, returns the 7 days moving average. If not, returns the daily spot rates.
+        example: 7d
+        required: false
+      - name: decimal
+        in: query
+        schema:
+          type: integer
+          default: 2
+        description: Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5.
+        example: 2
+        required: false
+      responses:
+        '401':
+          description: Invalid API key
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          description: Date of the rewards rate
+                        value:
+                          type: string
+                          description: SRR moving average value based on avg parameter
+                example:
+                  data:
+                  - date: '2023-08-05'
+                    value: '3.49'
+  /cardano/rewards_rates:
+    get:
+      summary: Rewards Rates
+      tags:
+      - Rewards
+      operationId: get-cardano-rewards-rates
+      parameters:
+      - name: avg
+        in: query
+        schema:
+          type: string
+          enum:
+          - 7d
+          default: 7d
+        description: If 7d, returns the 7 days moving average. If not, returns the daily spot rates.
+        example: 7d
+        required: false
+      - name: decimal
+        in: query
+        schema:
+          type: integer
+          default: 2
+        description: Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5.
+        example: 2
+        required: false
+      responses:
+        '401':
+          description: Invalid API key
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          description: Date of the rewards rate
+                        value:
+                          type: string
+                          description: SRR moving average value based on avg parameter
+                example:
+                  data:
+                  - date: '2023-08-05'
+                    value: '3.49'
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

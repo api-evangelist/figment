@@ -1,0 +1,478 @@
+{
+  "item": [
+    {
+      "id": "645051a0-b0b0-4393-ac96-2551dea380a1",
+      "name": "Osmosis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7cd5aa0f-5054-4cf0-bfa4-dac728eef11e",
+          "name": "Broadcast Tx",
+          "request": {
+            "name": "Broadcast Tx",
+            "description": {},
+            "url": {
+              "path": [
+                "osmosis",
+                "broadcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"signed_transaction\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eaba9911-df7d-4e4c-8320-4965a674d486",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signed_transaction\": \"928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"transaction_hash\": \"8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3850769a-77bd-4cb7-bd7d-c62130c0db7e",
+              "name": "Invalid network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signed_transaction\": \"928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e648e12d-fd85-45da-b7d8-51cb25f99d5e",
+          "name": "Delegate",
+          "request": {
+            "name": "Delegate",
+            "description": {},
+            "url": {
+              "path": [
+                "osmosis",
+                "delegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"pubkey\": \"<string>\",\n  \"pubkey_type\": \"<string>\",\n  \"gas_limit\": \"<string>\",\n  \"gas_price\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fde9dded-b8c5-478d-82d9-536750abf9f4",
+              "name": "Delegate transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"osmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"osmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "05c7e693-22a5-4e3b-8d04-3e6a16f8c038",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"osmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"osmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86249749-490b-4f49-8a5b-dd6445dcebc2",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"osmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"osmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "193d2e00-a886-4b2d-b12e-70e5c450bb38",
+          "name": "Undelegate",
+          "request": {
+            "name": "Undelegate",
+            "description": {},
+            "url": {
+              "path": [
+                "osmosis",
+                "undelegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"pubkey\": \"<string>\",\n  \"pubkey_type\": \"<string>\",\n  \"gas_limit\": \"<string>\",\n  \"gas_price\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30e3bb30-a85f-4288-91e1-b66932087006",
+              "name": "Undelegate transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"osmo1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"osmovaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1c8513c-1605-434c-8444-b956b6616443",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"osmo1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"osmovaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c56b8b04-f10e-4585-91ef-26c8295be79b",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "osmosis",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"osmo1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j\",\n  \"validator_address\": \"osmovaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874\",\n  \"amount\": \"1\",\n  \"pubkey\": \"0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087\",\n  \"pubkey_type\": \"secp256k1\",\n  \"gas_limit\": \"100000\",\n  \"gas_price\": \"0.0025\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bd8c0204-ac94-4d94-8e6e-9986d80d57a3",
+    "name": "Figment Osmosis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Avalanche API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Avalanche",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Broadcasts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/avalanche/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcasts"
+        },
+        {
+          "info": {
+            "name": "Delegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/avalanche/delegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate"
+        },
+        {
+          "info": {
+            "name": "Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/avalanche/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export"
+        },
+        {
+          "info": {
+            "name": "Import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/avalanche/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import"
+        },
+        {
+          "info": {
+            "name": "Self Bond",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/avalanche/self_bond",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Self Bond"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

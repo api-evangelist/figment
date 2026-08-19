@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Osmosis API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Osmosis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Broadcast Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/osmosis/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Tx"
+        },
+        {
+          "info": {
+            "name": "Delegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/osmosis/delegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate"
+        },
+        {
+          "info": {
+            "name": "Undelegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/osmosis/undelegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Undelegate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

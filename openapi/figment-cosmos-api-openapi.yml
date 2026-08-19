@@ -1,0 +1,489 @@
+openapi: 3.2.0
+info:
+  title: Figment Cosmos API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Cosmos
+paths:
+  /cosmos/broadcast:
+    post:
+      summary: Broadcast Tx
+      tags:
+      - Cosmos
+      operationId: broadcast-cosmos-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      transaction_hash:
+                        type: string
+                        description: Transaction hash
+                example:
+                  data:
+                    transaction_hash: 8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Signed Transaction
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                signed_transaction:
+                  type: string
+                  example: 928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00
+                  description: The unsigned transaction, serialized with the signature.
+              required:
+              - network
+              - signed_transaction
+  /cosmos/claim_rewards:
+    post:
+      summary: Claim Rewards
+      tags:
+      - Cosmos
+      operationId: createCosmosClaimRewardsTransaction
+      parameters: []
+      responses:
+        '201':
+          description: Claim rewards transaction created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Cosmos network to build transaction for
+                delegator_address:
+                  type: string
+                  example: cosmos1xgfzh9cs5hu4y9pzgclrwgz4ecsjwy2xzd22m4
+                  description: The address of the delegator claiming rewards
+                validator_addresses:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874
+                  description: Validator addresses to claim rewards from.
+                pubkey:
+                  type: string
+                  example: 0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087
+                  description: Pubkey value will be retrieved from the chain but if you're using a fresh account (that does not have any outgoing activity) then this information is not available and it requires the user to pass it.
+                pubkey_type:
+                  type: string
+                  enum:
+                  - secp256k1
+                  - multisig
+                  example: secp256k1
+                  description: Type of public key of the delegator.
+                gas_limit:
+                  type: string
+                  example: '100000'
+                  description: Gas limit for the transaction. This is required if pubkey_type is multisig.
+                gas_price:
+                  type: string
+                  example: '0.0025'
+                  description: Gas price for the transaction. This is required if pubkey_type is multisig.
+              required:
+              - network
+              - delegator_address
+        required: true
+  /cosmos/delegate:
+    post:
+      summary: Delegate
+      tags:
+      - Cosmos
+      operationId: createCosmosDelegateTransaction
+      parameters: []
+      responses:
+        '201':
+          description: Delegate transaction created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Cosmos network to build transaction for
+                delegator_address:
+                  type: string
+                  example: cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j
+                  description: The address of the delegator
+                validator_address:
+                  type: string
+                  example: cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874
+                  description: The address of the validator
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to delegate
+                pubkey:
+                  type: string
+                  example: 0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087
+                  description: Pubkey value will be retrieved from the chain but if you're using a fresh account (that does not have any outgoing activity) then this information is not available and it requires the user to pass it.
+                pubkey_type:
+                  type: string
+                  enum:
+                  - secp256k1
+                  - multisig
+                  example: secp256k1
+                  description: Type of public key of the delegator.
+                gas_limit:
+                  type: string
+                  example: '100000'
+                  description: Gas limit for the transaction. This is required if pubkey_type is multisig.
+                gas_price:
+                  type: string
+                  example: '0.0025'
+                  description: Gas price for the transaction. This is required if pubkey_type is multisig.
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+        required: true
+  /cosmos/transfer:
+    post:
+      summary: Transfer
+      tags:
+      - Cosmos
+      operationId: createCosmosTransferTransaction
+      parameters: []
+      responses:
+        '201':
+          description: Transfer transaction created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Cosmos network to build transaction for
+                from_account_address:
+                  type: string
+                  example: cosmos1xgfzh9cs5hu4y9pzgclrwgz4edhywy2xzd22m4
+                  description: The address sending the funds
+                to_account_address:
+                  type: string
+                  example: cosmos1yy84cezg6he54uklmr32kysalfhua9n3t8nwpg
+                  description: The address receiving the funds
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to transfer
+                pubkey:
+                  type: string
+                  example: 0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087
+                  description: Pubkey value will be retrieved from the chain but if you're using a fresh account (that does not have any outgoing activity) then this information is not available and it requires the user to pass it.
+                pubkey_type:
+                  type: string
+                  enum:
+                  - secp256k1
+                  - multisig
+                  example: secp256k1
+                  description: Type of public key of the sender.
+                gas_limit:
+                  type: string
+                  example: '100000'
+                  description: Gas limit for the transaction. This is required if pubkey_type is multisig.
+                gas_price:
+                  type: string
+                  example: '0.0025'
+                  description: Gas price for the transaction. This is required if pubkey_type is multisig.
+              required:
+              - network
+              - from_account_address
+              - to_account_address
+              - amount
+        required: true
+  /cosmos/undelegate:
+    post:
+      summary: Undelegate
+      tags:
+      - Cosmos
+      operationId: createCosmosUndelegateTransaction
+      parameters: []
+      responses:
+        '201':
+          description: Undelegate transaction created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Cosmos network to build transaction for
+                delegator_address:
+                  type: string
+                  example: cosmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j
+                  description: The address of the delegator
+                validator_address:
+                  type: string
+                  example: cosmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874
+                  description: The address of the validator
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to undelegate
+                pubkey:
+                  type: string
+                  example: 0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087
+                  description: Public key of the delegator
+                pubkey_type:
+                  type: string
+                  enum:
+                  - secp256k1
+                  - multisig
+                  example: secp256k1
+                  description: Type of public key of the delegator.
+                gas_limit:
+                  type: string
+                  example: '100000'
+                  description: Gas limit for the transaction. Required if pubkey type is multisig.
+                gas_price:
+                  type: string
+                  example: '0.0025'
+                  description: Gas price for the transaction. Required if pubkey type is multisig.
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+              - pubkey
+        required: true
+  /cosmos/rewards:
+    post:
+      summary: ATOM Rewards
+      operationId: atom-rewards
+      tags:
+      - Cosmos
+      parameters: []
+      responses:
+        '200':
+          description: A rewards result set with metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        delegator_address:
+                          type: string
+                          example: cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7
+                          description: The delegator address that received the reward.
+                        validator:
+                          type: string
+                          example: cosmosvaloper1wqy2s6nwnxj57l0l5rdjxxr646p3al6y70435m
+                          description: The validator which distributed the rewards.
+                        timestamp:
+                          type: string
+                          example: '2023-07-21T00:00:00Z'
+                          description: The timestamp of the end of the reward distribution period.
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            description: The formula to compute the final rewards in the currency unit is numeric x 10^(-exp).
+                            properties:
+                              text:
+                                type: string
+                                example: '0.61414845761237760744712'
+                                description: The textual version of the other fields in the rewards object.
+                              currency:
+                                type: string
+                                example: ATOM
+                              numeric:
+                                type: integer
+                                example: 614148457612377607447120
+                              exp:
+                                type: integer
+                                example: 24
+                        balances:
+                          type: array
+                          items:
+                            type: object
+                            description: The account's current balance.
+                            properties:
+                              text:
+                                type: string
+                                example: '1000.07592'
+                                description: The textual version of the other fields in the balances object.
+                              currency:
+                                type: string
+                                example: ATOM
+                              numeric:
+                                type: integer
+                                example: 1000075920
+                              exp:
+                                type: integer
+                                example: 6
+                                description: The exponent used to calculate the final ATOM amount.
+                  meta:
+                    type: object
+                    properties:
+                      protocol:
+                        type: string
+                        example: cosmos
+                        description: The name of the protocol queried.
+                      network:
+                        type: string
+                        example: cosmoshub-4
+                        description: The name of the network queried.
+                      time_rollup:
+                        type: string
+                        example: daily
+                        description: The time rollup unit of the rewards.
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delegator_addresses:
+                  type: array
+                  description: The delegator addresses for which you want to see rewards.
+                  items:
+                    type: string
+                    example: cosmos14p4dle9aastqyy8hasq2zev3hdkqj9crwfguf7
+                start:
+                  type: string
+                  example: '2023-07-20'
+                  description: Timestamps (as strings "YYYY-MM-DD")
+                end:
+                  type: string
+                  example: '2023-07-21'
+                  description: Timestamps (as strings "YYYY-MM-DD")
+              required:
+              - delegator_addresses
+              - start
+              - end
+components:
+  schemas:
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

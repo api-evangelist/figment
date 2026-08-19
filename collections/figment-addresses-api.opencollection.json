@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Addresses API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Track Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/addresses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Track Address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Cosmos API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cosmos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Broadcast Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cosmos/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Tx"
+        },
+        {
+          "info": {
+            "name": "Claim Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cosmos/claim_rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Claim Rewards"
+        },
+        {
+          "info": {
+            "name": "Delegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cosmos/delegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate"
+        },
+        {
+          "info": {
+            "name": "Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cosmos/transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer"
+        },
+        {
+          "info": {
+            "name": "Undelegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cosmos/undelegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Undelegate"
+        },
+        {
+          "info": {
+            "name": "ATOM Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cosmos/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "ATOM Rewards"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

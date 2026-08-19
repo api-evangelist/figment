@@ -1,0 +1,226 @@
+openapi: 3.2.0
+info:
+  title: Figment Osmosis API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Osmosis
+paths:
+  /osmosis/broadcast:
+    post:
+      summary: Broadcast Tx
+      tags:
+      - Osmosis
+      operationId: broadcast-osmosis-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      transaction_hash:
+                        type: string
+                        description: Transaction hash
+                example:
+                  data:
+                    transaction_hash: 8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Signed Transaction
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                signed_transaction:
+                  type: string
+                  example: 928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00
+                  description: The unsigned transaction, serialized with the signature.
+              required:
+              - network
+              - signed_transaction
+  /osmosis/delegate:
+    post:
+      summary: Delegate
+      tags:
+      - Osmosis
+      operationId: createOsmosisDelegateTransaction
+      parameters: []
+      responses:
+        '201':
+          description: Delegate transaction created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Osmosis network to build transaction for
+                delegator_address:
+                  type: string
+                  example: osmos1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j
+                  description: The address of the delegator
+                validator_address:
+                  type: string
+                  example: osmosvaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874
+                  description: The address of the validator
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to delegate
+                pubkey:
+                  type: string
+                  example: 0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087
+                  description: Pubkey value will be retrieved from the chain but if you're using a fresh account (that does not have any outgoing activity) then this information is not available and it requires the user to pass it.
+                pubkey_type:
+                  type: string
+                  enum:
+                  - secp256k1
+                  - multisig
+                  example: secp256k1
+                  description: Type of public key of the delegator.
+                gas_limit:
+                  type: string
+                  example: '100000'
+                  description: Gas limit for the transaction. This is required if pubkey_type is multisig.
+                gas_price:
+                  type: string
+                  example: '0.0025'
+                  description: Gas price for the transaction. This is required if pubkey_type is multisig.
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+        required: true
+  /osmosis/undelegate:
+    post:
+      summary: Undelegate
+      tags:
+      - Osmosis
+      operationId: createOsmosisUndelegateTransaction
+      parameters: []
+      responses:
+        '201':
+          description: Undelegate transaction created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Osmosis network to build transaction for
+                delegator_address:
+                  type: string
+                  example: osmo1t4f40n05zgrr9y5e6lrpkx2lt7fgs75w5uvu9j
+                  description: The address of the delegator
+                validator_address:
+                  type: string
+                  example: osmovaloper1zc82yrr9vq2mktzg9en8n64xrrhycnx58pa874
+                  description: The address of the validator
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to undelegate
+                pubkey:
+                  type: string
+                  example: 0277487b80b53698b2ea71a81704770b6fa1702a7f24ff46e73ad854cc0453b087
+                  description: Public key of the delegator
+                pubkey_type:
+                  type: string
+                  enum:
+                  - secp256k1
+                  - multisig
+                  example: secp256k1
+                  description: Type of public key of the delegator.
+                gas_limit:
+                  type: string
+                  example: '100000'
+                  description: Gas limit for the transaction. Required if pubkey type is multisig.
+                gas_price:
+                  type: string
+                  example: '0.0025'
+                  description: Gas price for the transaction. Required if pubkey type is multisig.
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+        required: true
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

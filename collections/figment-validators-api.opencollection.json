@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Validators API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List validators visible to the calling organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/validators",
+            "params": [
+              {
+                "name": "page[number]",
+                "value": "1",
+                "type": "query",
+                "description": "Page number, starting at 1."
+              },
+              {
+                "name": "page[size]",
+                "value": "100",
+                "type": "query",
+                "description": "Number of items per page."
+              },
+              {
+                "name": "protocol",
+                "value": "solana",
+                "type": "query",
+                "description": "Filter results to a single protocol (e.g. `solana`, `near`). Returns 400 if the protocol is unknown."
+              }
+            ]
+          },
+          "docs": "List validators visible to the calling organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

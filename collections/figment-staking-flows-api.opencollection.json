@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Staking Flows API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Staking Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/flows"
+          },
+          "docs": "Get flows"
+        },
+        {
+          "info": {
+            "name": "Start new Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/flows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start new Flow"
+        },
+        {
+          "info": {
+            "name": "Get flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/flows/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get flow"
+        },
+        {
+          "info": {
+            "name": "Transition Flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.figment.io/flows/:id/next",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transition Flow"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

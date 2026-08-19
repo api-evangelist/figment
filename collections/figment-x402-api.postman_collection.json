@@ -1,0 +1,770 @@
+{
+  "item": [
+    {
+      "id": "f5c91a5c-4398-4964-9f08-c4bdfaafe320",
+      "name": "x402",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8932774-1e99-4196-83a2-503790b257c0",
+          "name": "Supported",
+          "request": {
+            "name": "Supported",
+            "description": {},
+            "url": {
+              "path": [
+                "x402",
+                "supported"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de0d63e6-de75-4315-ba20-e2de37e20b97",
+              "name": "Supported kinds enumerated by the facilitator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "supported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"kinds\": [\n    {\n      \"x402Version\": 2189.7511305751405,\n      \"scheme\": \"string\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"x402Version\": 30.34461428181867,\n      \"scheme\": \"string\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"extra\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    }\n  ],\n  \"extensions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"signers\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2407bc59-b69e-43df-bef9-d145d33ed79a",
+              "name": "Unexpected enumeration failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "supported"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_request\",\n    \"message\": \"missing paymentPayload or paymentRequirements\",\n    \"request_id\": \"0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33566224-cfa0-4b5b-ab82-acf883d31a41",
+          "name": "Verify",
+          "request": {
+            "name": "Verify",
+            "description": {
+              "content": "Protocol-level rejections return HTTP 200 with `{isValid:false}`. Only malformed envelopes return 4xx. Scheme-specific payload shape is enforced by the registered scheme, not at the HTTP layer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "x402",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"x402Version\": \"<number>\",\n  \"paymentPayload\": {\n    \"x402Version\": \"<number>\",\n    \"accepted\": {\n      \"scheme\": \"<string>\",\n      \"network\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"payTo\": \"<string>\",\n      \"maxTimeoutSeconds\": \"<number>\",\n      \"extra\": \"<object,null>\"\n    },\n    \"payload\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"resource\": {\n      \"url\": \"<string>\",\n      \"description\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"serviceName\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"iconUrl\": \"<string>\"\n    },\n    \"extensions\": \"<object,null>\"\n  },\n  \"paymentRequirements\": {\n    \"scheme\": \"<string>\",\n    \"network\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"payTo\": \"<string>\",\n    \"maxTimeoutSeconds\": \"<number>\",\n    \"extra\": \"<object,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67ba5e80-d1fc-47da-926a-a1eeec50ebc8",
+              "name": "Verification result (valid or invalid).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"x402Version\": 2,\n  \"paymentPayload\": {\n    \"x402Version\": 2,\n    \"resource\": {\n      \"url\": \"https://example.com/protected-resource\",\n      \"description\": \"Example protected resource being paid for.\"\n    },\n    \"accepted\": {\n      \"scheme\": \"exact\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"amount\": \"1000000\",\n      \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n      \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n      \"maxTimeoutSeconds\": 120,\n      \"extra\": {\n        \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n      }\n    },\n    \"payload\": {\n      \"transaction\": \"AQAB...base64-encoded-partially-signed-solana-tx...\"\n    }\n  },\n  \"paymentRequirements\": {\n    \"scheme\": \"exact\",\n    \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n    \"amount\": \"1000000\",\n    \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n    \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n    \"maxTimeoutSeconds\": 120,\n    \"extra\": {\n      \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isValid\": true,\n  \"invalidReason\": \"string\",\n  \"invalidMessage\": \"string\",\n  \"payer\": \"string\",\n  \"extensions\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"extra\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f1c0493-f485-4201-83e3-c54359ce8cc8",
+              "name": "Malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"x402Version\": 2,\n  \"paymentPayload\": {\n    \"x402Version\": 2,\n    \"resource\": {\n      \"url\": \"https://example.com/protected-resource\",\n      \"description\": \"Example protected resource being paid for.\"\n    },\n    \"accepted\": {\n      \"scheme\": \"exact\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"amount\": \"1000000\",\n      \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n      \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n      \"maxTimeoutSeconds\": 120,\n      \"extra\": {\n        \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n      }\n    },\n    \"payload\": {\n      \"transaction\": \"AQAB...base64-encoded-partially-signed-solana-tx...\"\n    }\n  },\n  \"paymentRequirements\": {\n    \"scheme\": \"exact\",\n    \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n    \"amount\": \"1000000\",\n    \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n    \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n    \"maxTimeoutSeconds\": 120,\n    \"extra\": {\n      \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_request\",\n    \"message\": \"missing paymentPayload or paymentRequirements\",\n    \"request_id\": \"0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3845ac09-30c3-41b0-bced-971b6d61d1bb",
+          "name": "Settle",
+          "request": {
+            "name": "Settle",
+            "description": {
+              "content": "Screens payer + payee, reserves a dedup key, broadcasts the transaction, and records the settlement. Protocol-level failures return HTTP 200 with `{success:false, errorReason}`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "x402",
+                "settle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"x402Version\": \"<number>\",\n  \"paymentPayload\": {\n    \"x402Version\": \"<number>\",\n    \"accepted\": {\n      \"scheme\": \"<string>\",\n      \"network\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"payTo\": \"<string>\",\n      \"maxTimeoutSeconds\": \"<number>\",\n      \"extra\": \"<object,null>\"\n    },\n    \"payload\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"resource\": {\n      \"url\": \"<string>\",\n      \"description\": \"<string>\",\n      \"mimeType\": \"<string>\",\n      \"serviceName\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"iconUrl\": \"<string>\"\n    },\n    \"extensions\": \"<object,null>\"\n  },\n  \"paymentRequirements\": {\n    \"scheme\": \"<string>\",\n    \"network\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"payTo\": \"<string>\",\n    \"maxTimeoutSeconds\": \"<number>\",\n    \"extra\": \"<object,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "746bdff3-68ed-4da9-abc2-36a05b9be1e4",
+              "name": "Settlement result (success or protocol-level failure).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "settle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"x402Version\": 2,\n  \"paymentPayload\": {\n    \"x402Version\": 2,\n    \"resource\": {\n      \"url\": \"https://example.com/protected-resource\",\n      \"description\": \"Example protected resource being paid for.\"\n    },\n    \"accepted\": {\n      \"scheme\": \"exact\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"amount\": \"1000000\",\n      \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n      \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n      \"maxTimeoutSeconds\": 120,\n      \"extra\": {\n        \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n      }\n    },\n    \"payload\": {\n      \"transaction\": \"AQAB...base64-encoded-partially-signed-solana-tx...\"\n    }\n  },\n  \"paymentRequirements\": {\n    \"scheme\": \"exact\",\n    \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n    \"amount\": \"1000000\",\n    \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n    \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n    \"maxTimeoutSeconds\": 120,\n    \"extra\": {\n      \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"transaction\": \"string\",\n  \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n  \"errorReason\": \"string\",\n  \"errorMessage\": \"string\",\n  \"payer\": \"string\",\n  \"amount\": \"string\",\n  \"extensions\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"extra\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3fd8765-8d96-44dc-a38a-86e23dce3fb2",
+              "name": "Malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "settle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"x402Version\": 2,\n  \"paymentPayload\": {\n    \"x402Version\": 2,\n    \"resource\": {\n      \"url\": \"https://example.com/protected-resource\",\n      \"description\": \"Example protected resource being paid for.\"\n    },\n    \"accepted\": {\n      \"scheme\": \"exact\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"amount\": \"1000000\",\n      \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n      \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n      \"maxTimeoutSeconds\": 120,\n      \"extra\": {\n        \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n      }\n    },\n    \"payload\": {\n      \"transaction\": \"AQAB...base64-encoded-partially-signed-solana-tx...\"\n    }\n  },\n  \"paymentRequirements\": {\n    \"scheme\": \"exact\",\n    \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n    \"amount\": \"1000000\",\n    \"asset\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n    \"payTo\": \"MerchantAddr11111111111111111111111111111111\",\n    \"maxTimeoutSeconds\": 120,\n    \"extra\": {\n      \"feePayer\": \"FacilitatorSigner1111111111111111111111111\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_request\",\n    \"message\": \"missing paymentPayload or paymentRequirements\",\n    \"request_id\": \"0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "805284eb-aab6-45f4-9e53-90012d36f715",
+          "name": "Partner Analytics",
+          "request": {
+            "name": "Partner Analytics",
+            "description": {
+              "content": "Returns settlement counts and USDC volume grouped by merchant + endpoint for the partner org identified. This is a Figment-added endpoint, so responses use the `{data, meta}` envelope, not a bare protocol body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "x402",
+                "partner_analytics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d75cbfe-dc51-4e72-bf85-a782eed7ced4",
+              "name": "Usage rows for the partner, newest window first.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "partner_analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "network",
+                      "value": "solana-mainnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"merchantOrganizationId\": null,\n      \"merchantOrganizationName\": \"string\",\n      \"endpoint\": \"https://api.merchant.test/widget\",\n      \"count\": 42,\n      \"volumeUsd\": \"1234.560000\"\n    },\n    {\n      \"merchantOrganizationId\": null,\n      \"merchantOrganizationName\": null,\n      \"endpoint\": \"https://api.merchant.test/widget\",\n      \"count\": 42,\n      \"volumeUsd\": \"1234.560000\"\n    }\n  ],\n  \"meta\": {\n    \"range\": \"7d\",\n    \"network\": \"solana-mainnet\",\n    \"partnerOrganizationId\": \"22222222-2222-4222-8222-222222222222\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0839c1b2-a080-4de8-89b0-3777f5182905",
+              "name": "Unsupported `range` value, or missing/invalid `network`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "partner_analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "network",
+                      "value": "solana-mainnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_request\",\n    \"message\": \"missing paymentPayload or paymentRequirements\",\n    \"request_id\": \"0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "961b9ce0-0f3d-48a0-958f-3d84d7e1c5a2",
+              "name": "Missing or malformed tenant header (staging/production).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "partner_analytics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "range",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "network",
+                      "value": "solana-mainnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_request\",\n    \"message\": \"missing paymentPayload or paymentRequirements\",\n    \"request_id\": \"0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1665f2d0-03e4-404b-be49-a7a2dbb3aa93",
+          "name": "Settlement Reports",
+          "request": {
+            "name": "Settlement Reports",
+            "description": {
+              "content": "Pull your organization's settled payments as a daily rollup, grouped by buyer, merchant address, network, and token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "x402",
+                "settlement_reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "merchant_addresses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f281b3e9-6cb5-4706-a66e-d10fa5dc2dce",
+              "name": "Daily settlement rollup rows for the tenant, newest day first.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "settlement_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2026-05-10"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-09"
+                    },
+                    {
+                      "key": "merchant_addresses",
+                      "value": "3fX8pQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9Pus"
+                    },
+                    {
+                      "key": "network",
+                      "value": "solana-mainnet"
+                    },
+                    {
+                      "key": "token",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"date\": \"2026-07-01\",\n      \"buyer_address\": \"9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin\",\n      \"merchant_address\": \"3fX8pQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9Pus\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"payment_token_ticker\": \"USDC\",\n      \"settled_count\": 42,\n      \"gross_settlement\": \"1234.560000\",\n      \"gross_facilitator_fee_usd\": \"1.234560\"\n    },\n    {\n      \"date\": \"2026-07-01\",\n      \"buyer_address\": \"9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin\",\n      \"merchant_address\": \"3fX8pQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9Pus\",\n      \"network\": \"solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1\",\n      \"payment_token_ticker\": \"USDC\",\n      \"settled_count\": 42,\n      \"gross_settlement\": \"1234.560000\",\n      \"gross_facilitator_fee_usd\": \"1.234560\"\n    }\n  ],\n  \"meta\": {\n    \"start_date\": \"2026-05-10\",\n    \"end_date\": \"2026-07-09\",\n    \"network\": null,\n    \"token\": \"USDC\",\n    \"merchant_addresses\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6b34047-dc8a-4906-b655-e6cc5c7cdbd8",
+              "name": "Invalid date, network, or token filter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "x402",
+                    "settlement_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2026-05-10"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-09"
+                    },
+                    {
+                      "key": "merchant_addresses",
+                      "value": "3fX8pQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9Pus"
+                    },
+                    {
+                      "key": "network",
+                      "value": "solana-mainnet"
+                    },
+                    {
+                      "key": "token",
+                      "value": "USDC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_request\",\n    \"message\": \"missing paymentPayload or paymentRequirements\",\n    \"request_id\": \"0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0bac3bed-9aac-41ed-9c92-e442e29633cc",
+    "name": "Figment X402 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

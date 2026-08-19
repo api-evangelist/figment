@@ -1,0 +1,171 @@
+openapi: 3.2.0
+info:
+  title: Figment Statements API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Statements
+paths:
+  /statements:
+    get:
+      summary: Statements
+      tags:
+      - Statements
+      operationId: get-statements
+      parameters:
+      - name: month
+        in: query
+        schema:
+          type: string
+        example: 2024-04
+        required: true
+      - name: page
+        in: query
+        required: false
+        style: deepObject
+        schema:
+          type: object
+          properties:
+            number:
+              type: integer
+              example: 2
+              minimum: 1
+              description: The page number.
+            size:
+              type: integer
+              example: 10
+              minimum: 1
+              maximum: 100
+              description: Number of items to include in the response.
+      responses:
+        '200':
+          description: List of statements for the given month.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/monthly_statement'
+                  meta:
+                    $ref: '#/components/schemas/pagination'
+                example:
+                  data:
+                  - id: 61989868-2cfc-4027-b350-e239ddb1e10d
+                    type: staking_rewards
+                    month: 2024-04
+                    csv_data: 'ID,ACCOUNT_ID,ORGANIZATION_ID,CUSTOMER,PROTOCOL,ADDRESS,DATE,PRICE,TOTAL_STAKED,REWARDS_IN_PERIOD,GROSS_INFLATIONARY_REWARD,GROSS_TRANSACTION_REWARD,GROSS_REWARDS,ON_CHAIN_COMMISSION,FIGMENT_COMMISSION,NET_REWARDS,NET_REWARDS_USD,STAKING_INFO,REBATE
+
+                      12,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,
+
+                      13,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,
+
+                      14,abc123,{organization_2_id},Org Number 2,DOT,djnbg7yjcwmwcdxje67k7mjcy5f6wcakowy7y8n1jtbq,2023-06-01,21.312226788443700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,
+
+                      '
+                  - id: 51c46bc9-76c6-4b86-9d5f-64878c2f7739
+                    type: revenue_share
+                    month: 2024-04
+                    csv_data: 'ID,ACCOUNT_ID,ORGANIZATION_ID,CUSTOMER,PROTOCOL,ADDRESS,DATE,PRICE,TOTAL_STAKED,REWARDS_IN_PERIOD,GROSS_INFLATIONARY_REWARD,GROSS_TRANSACTION_REWARD,GROSS_REWARDS,ON_CHAIN_COMMISSION,FIGMENT_COMMISSION,NET_REWARDS,NET_REWARDS_USD,STAKING_INFO,REBATE
+
+                      12,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,
+
+                      13,0015f00000CPz54AAD,{organization_1_id},ABC Investments,SOL,fdbfzf9drfjguufjggphz3sx4lqwe1l4q77s7j4hsxg7,2023-06-01,19.144465898736700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,
+
+                      14,abc123,{organization_2_id},Org Number 2,DOT,djnbg7yjcwmwcdxje67k7mjcy5f6wcakowy7y8n1jtbq,2023-06-01,21.312226788443700000,1946.996521134,0.848480079,0.9123441709677420,0.9123441709677420,0.9123441709677420,0.0638640919677419,0.06386409196774190,0.848480079,16.24369793817290,,
+
+                      '
+                  meta:
+                    pagination:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 2
+        '422':
+          description: Invalid month
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Invalid API key
+components:
+  schemas:
+    pagination:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 1000
+            has_next:
+              type: boolean
+              example: true
+    monthly_statement:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 61989868-2cfc-4027-b350-e239ddb1e10d
+          description: A unique UUID for the monthly statement.
+        type:
+          type: string
+          example: staking_rewards
+          enum:
+          - staking_rewards
+          - revenue_share
+          - white_label_validator
+        month:
+          type: string
+          example: 2024-04
+          description: Year and month of the monthly statement.
+        csv_data:
+          type: string
+          description: The monthly statement data in CSV format.
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

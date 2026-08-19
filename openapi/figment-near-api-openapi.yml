@@ -1,0 +1,572 @@
+openapi: 3.2.0
+info:
+  title: Figment NEAR API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: NEAR
+paths:
+  /near/rewards:
+    post:
+      summary: NEAR Rewards
+      operationId: near-rewards
+      tags:
+      - NEAR
+      parameters: []
+      responses:
+        '200':
+          description: A rewards result set with metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        delegator_address:
+                          type: string
+                          example: ccb593f13a9ee3eaba2b063265c5960406e1de3758d9d9d9eb87701e5c9dd8ed
+                          description: delegator address that received the rewards.
+                        validator:
+                          type: string
+                          example: figment.poolv1.near
+                          description: The validator that distributed the rewards
+                        epoch:
+                          type: string
+                          example: '75743490'
+                          description: The epoch number (only present when time_rollup is "epoch").
+                        timestamp:
+                          type: string
+                          example: '2023-07-21T00:00:00Z'
+                          description: The timestamp of the end of the epoch or date in the daily time_rollup.
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            description: The formula to compute the final rewards in the currency unit is numeric x 10^(-exp).
+                            properties:
+                              text:
+                                type: string
+                                example: '0.000000000000000000001453'
+                                description: The textual version of the other fields in the rewards object.
+                              currency:
+                                type: string
+                                example: NEAR
+                              numeric:
+                                type: integer
+                                example: 1453
+                              exp:
+                                type: integer
+                                example: 24
+                                description: The exponent used to calculate the textual NEAR amount.
+                        balances:
+                          type: array
+                          items:
+                            type: object
+                            description: The account's staked balance to the validator for the period.
+                            properties:
+                              text:
+                                type: string
+                                example: '0.000000000548826223520098'
+                                description: The textual version of the account's staked balance to the validator for the period.
+                              currency:
+                                type: string
+                                example: NEAR
+                              numeric:
+                                type: integer
+                                example: 548826223520098
+                                description: The account's staked balance to the validator for the period.
+                              exp:
+                                type: integer
+                                example: 24
+                                description: The exponent used to calculate the textual NEAR amount.
+                  meta:
+                    type: object
+                    properties:
+                      protocol:
+                        type: string
+                        example: near
+                        description: The name of the protocol queried.
+                      network:
+                        type: string
+                        example: mainnet
+                        description: The name of the network queried.
+                      time_rollup:
+                        type: string
+                        example: epoch
+                        description: The unit of the time_rollup.
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delegator_addresses:
+                  type: array
+                  description: Delegator accounts addresses.
+                  items:
+                    type: string
+                    example: figment.near
+                start:
+                  type: string
+                  example: '2023-07-20'
+                  description: Epoch numbers (as integers) or timestamps (as strings "YYYY-MM-DD")
+                end:
+                  type: string
+                  example: '2023-07-21'
+                  description: Epoch numbers (as integers) or timestamps (as strings "YYYY-MM-DD")
+                time_rollup:
+                  type: string
+                  description: Allows you to get rewards by day (if daily is passed).
+                  enum:
+                  - daily
+              required:
+              - delegator_addresses
+              - time_rollup
+              - start
+              - end
+  /near/broadcast:
+    post:
+      summary: Broadcast Tx
+      tags:
+      - NEAR
+      operationId: near-broadcast-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      transaction_hash:
+                        type: string
+                        description: Transaction hash
+                example:
+                  data:
+                    transaction_hash: 8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+                title: Signed Transaction
+                properties:
+                  network:
+                    type: string
+                    example: mainnet
+                    enum:
+                    - mainnet
+                    - testnet
+                    description: Network to broadcast transaction on
+                  signed_transaction:
+                    type: string
+                    example: 928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00
+                    description: Unsigned transaction, serialized with the signature.
+                required:
+                - network
+                - signed_transaction
+              - type: object
+                title: Unsigned Transaction + Signature
+                properties:
+                  network:
+                    type: string
+                    example: mainnet
+                    enum:
+                    - mainnet
+                    - testnet
+                    description: Network to broadcast transaction on
+                  unsigned_transaction_serialized:
+                    type: string
+                    example: '0x02f902d7050f8459682f008459682f9083010fb59494a2da805867c962148d3832d9afc512034a62c58901bc16d674ec800000b902a44f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a000000000000000000000000000000000000000000000000000000000000002600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000308dc141dc3a91a5b09dca7e9eb1c0f1f6cac2cad68ffc478956b741b1d9318285f31434fbcd7b3ae31697d772ba9d767600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020010000000000000000000000f60e717ce428e7d1d61e147aa34f1595caa56669000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000060b29edc85070d565b7a5e4f1d86443979231b4152be44b03cfe94c5b96101f51e70eaa488030dd5a8ae10412ae0c64d9716fb7248cc9e94adb8b62e9025de645a46f05b767d9100ef5587c3bc0ebb78f12ff3b821417e97e36dcd8ff2376ca9c400000000000000000000000000000000000000000000000000000000000000010cf3e3a73ec22d7278d7b54ba88ae24013e5370bc263e4b3a26fef09b1b1946dc0'
+                    description: Unsigned transaction received from the staking endpoint.
+                  signature:
+                    type: string
+                    example: 001f5402db8b788d3170d8ced5dc82b7cd70a3e85d0890bbf7a4083a05d4a15948274e1e680284bd980e9075ee6da726dde03e642f64d1511de7e74aa899b193f48c
+                    description: Signature corresponding to the unsigned transaction.
+                required:
+                - network
+                - unsigned_transaction_serialized
+                - signature
+  /near/delegate:
+    post:
+      summary: Delegate
+      tags:
+      - NEAR
+      operationId: near-delegate
+      parameters: []
+      responses:
+        '201':
+          description: Delegate transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network the transaction was built for
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Slate networks error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Network to build transaction for
+                delegator_address:
+                  type: string
+                  example: 614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e
+                  description: Address of the delegator
+                validator_address:
+                  type: string
+                  example: gargoyle.pool.f863973.m0
+                  description: Address of the validator
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to delegate
+                delegator_pubkey:
+                  type: string
+                  example: ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z
+                  description: Public key of the delegator
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+              - delegator_pubkey
+        required: true
+  /near/stakes:
+    get:
+      summary: Get Stakes
+      tags:
+      - NEAR
+      operationId: near-get-stakes
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          example: testnet
+          enum:
+          - testnet
+          - mainnet
+          description: Network
+        required: true
+      responses:
+        '200':
+          description: Near Stakes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/pagination'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Stake ID
+                          example: 123e4567-e89b-12d3-a456-426614174000
+                        epoch:
+                          type:
+                          - integer
+                          - 'null'
+                          description: NEAR epoch the balances were captured at
+                          example: 4801
+                        delegator_address:
+                          type: string
+                          description: Wallet address used to stake
+                          example: wallet-address.testnet
+                        validator_address:
+                          type: string
+                          description: Validator address
+                          example: validator.pool.a763272.a0
+                        balance_time_stamp:
+                          type: string
+                          format: datetime
+                          description: Timestamp of last balance update
+                          example: '2021-01-01T00:00:00Z'
+                        balances:
+                          type: object
+                          properties:
+                            staked:
+                              type: string
+                              description: Staked balance in yoctoNEAR
+                              example: '200000000985912653361207'
+                            deactivating:
+                              type: string
+                              description: Unstaked balance that is not yet available to withdraw, in yoctoNEAR
+                              example: '0'
+                            withdrawable:
+                              type: string
+                              description: Unstaked balance ready to be withdrawn, in yoctoNEAR
+                              example: '972959114646034077150446'
+                            total:
+                              type: string
+                              description: Total balance in yoctoNEAR
+                              example: '1172959115631946730511653'
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /near/undelegate:
+    post:
+      summary: Undelegate
+      tags:
+      - NEAR
+      operationId: near-undelegate
+      parameters: []
+      responses:
+        '201':
+          description: Undelegate
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network the transaction was built for
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Invalid Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - testnet
+                  - mainnet
+                  example: testnet
+                  description: Network to build transaction for
+                delegator_address:
+                  type: string
+                  example: 614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e
+                  description: Address of the delegator
+                validator_address:
+                  type: string
+                  example: gargoyle.pool.f863973.m0
+                  description: Address of the validator
+                amount:
+                  type: string
+                  example: '1'
+                  description: Amount to undelegate
+                delegator_pubkey:
+                  type: string
+                  example: ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z
+                  description: Public key of the delegator
+              required:
+              - network
+              - delegator_address
+              - validator_address
+              - amount
+              - delegator_pubkey
+              - network
+        required: true
+  /near/withdraw:
+    post:
+      summary: Withdraw
+      tags:
+      - NEAR
+      operationId: near-withdraw
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network withdrawn from
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Invalid parameters
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delegator_address:
+                  type: string
+                  example: 614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e
+                  description: Address to withdraw from
+                validator_address:
+                  type: string
+                  example: gargoyle.pool.f863973.m0
+                  description: Validator address to withdraw from
+                delegator_pubkey:
+                  type: string
+                  example: ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z
+                  description: Delegator public key
+                amount:
+                  type: string
+                  example: '10.0'
+                  description: Amount to withdraw in NEAR
+                network:
+                  type: string
+                  example: testnet
+                  enum:
+                  - testnet
+                  - mainnet
+                  description: Network withdraw is on.
+              required:
+              - delegator_address
+              - validator_address
+              - delegator_pubkey
+              - amount
+              - network
+              example:
+                data:
+                  address: 614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e
+                  amount: '10.0'
+                  network: mainnet
+        required: true
+components:
+  schemas:
+    pagination:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 1000
+            has_next:
+              type: boolean
+              example: true
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

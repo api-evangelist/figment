@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Blockfrost Projects API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blockfrost Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Blockfrost Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/cardano/blockfrost_projects",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Blockfrost Projects"
+        },
+        {
+          "info": {
+            "name": "Add Blockfrost Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/cardano/blockfrost_projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add Blockfrost Project"
+        },
+        {
+          "info": {
+            "name": "Remove Blockfrost Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.figment.io/cardano/blockfrost_projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove Blockfrost Project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

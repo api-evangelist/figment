@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: Figment Transactions API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Transactions
+paths:
+  /injective/transactions/broadcast:
+    post:
+      summary: Broadcast a transaction
+      tags:
+      - Transactions
+      parameters: []
+      responses:
+        '200':
+          description: transaction broadcasted
+        '400':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - mainnet
+                  - testnet
+                  example: mainnet
+                transaction_payload:
+                  type: string
+                  description: Signed hex-encoded transaction payload
+              required:
+              - network
+              - transaction_payload
+        required: true
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

@@ -1,0 +1,980 @@
+{
+  "item": [
+    {
+      "id": "3ab34915-ae1f-46c9-be2f-58882edf4976",
+      "name": "Polkadot",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b7704e4-3377-4bbf-9464-272db7b1e4d7",
+          "name": "DOT Rewards",
+          "request": {
+            "name": "DOT Rewards",
+            "description": {
+              "content": "Returns Polkadot rewards for the given stash accounts and time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "polkadot",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stash_accounts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"start\": \"<integer>\",\n  \"end\": \"<integer>\",\n  \"time_rollup\": \"era\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a98c68e0-c786-4ebe-8933-8673a13c8b9b",
+              "name": "A rewards result set with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_accounts\": [\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\",\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\"\n  ],\n  \"start\": 1115,\n  \"end\": 1145,\n  \"time_rollup\": \"era\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"stash_account\": \"13GzuCvjeTPi8EESc5HxgSqrzFgwiGEgSPt6q3HgU5UT4vZo\",\n      \"validator\": \"138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8UFMNA5gvtrfSB\",\n      \"era\": \"845\",\n      \"active_era\": 399,\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"3.6694634053\",\n          \"currency\": \"DOT\",\n          \"numeric\": 36694634053,\n          \"exp\": 10\n        },\n        {\n          \"text\": \"3.6694634053\",\n          \"currency\": \"DOT\",\n          \"numeric\": 36694634053,\n          \"exp\": 10\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"211509.8626318288\",\n          \"currency\": \"DOT\",\n          \"numeric\": 1439,\n          \"exp\": 10\n        },\n        {\n          \"text\": \"211509.8626318288\",\n          \"currency\": \"DOT\",\n          \"numeric\": 2904,\n          \"exp\": 10\n        }\n      ]\n    },\n    {\n      \"stash_account\": \"13GzuCvjeTPi8EESc5HxgSqrzFgwiGEgSPt6q3HgU5UT4vZo\",\n      \"validator\": \"138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8UFMNA5gvtrfSB\",\n      \"era\": \"845\",\n      \"active_era\": 4500,\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"3.6694634053\",\n          \"currency\": \"DOT\",\n          \"numeric\": 36694634053,\n          \"exp\": 10\n        },\n        {\n          \"text\": \"3.6694634053\",\n          \"currency\": \"DOT\",\n          \"numeric\": 36694634053,\n          \"exp\": 10\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"211509.8626318288\",\n          \"currency\": \"DOT\",\n          \"numeric\": 2328,\n          \"exp\": 10\n        },\n        {\n          \"text\": \"211509.8626318288\",\n          \"currency\": \"DOT\",\n          \"numeric\": 4305,\n          \"exp\": 10\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"protocol\": \"polkadot\",\n    \"network\": \"mainnet\",\n    \"time_rollup\": \"era\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc7f1e64-676f-40ed-9bfc-2b980f611178",
+              "name": "Parameter error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_accounts\": [\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\",\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\"\n  ],\n  \"start\": 1115,\n  \"end\": 1145,\n  \"time_rollup\": \"era\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bec2a470-1361-43f1-b040-cb01d43cbe35",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_accounts\": [\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\",\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\"\n  ],\n  \"start\": 1115,\n  \"end\": 1145,\n  \"time_rollup\": \"era\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "293368a5-9c44-42cd-a4ba-3e22be7ed7c0",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_accounts\": [\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\",\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\"\n  ],\n  \"start\": 1115,\n  \"end\": 1145,\n  \"time_rollup\": \"era\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0970f01e-55a2-4138-bf0d-49dd1adc78ce",
+              "name": "System error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_accounts\": [\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\",\n    \"12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp\"\n  ],\n  \"start\": 1115,\n  \"end\": 1145,\n  \"time_rollup\": \"era\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7653189d-fd0a-4db7-ad79-c54dc77d5a3e",
+          "name": "Add Nomination proxy",
+          "request": {
+            "name": "Add Nomination proxy",
+            "description": {},
+            "url": {
+              "path": [
+                "polkadot",
+                "nomination_proxy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stash_account_address\": \"<string>\",\n  \"controller_account_address\": \"<string>\",\n  \"proxy_account_address\": \"<string>\",\n  \"qtx_dot_bonded\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "235c93da-90c6-4d70-ac56-d046fe817a8b",
+              "name": "Successfully accepted request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"proxy_account_address\": \"5CDTPiGKvMFikx83G5vZz6jQMt7EokMDpkZ5ErSvG6ea27SS\",\n  \"qtx_dot_bonded\": \"10\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9be164c-807b-4694-9418-f4aadc2766e6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"proxy_account_address\": \"5CDTPiGKvMFikx83G5vZz6jQMt7EokMDpkZ5ErSvG6ea27SS\",\n  \"qtx_dot_bonded\": \"10\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c84cb4aa-79a1-4784-bdfa-e212edb4232f",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"proxy_account_address\": \"5CDTPiGKvMFikx83G5vZz6jQMt7EokMDpkZ5ErSvG6ea27SS\",\n  \"qtx_dot_bonded\": \"10\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9ec49e5-7824-4a9c-87e2-0ccdbcd3faf9",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"proxy_account_address\": \"5CDTPiGKvMFikx83G5vZz6jQMt7EokMDpkZ5ErSvG6ea27SS\",\n  \"qtx_dot_bonded\": \"10\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16c03379-7f91-4e28-9792-deee7e53b037",
+          "name": "Revoke Nomination Proxy",
+          "request": {
+            "name": "Revoke Nomination Proxy",
+            "description": {},
+            "url": {
+              "path": [
+                "polkadot",
+                "nomination_proxy",
+                "revoke_proxy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stash_account_address\": \"<string>\",\n  \"controller_account_address\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "662c5a2d-e647-4dfd-9e27-25c55c3ca8cc",
+              "name": "Success sent revoke request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy",
+                    "revoke_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff0f22b6-bc29-444b-917f-97ca633215f1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy",
+                    "revoke_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ea89338-05b9-4c95-a1b1-67ada0243aa1",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy",
+                    "revoke_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16a8c9f1-9cd5-412e-ad0d-a9f91097fa47",
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "nomination_proxy",
+                    "revoke_proxy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stash_account_address\": \"5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh\",\n  \"controller_account_address\": \"5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd\",\n  \"network\": \"polkadot\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "035683e6-f299-4c12-9ebc-f743ce52a1c9",
+          "name": "DOT Reward Rates",
+          "request": {
+            "name": "DOT Reward Rates",
+            "description": {},
+            "url": {
+              "path": [
+                "polkadot",
+                "rewards_rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "figment",
+                  "value": "false",
+                  "description": "If true is passed, we will return the reward rate for Figment validators only. If omitted or any other value is passed, we will return the reward rate of the network as a whole."
+                },
+                {
+                  "disabled": false,
+                  "key": "avg",
+                  "value": "7d",
+                  "description": "Returns the 7 day moving average. The only value accepted is 7d, if no value is passed, the original behavior of returning a single day average ARR is used."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal",
+                  "value": "2",
+                  "description": "Adds decimal places to the returned values. Accepts values 2, 3, 4, 5. If nothing is passed, it will default to 2."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5186c152-e626-4b55-ba76-2f15c7c04428",
+              "name": "Rewards rates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "figment",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"date\": \"2023-08-29\",\n      \"value\": \"10.26\"\n    },\n    {\n      \"date\": \"2023-08-28\",\n      \"value\": \"10.37\"\n    },\n    {\n      \"date\": \"2023-08-27\",\n      \"value\": \"10.37\"\n    },\n    {\n      \"date\": \"2023-08-26\",\n      \"value\": \"10.37\"\n    },\n    {\n      \"date\": \"2023-08-25\",\n      \"value\": \"10.26\"\n    },\n    {\n      \"date\": \"2023-08-24\",\n      \"value\": \"10.26\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df4f3d96-2d8e-418a-ad8c-8074b069c5aa",
+              "name": "Parameter error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "figment",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3286ca4-04a0-4100-9535-81a3307839a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "figment",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4878a7e4-7506-4e5d-a5b5-791b0a8bb0b0",
+              "name": "System error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polkadot",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "figment",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f02eea79-1205-4edd-a643-8287bbc23e03",
+    "name": "Figment Polkadot API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

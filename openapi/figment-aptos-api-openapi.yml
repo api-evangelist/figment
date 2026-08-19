@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  title: Figment Aptos API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Aptos
+paths:
+  /aptos/stakes:
+    post:
+      summary: Get staking transaction
+      tags:
+      - Aptos
+      operationId: aptos-stake
+      parameters: []
+      responses:
+        '201':
+          description: Successfully got staking tx
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signing_payload:
+                    type: string
+                  transaction_payload:
+                    type: string
+                example:
+                  transaction_payload: '0xabf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a302000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002200a4113560d0b18ba38797f2a899c4b27e0c5b0476be5d8f6be68fba8b1861ed0080065cd1d00000000400d03000000000064000000000000007b2e6766000000000200'
+                  signing_payload: '0xb5e97db07fa0bd0e5598aa3643a9bc6f6693bddc1a9fec9e674a461eaa00b193abf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a302000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002200a4113560d0b18ba38797f2a899c4b27e0c5b0476be5d8f6be68fba8b1861ed0080065cd1d00000000400d03000000000064000000000000007b2e67660000000002'
+        '422':
+          description: Invalid API key usage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: invalid arguments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  description: Which Aptos network to stake on.
+                  required: true
+                signer_address:
+                  type: string
+                  example: '0xabf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a3'
+                  description: address of wallet to stake.
+                  required: true
+                amount:
+                  type: integer
+                  example: 500000
+                  description: Amount of APT to stake.
+                  required: true
+        required: true
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

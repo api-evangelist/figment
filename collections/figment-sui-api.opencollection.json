@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Sui API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sui",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Broadcast Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/sui/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Tx"
+        },
+        {
+          "info": {
+            "name": "Stake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/sui/stake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stake"
+        },
+        {
+          "info": {
+            "name": "Get Stakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/sui/stakes",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "delegator_address",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Stakes"
+        },
+        {
+          "info": {
+            "name": "Withdraw Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/sui/withdraw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw Tx"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

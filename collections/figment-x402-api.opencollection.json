@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment X402 API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "x402",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Supported",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/x402/supported"
+          },
+          "docs": "Supported"
+        },
+        {
+          "info": {
+            "name": "Verify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/x402/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Protocol-level rejections return HTTP 200 with `{isValid:false}`. Only malformed envelopes return 4xx. Scheme-specific payload shape is enforced by the registered scheme, not at the HTTP layer."
+        },
+        {
+          "info": {
+            "name": "Settle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/x402/settle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Screens payer + payee, reserves a dedup key, broadcasts the transaction, and records the settlement. Protocol-level failures return HTTP 200 with `{success:false, errorReason}`."
+        },
+        {
+          "info": {
+            "name": "Partner Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/x402/partner_analytics",
+            "params": [
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns settlement counts and USDC volume grouped by merchant + endpoint for the partner org identified. This is a Figment-added endpoint, so responses use the `{data, meta}` envelope, not a bare protocol body."
+        },
+        {
+          "info": {
+            "name": "Settlement Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/x402/settlement_reports",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchant_addresses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Pull your organization's settled payments as a daily rollup, grouped by buyer, merchant address, network, and token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

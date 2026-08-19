@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Solana API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Solana",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/stake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stake"
+        },
+        {
+          "info": {
+            "name": "Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast"
+        },
+        {
+          "info": {
+            "name": "Undelegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/undelegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Undelegate"
+        },
+        {
+          "info": {
+            "name": "Withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/withdraw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw"
+        },
+        {
+          "info": {
+            "name": "Stakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/solana/stakes",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groups",
+                "value": "be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5",
+                "type": "query",
+                "description": "Filter using comma-separated group uuids."
+              },
+              {
+                "name": "stake_authority",
+                "value": "4qjmvyPVkJG5Jc9g8fY3QHxYm4rKz2JtEpVc7WxD5nE3",
+                "type": "query",
+                "description": "Filter by stake authority public key."
+              },
+              {
+                "name": "withdraw_authority",
+                "value": "7sJmFvyPVkJG5Jc9g8fY3QHxYm4rKz2JtEpVc7WxD5nE3",
+                "type": "query",
+                "description": "Filter by withdraw authority public key."
+              }
+            ]
+          },
+          "docs": "Stakes"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "Reward Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/solana/rewards_rates",
+            "params": [
+              {
+                "name": "figment",
+                "value": "",
+                "type": "query",
+                "description": "If `true`, for [our main public validator](https://www.validators.app/validators/Fd7btgySsrjuo25CJCj7oE7VPMyezDhnx7pZkj2v69Nk) only. Otherwise, for the whole network."
+              },
+              {
+                "name": "avg",
+                "value": "",
+                "type": "query",
+                "description": "If `7d`, returns the 7 days moving average. If not, returns the daily spot rates."
+              },
+              {
+                "name": "decimal",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5."
+              }
+            ]
+          },
+          "docs": "Reward Rates"
+        },
+        {
+          "info": {
+            "name": "Allocated Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/allocated_rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allocated Rewards"
+        },
+        {
+          "info": {
+            "name": "Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/solana/activities",
+            "params": [
+              {
+                "name": "network",
+                "value": "mainnet",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activity type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activity-life status."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Solana staking activities for the authenticated organization.\n\n## Activity types\n\n| `type`         | Description |\n|----------------|-------------|\n| `delegation`   | Stake account delegated to a validator |\n| `undelegation` | Stake account deactivated and removed from validator |\n| `withdrawal`   | SOL withdrawn back to wallet after cooldown |\n\nAll Solana activities are on-chain. `tx.status` reflects the transaction status\n(`in_progress`, `confirmed`, `failed`, `expired`).\n"
+        },
+        {
+          "info": {
+            "name": "Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/solana/activities/:id",
+            "params": [
+              {
+                "name": "network",
+                "value": "mainnet",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Activity UUID or transaction hash."
+              }
+            ]
+          },
+          "docs": "Fetch a single Solana activity by UUID or transaction hash. See the index endpoint for activity type documentation."
+        },
+        {
+          "info": {
+            "name": "Merge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge"
+        },
+        {
+          "info": {
+            "name": "Split",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/solana/split",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Split"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

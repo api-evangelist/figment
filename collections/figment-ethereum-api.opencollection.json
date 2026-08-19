@@ -1,0 +1,515 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Ethereum API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ethereum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/validators",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "withdrawal_address",
+                "value": "0xE40F80618324C814cD444434670a44ba4583aE38",
+                "type": "query",
+                "description": "The validator's withdrawal address. Must be prefixed with `0x`."
+              },
+              {
+                "name": "groups",
+                "value": "be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5",
+                "type": "query",
+                "description": "Filter using comma-separated group uuids."
+              },
+              {
+                "name": "region",
+                "value": "ca-central-1",
+                "type": "query",
+                "description": "The validator's geographic region. Only for Figment validators."
+              },
+              {
+                "name": "status",
+                "value": "active_ongoing",
+                "type": "query",
+                "description": "The current validator's status. See https://docs.figment.io/docs/lifecycle-eth-validator."
+              },
+              {
+                "name": "net_fee_payout_address",
+                "value": "0xE40F80618324C814cD444434670a44ba4583aE38",
+                "type": "query",
+                "description": "The ETH wallet address that receives the net execution layer rewards (when they go through a fee splitting smart contract)."
+              },
+              {
+                "name": "staking_request_id",
+                "value": "f8bd4623-39ed-46ec-8518-991792665e56",
+                "type": "query",
+                "description": "The ID associated to the request for a set of valdiators."
+              },
+              {
+                "name": "credentials_prefix",
+                "value": "0x02",
+                "type": "query",
+                "description": "Filter for withdrawal_credentials field"
+              },
+              {
+                "name": "include_fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Validators"
+        },
+        {
+          "info": {
+            "name": "Create Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/validators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Validators"
+        },
+        {
+          "info": {
+            "name": "Broadcast Staking Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Staking Tx"
+        },
+        {
+          "info": {
+            "name": "Validators Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/validators_summary",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "operated_by",
+                "value": "",
+                "type": "query",
+                "description": "if `figment`, returns data for Figment-operated validators only"
+              }
+            ]
+          },
+          "docs": "Validators Summary"
+        },
+        {
+          "info": {
+            "name": "Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/activity",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "2024-03-12T00:00:00Z",
+                "type": "query",
+                "description": "List activity starting at or after this time."
+              },
+              {
+                "name": "end",
+                "value": "2024-03-13T00:00:00Z",
+                "type": "query",
+                "description": "List activity up to this time."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withdrawal_address",
+                "value": "0xEthereumAddress",
+                "type": "query",
+                "description": "Withdrawal address for validators related to activity"
+              }
+            ]
+          },
+          "docs": "Activity"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "Withdrawals",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/withdrawals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdrawals"
+        },
+        {
+          "info": {
+            "name": "Exit Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/validators/exits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exit Validators"
+        },
+        {
+          "info": {
+            "name": "Broadcast Exit Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/broadcast_exit_message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Exit Message"
+        },
+        {
+          "info": {
+            "name": "Reward Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/rewards_rates",
+            "params": [
+              {
+                "name": "figment",
+                "value": "",
+                "type": "query",
+                "description": "If `true`, returns reward rates for Figment validators. If not, returns reward rates for the ETH network."
+              },
+              {
+                "name": "avg",
+                "value": "",
+                "type": "query",
+                "description": "If `7d`, returns the 7 days moving average. If not, returns the daily spot rates."
+              },
+              {
+                "name": "decimal",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5."
+              }
+            ]
+          },
+          "docs": "Reward Rates"
+        },
+        {
+          "info": {
+            "name": "Ethereum Network Estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/network_estimates",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "history",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Ethereum Network Estimates"
+        },
+        {
+          "info": {
+            "name": "Track Validator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/addresses/pubkeys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Track Validator"
+        },
+        {
+          "info": {
+            "name": "Compound Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/compound",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compound Transaction"
+        },
+        {
+          "info": {
+            "name": "Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/activities",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activity type."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by activity-life status."
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Filter to activities for a wallet address (case-insensitive). For Ethereum this is the validator withdrawal address. Matches the `delegation_address` returned on each activity."
+              },
+              {
+                "name": "start",
+                "value": "2024-03-12T00:00:00Z",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "2024-03-13T00:00:00Z",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Ethereum staking activities for the authenticated organization.\n\n## Activity types\n\n| `type`          | Description | Notes |\n|-----------------|-------------|-------|\n| `stake`         | ETH deposited to the deposit contract to provision a validator | |\n| `unstake`       | Validator exit initiated | `tx.hash` and `tx.status` are always `null` — the exit is an off-chain beacon chain message, not an on-chain transaction |\n| `delegation`    | Rewards compounded / top-up stake activated | |"
+        },
+        {
+          "info": {
+            "name": "Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/activities/:id",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Activity UUID or transaction hash."
+              }
+            ]
+          },
+          "docs": "Fetch a single Ethereum activity by UUID or transaction hash. See the index endpoint for activity type documentation."
+        },
+        {
+          "info": {
+            "name": "Update Validator Fee Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/fee_recipient_updates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Validator Fee Recipients"
+        },
+        {
+          "info": {
+            "name": "Untrack Validator",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.figment.io/ethereum/addresses/pubkeys/:pubkey",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "pubkey",
+                "value": "0xd1ef8d468ef53d82368d2026e321ab2c6d44f44c33b7b9f22369bf6dcf37fb0208f82dd6b485325ce1bbf5aec7ad45bb",
+                "type": "path",
+                "description": "The pubkey for the validator. Must be prefixed with `0x`."
+              }
+            ]
+          },
+          "docs": "Untrack Validator"
+        },
+        {
+          "info": {
+            "name": "Create Pectra Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/validators/0x02",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Pectra Validators"
+        },
+        {
+          "info": {
+            "name": "Consolidation Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/consolidation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Consolidation Transaction"
+        },
+        {
+          "info": {
+            "name": "Withdrawal Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/withdrawal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdrawal Transaction"
+        },
+        {
+          "info": {
+            "name": "Get Validator",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/ethereum/validators/:pubkey",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "pubkey",
+                "value": "0xd1ef8d468ef53d82368d2026e321ab2c6d44f44c33b7b9f22369bf6dcf37fb0208f82dd6b485325ce1bbf5aec7ad45bb",
+                "type": "path",
+                "description": "The pubkey for the validator. Must be prefixed with `0x`."
+              },
+              {
+                "name": "include_fields",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Validator"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

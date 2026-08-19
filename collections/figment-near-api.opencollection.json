@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment NEAR API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NEAR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "NEAR Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/near/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "NEAR Rewards"
+        },
+        {
+          "info": {
+            "name": "Broadcast Tx",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/near/broadcast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Broadcast Tx"
+        },
+        {
+          "info": {
+            "name": "Delegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/near/delegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delegate"
+        },
+        {
+          "info": {
+            "name": "Get Stakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/near/stakes",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Stakes"
+        },
+        {
+          "info": {
+            "name": "Undelegate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/near/undelegate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Undelegate"
+        },
+        {
+          "info": {
+            "name": "Withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/near/withdraw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,418 @@
+openapi: 3.2.0
+info:
+  title: Figment Polkadot API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Polkadot
+paths:
+  /polkadot/rewards:
+    post:
+      summary: DOT Rewards
+      tags:
+      - Polkadot
+      operationId: polkadot-rewards
+      description: Returns Polkadot rewards for the given stash accounts and time range.
+      parameters: []
+      responses:
+        '200':
+          description: A rewards result set with metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stash_account:
+                          type: string
+                          example: 13GzuCvjeTPi8EESc5HxgSqrzFgwiGEgSPt6q3HgU5UT4vZo
+                          description: Returns the stash account or validator that received the rewards.
+                        validator:
+                          type: string
+                          example: 138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8UFMNA5gvtrfSB
+                          description: The validator that distributed the rewards
+                        era:
+                          type: string
+                          example: '845'
+                          description: The era number.
+                        active_era:
+                          type: integer
+                        timestamp:
+                          type: string
+                          example: '2023-07-21T00:00:00Z'
+                          description: The timestamp of the end of the era.
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              text:
+                                type: string
+                                description: The textual version of the other fields in the rewards object.
+                                example: '3.6694634053'
+                              currency:
+                                type: string
+                                description: Currency code (e.g. DOT)
+                                example: DOT
+                              numeric:
+                                type: integer
+                                description: Raw reward amount in planck (smallest unit)
+                                example: 36694634053
+                              exp:
+                                type: integer
+                                description: Subunit exponent
+                                example: 10
+                            description: The formula to compute the final rewards in the currency unit is numeric x 10^(-exp).
+                        balances:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              text:
+                                type: string
+                                description: The textual version of the other fields in the rewards object.
+                                example: '211509.8626318288'
+                              currency:
+                                type: string
+                                description: Currency code (e.g. DOT)
+                                example: DOT
+                              numeric:
+                                type: integer
+                                description: Raw account balance in planck (smallest unit)
+                                example: 211509.8626318288
+                              exp:
+                                type: integer
+                                description: Subunit exponent
+                                example: 10
+                            description: The account's staked balance to the validator.
+                  meta:
+                    type: object
+                    properties:
+                      protocol:
+                        type: string
+                        example: polkadot
+                        description: The name of the protocol queried.
+                      network:
+                        type: string
+                        example: mainnet
+                        description: The name of the network queried.
+                      time_rollup:
+                        type: string
+                        example: era
+                        description: The unit of the rollup.
+        '422':
+          description: Unprocessable Entity
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stash_accounts:
+                  type: array
+                  items:
+                    type: string
+                    example: 12m7XtVWZQuxTirqtzm2dm5J4r16vSQruPmahThMnskG8Bcp
+                  description: Stash accounts addresses.
+                start:
+                  type: integer
+                  description: Either era (number) or timestamps (strings formatted like "YYYY-MM-DD").
+                  example: 1115
+                end:
+                  type: integer
+                  description: Either era (number) or timestamps (strings formatted like "YYYY-MM-DD").
+                  example: 1145
+                time_rollup:
+                  type: string
+                  enum:
+                  - era
+                  - daily
+                  default: era
+                  description: Aggregation unit
+              required:
+              - stash_accounts
+              - start
+              - end
+        required: true
+  /polkadot/nomination_proxy:
+    post:
+      summary: Add Nomination proxy
+      tags:
+      - Polkadot
+      operationId: polkadot-add-nomination-proxy
+      parameters: []
+      responses:
+        '202':
+          description: Successfully accepted request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '401':
+          description: Invalid API key
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/nomination_proxy'
+        required: true
+  /polkadot/nomination_proxy/revoke_proxy:
+    post:
+      summary: Revoke Nomination Proxy
+      tags:
+      - Polkadot
+      operationId: polkadot-revoke-nomination-proxy
+      parameters: []
+      responses:
+        '202':
+          description: Success sent revoke request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '401':
+          description: Invalid API key
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/revoke_proxy'
+        required: true
+  /polkadot/rewards_rates:
+    get:
+      tags:
+      - Polkadot
+      summary: DOT Reward Rates
+      operationId: polkadot-rewards-rates
+      parameters:
+      - in: query
+        name: figment
+        schema:
+          type: boolean
+          default: false
+        required: false
+        description: If true is passed, we will return the reward rate for Figment validators only. If omitted or any other value is passed, we will return the reward rate of the network as a whole.
+      - in: query
+        name: avg
+        schema:
+          type: string
+          enum:
+          - 7d
+          default: 7d
+        required: false
+        description: Returns the 7 day moving average. The only value accepted is 7d, if no value is passed, the original behavior of returning a single day average ARR is used.
+      - in: query
+        name: decimal
+        schema:
+          type: integer
+          default: 2
+        required: false
+        description: Adds decimal places to the returned values. Accepts values 2, 3, 4, 5. If nothing is passed, it will default to 2.
+      responses:
+        '200':
+          description: Rewards rates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          example: '2023-07-05'
+                          description: Specific date associated with value (staking reward rates).
+                        value:
+                          type: string
+                          example: '11.03'
+                          description: Staking reward rates, in %.
+              example:
+                data:
+                - date: '2023-08-29'
+                  value: '10.26'
+                - date: '2023-08-28'
+                  value: '10.37'
+                - date: '2023-08-27'
+                  value: '10.37'
+                - date: '2023-08-26'
+                  value: '10.37'
+                - date: '2023-08-25'
+                  value: '10.26'
+                - date: '2023-08-24'
+                  value: '10.26'
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+components:
+  schemas:
+    nomination_proxy:
+      type: object
+      properties:
+        stash_account_address:
+          type: string
+          example: 5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh
+          description: A valid Polkadot address.
+        controller_account_address:
+          type: string
+          example: 5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd
+          description: A valid Polkadot address.
+        proxy_account_address:
+          type: string
+          example: 5CDTPiGKvMFikx83G5vZz6jQMt7EokMDpkZ5ErSvG6ea27SS
+          description: A valid Polkadot address.
+        qtx_dot_bonded:
+          type: string
+          example: '10'
+          description: An amount in DOT
+        network:
+          type: string
+          example: polkadot
+          enum:
+          - polkadot
+          - westend
+      required:
+      - stash_account_address
+      - controller_account_address
+      - proxy_account_address
+      - qtx_dot_bonded
+      - network
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+    revoke_proxy:
+      type: object
+      properties:
+        stash_account_address:
+          type: string
+          example: 5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh
+          description: A valid Polkadot address.
+        controller_account_address:
+          type: string
+          example: 5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd
+          description: A valid Polkadot address.
+        network:
+          type: string
+          example: polkadot
+          enum:
+          - polkadot
+          - westend
+      required:
+      - stash_account_address
+      - controller_account_address
+      - network
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

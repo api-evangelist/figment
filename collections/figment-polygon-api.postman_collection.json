@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "310366dc-1d6e-4127-9e26-0633670bde1f",
+      "name": "Polygon",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36399a27-7388-4894-8511-b87f184ef309",
+          "name": "MATIC Rewards",
+          "request": {
+            "name": "MATIC Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "polygon",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_addresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"start\": \"<integer>\",\n  \"end\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19c29701-0c37-4ab7-a537-439ed15f6531",
+              "name": "A rewards result set with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polygon",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\",\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\"\n  ],\n  \"start\": 45500,\n  \"end\": 45501\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"delegator_address\": \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\",\n      \"validator\": \"0xF9e9b98dd99114C6C1B5C28Ae101849880E9542f\",\n      \"checkpoint\": \"45500\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"0.000817335418355351\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 817335418355351,\n          \"exp\": 18\n        },\n        {\n          \"text\": \"0.000817335418355351\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 817335418355351,\n          \"exp\": 18\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"302.56\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 302560000000000000000,\n          \"exp\": 18\n        },\n        {\n          \"text\": \"302.56\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 302560000000000000000,\n          \"exp\": 18\n        }\n      ]\n    },\n    {\n      \"delegator_address\": \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\",\n      \"validator\": \"0xF9e9b98dd99114C6C1B5C28Ae101849880E9542f\",\n      \"checkpoint\": \"45500\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"0.000817335418355351\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 817335418355351,\n          \"exp\": 18\n        },\n        {\n          \"text\": \"0.000817335418355351\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 817335418355351,\n          \"exp\": 18\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"302.56\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 302560000000000000000,\n          \"exp\": 18\n        },\n        {\n          \"text\": \"302.56\",\n          \"currency\": \"MATIC\",\n          \"numeric\": 302560000000000000000,\n          \"exp\": 18\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"protocol\": \"polygon\",\n    \"network\": \"mainnet\",\n    \"time_rollup\": \"checkpoint\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "879ab9ce-9beb-4d01-b28e-c4d903faedb7",
+              "name": "Parameter error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polygon",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\",\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\"\n  ],\n  \"start\": 45500,\n  \"end\": 45501\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79d4008f-52f9-415a-999b-61fc65c8289d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polygon",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\",\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\"\n  ],\n  \"start\": 45500,\n  \"end\": 45501\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68acb9b8-460f-4546-8af0-918c9afa069c",
+              "name": "System error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "polygon",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\",\n    \"0xA722e1F10Bc95c102251A13c2bbCB61A67257003\"\n  ],\n  \"start\": 45500,\n  \"end\": 45501\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fb2f48ed-053e-4a64-ad49-6e5ebef120d9",
+    "name": "Figment Polygon API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

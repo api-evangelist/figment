@@ -1,0 +1,402 @@
+openapi: 3.2.0
+info:
+  title: Figment Stablecoins API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Stablecoins
+paths:
+  /opentrade/vaults/{vault_address}/approve:
+    parameters:
+    - name: vault_address
+      in: path
+      description: Vault address
+      example: '0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f'
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Approve
+      tags:
+      - Stablecoins
+      operationId: opentrade-approve-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      signing_payload:
+                        type: string
+                        example: '0x4e9e36c3032c59ff3dc186713ca6faad075c2c328182b207cda3b064ebd05690'
+                        description: Hex encoded payload to sign
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: '0x02f87183aa36a781c38459682f008459682f1a8301b77494fd4f11a2aae86165050688c85ec9ed6210c427a980b844095ea7b3000000000000000000000000d1f0774ccff0ce4f36dea57b6a28ab7feb0a01b00000000000000000000000000000000000000000000000000000000005f5e100c0'
+                        description: Hex encoding of the built transaction
+                      network:
+                        type: string
+                        example: mainnet
+                        description: Network name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                depositor_address:
+                  type: string
+                  example: '0xF54F2Ddb122F52456E9344d0Ac2F72C7DeB048D3'
+                  description: Address of the depositor
+                amount:
+                  type: string
+                  example: '1000'
+                  description: Amount of USDC to approve. Accepts whole numbers or decimals (e.g. 1000 or 1000.20)
+                network:
+                  type: string
+                  example: mainnet
+                  description: Network to approve on
+  /opentrade/vaults/{vault_address}/balances/{address}:
+    parameters:
+    - name: vault_address
+      in: path
+      description: Vault address
+      example: '0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f'
+      required: true
+      schema:
+        type: string
+    - name: address
+      in: path
+      description: Address of the depositor
+      example: '0xf54f2ddb122f52456e9344d0ac2f72c7deb048d3'
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Balances
+      tags:
+      - Stablecoins
+      operationId: opentrade-get-address-balance
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token_balance:
+                        type: string
+                        example: '114781689324'
+                        description: Vault shares held by the account
+                      asset_balance:
+                        type: string
+                        example: '119399097449'
+                        description: Underlying asset value of vault shares
+                      asset_symbol:
+                        type: string
+                        example: MUSDC
+                        description: Symbol of the underlying asset
+                      requested_shares_of:
+                        type: string
+                        example: '2014000600'
+                        description: Shares requested for withdrawal
+                      requested_assets_of:
+                        type: string
+                        example: '2091559517'
+                        description: Assets requested for withdrawal
+                      exchange_rate:
+                        type: string
+                        example: '1040227741482692591'
+                        description: Exchange rate between shares and assets
+        '422':
+          description: Invalid address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Vault not found
+  /opentrade/vaults/{vault_address}/deposit:
+    parameters:
+    - name: vault_address
+      in: path
+      description: Vault address
+      example: '0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f'
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Deposit
+      tags:
+      - Stablecoins
+      operationId: opentrade-deposit-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      signing_payload:
+                        type: string
+                        example: '0xd7461f48930e9619e09ac0bb972638cd177dc665e4cda24b737e2aca802ca5fd'
+                        description: Hex encoded payload to sign
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: '0x02f87183aa36a781c38459682f008459682f1a8304e43d94d1f0774ccff0ce4f36dea57b6a28ab7feb0a01b080b8446e553f65000000000000000000000000000000000000000000000000000000003b9aca00000000000000000000000000f54f2ddb122f52456e9344d0ac2f72c7deb048d3c0'
+                        description: Hex encoding of the built transaction
+                      network:
+                        type: string
+                        example: mainnet
+                        description: Network name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                depositor_address:
+                  type: string
+                  example: '0xF54F2Ddb122F52456E9344d0Ac2F72C7DeB048D3'
+                  description: Address of the depositor
+                assets:
+                  type: string
+                  example: '1000'
+                  description: Amount of USDC to deposit. Accepts whole numbers or decimals (e.g. 1000 or 1000.20)
+                network:
+                  type: string
+                  example: mainnet
+                  description: Network to deposit on
+  /opentrade/vaults/{vault_address}/redeem:
+    parameters:
+    - name: vault_address
+      in: path
+      description: Vault address
+      example: '0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f'
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Redeem
+      tags:
+      - Stablecoins
+      operationId: opentrade-redeem-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      signing_payload:
+                        type: string
+                        example: '0xea7cfc66127908a67dd48553d330151f0e437601659d69532ec8f9b9170e6bd0'
+                        description: Hex encoded payload to sign
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: '0x02f85083aa36a781c38459682f008459682f1a830802c894d1f0774ccff0ce4f36dea57b6a28ab7feb0a01b080a4aa2f892d00000000000000000000000000000000000000000000000000000000386dbda8c0'
+                        description: Hex encoding of the built transaction
+                      network:
+                        type: string
+                        example: mainnet
+                        description: Network name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                depositor_address:
+                  type: string
+                  example: '0xF54F2Ddb122F52456E9344d0Ac2F72C7DeB048D3'
+                  description: Address of the depositor
+                assets:
+                  type: string
+                  example: '100'
+                  description: Amount of USDC to redeem. Accepts whole numbers or decimals (e.g. 100 or 100.20)
+                network:
+                  type: string
+                  example: mainnet
+                  description: Network to redeem on
+  /opentrade/rewards:
+    post:
+      summary: Rewards
+      tags:
+      - Stablecoins
+      operationId: get-opentrade-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Got rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: Address that received rewards
+                        vault:
+                          type: string
+                          description: Vault address that received rewards
+                        timestamp:
+                          type: string
+                          example: '2024-10-24T00:01:00Z'
+                          description: Timestamp when reward happened
+                        reward_usdc:
+                          type: float
+                          example: 0.02
+                          description: Reward amount in USDC
+                        total_staked_usdc:
+                          type: float
+                          example: 2.0
+                          description: Total staked to opentrade in USDC
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  description: Network Rewards are on.
+                start:
+                  type: string
+                  example: '2024-10-10'
+                  description: Rewards received on or after this date
+                end:
+                  type: string
+                  example: '2024-10-16'
+                  description: Rewards received on or before this date
+              required:
+              - network
+              - start
+              - end
+        required: true
+  /opentrade/{vault_address}/apr:
+    get:
+      summary: Annual Percentage Rate
+      tags:
+      - Stablecoins
+      operationId: opentrade-apr
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+        description: The vault address to get APR for
+        example: '0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f'
+        required: true
+      - name: avg
+        in: query
+        schema:
+          type: string
+          enum:
+          - 30d
+          - 90d
+          - ytd
+          default: 30d
+        description: 'The yield period: 30d (30-day trailing), 90d (90-day trailing), ytd (year-to-date). Defaults to 30d.'
+        example: 30d
+        required: false
+      - name: decimal
+        in: query
+        schema:
+          type: integer
+          default: 2
+        description: Number of decimal places in the value (2–5). Defaults to 2.
+        example: 2
+        required: false
+      responses:
+        '401':
+          description: Invalid API key
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          description: Date of the yield metrics
+                        value:
+                          type: string
+                          description: Annualized simple yield for the chosen period
+                example:
+                  data:
+                  - date: '2026-03-30'
+                    value: '5.53'
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Stablecoins API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stablecoins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/opentrade/vaults/:vault_address/approve",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f",
+                "type": "path",
+                "description": "Vault address"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve"
+        },
+        {
+          "info": {
+            "name": "Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/opentrade/vaults/:vault_address/balances/:address",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f",
+                "type": "path",
+                "description": "Vault address"
+              },
+              {
+                "name": "address",
+                "value": "0xf54f2ddb122f52456e9344d0ac2f72c7deb048d3",
+                "type": "path",
+                "description": "Address of the depositor"
+              }
+            ]
+          },
+          "docs": "Balances"
+        },
+        {
+          "info": {
+            "name": "Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/opentrade/vaults/:vault_address/deposit",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f",
+                "type": "path",
+                "description": "Vault address"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deposit"
+        },
+        {
+          "info": {
+            "name": "Redeem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/opentrade/vaults/:vault_address/redeem",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f",
+                "type": "path",
+                "description": "Vault address"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Redeem"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/opentrade/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "Annual Percentage Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/opentrade/:vault_address/apr",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "0xe1b1252652A2FF0CC3A4214eE73d9FeD1FEa5b4f",
+                "type": "path",
+                "description": "The vault address to get APR for"
+              },
+              {
+                "name": "avg",
+                "value": "30d",
+                "type": "query",
+                "description": "The yield period: 30d (30-day trailing), 90d (90-day trailing), ytd (year-to-date). Defaults to 30d."
+              },
+              {
+                "name": "decimal",
+                "value": "2",
+                "type": "query",
+                "description": "Number of decimal places in the value (2–5). Defaults to 2."
+              }
+            ]
+          },
+          "docs": "Annual Percentage Rate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

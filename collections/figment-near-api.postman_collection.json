@@ -1,0 +1,932 @@
+{
+  "item": [
+    {
+      "id": "cade5f37-ec6d-4145-8bbd-e06eea9e34d9",
+      "name": "NEAR",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fb5f0c9-1079-4c7a-830b-7a7933510ccf",
+          "name": "NEAR Rewards",
+          "request": {
+            "name": "NEAR Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "near",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_addresses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"time_rollup\": \"<string>\",\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "148a0b4a-eb91-4a54-8656-fed65732cc5f",
+              "name": "A rewards result set with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"figment.near\",\n    \"figment.near\"\n  ],\n  \"time_rollup\": \"<string>\",\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"delegator_address\": \"ccb593f13a9ee3eaba2b063265c5960406e1de3758d9d9d9eb87701e5c9dd8ed\",\n      \"validator\": \"figment.poolv1.near\",\n      \"epoch\": \"75743490\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"0.000000000000000000001453\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 1453,\n          \"exp\": 24\n        },\n        {\n          \"text\": \"0.000000000000000000001453\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 1453,\n          \"exp\": 24\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"0.000000000548826223520098\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 548826223520098,\n          \"exp\": 24\n        },\n        {\n          \"text\": \"0.000000000548826223520098\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 548826223520098,\n          \"exp\": 24\n        }\n      ]\n    },\n    {\n      \"delegator_address\": \"ccb593f13a9ee3eaba2b063265c5960406e1de3758d9d9d9eb87701e5c9dd8ed\",\n      \"validator\": \"figment.poolv1.near\",\n      \"epoch\": \"75743490\",\n      \"timestamp\": \"2023-07-21T00:00:00Z\",\n      \"rewards\": [\n        {\n          \"text\": \"0.000000000000000000001453\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 1453,\n          \"exp\": 24\n        },\n        {\n          \"text\": \"0.000000000000000000001453\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 1453,\n          \"exp\": 24\n        }\n      ],\n      \"balances\": [\n        {\n          \"text\": \"0.000000000548826223520098\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 548826223520098,\n          \"exp\": 24\n        },\n        {\n          \"text\": \"0.000000000548826223520098\",\n          \"currency\": \"NEAR\",\n          \"numeric\": 548826223520098,\n          \"exp\": 24\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"protocol\": \"near\",\n    \"network\": \"mainnet\",\n    \"time_rollup\": \"epoch\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3dae6d2-d325-46d2-ac61-63f6566d1c88",
+              "name": "Parameter error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"figment.near\",\n    \"figment.near\"\n  ],\n  \"time_rollup\": \"<string>\",\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cac4f5df-33cd-4255-bd21-afa1985fa393",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"figment.near\",\n    \"figment.near\"\n  ],\n  \"time_rollup\": \"<string>\",\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf56a624-582c-4d54-9958-400033b4b491",
+              "name": "System error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_addresses\": [\n    \"figment.near\",\n    \"figment.near\"\n  ],\n  \"time_rollup\": \"<string>\",\n  \"start\": \"2023-07-20\",\n  \"end\": \"2023-07-21\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"An error has occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5ac1d10-5a48-4502-83f3-24d5b318ca45",
+          "name": "Broadcast Tx",
+          "request": {
+            "name": "Broadcast Tx",
+            "description": {},
+            "url": {
+              "path": [
+                "near",
+                "broadcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"signed_transaction\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ddd411b5-498d-402d-9237-70cad99596fd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signed_transaction\": \"928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"transaction_hash\": \"8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27638359-2e9f-4890-ba55-18a7b76565c9",
+              "name": "Invalid network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "broadcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signed_transaction\": \"928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17b0e1e2-7d51-4ff1-9f39-4408d159f4bf",
+          "name": "Delegate",
+          "request": {
+            "name": "Delegate",
+            "description": {},
+            "url": {
+              "path": [
+                "near",
+                "delegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"delegator_pubkey\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d3465e3-455a-4dcc-b26c-47ed77d687d6",
+              "name": "Delegate transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"amount\": \"1\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"string\",\n    \"unsigned_transaction_serialized\": \"string\",\n    \"signing_payload\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e17c8669-344c-498a-be0b-5c0787802506",
+              "name": "Slate networks error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "delegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"amount\": \"1\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c91c6378-5149-4024-a40f-c07f112726c5",
+          "name": "Get Stakes",
+          "request": {
+            "name": "Get Stakes",
+            "description": {},
+            "url": {
+              "path": [
+                "near",
+                "stakes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "network",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6422875-2e57-4291-bb28-b577ec2deb15",
+              "name": "Near Stakes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "stakes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "testnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 10,\n      \"total_item_count\": 1000,\n      \"has_next\": true\n    }\n  },\n  \"data\": [\n    {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"epoch\": 4801,\n      \"delegator_address\": \"wallet-address.testnet\",\n      \"validator_address\": \"validator.pool.a763272.a0\",\n      \"balance_time_stamp\": \"2021-01-01T00:00:00Z\",\n      \"balances\": {\n        \"staked\": \"200000000985912653361207\",\n        \"deactivating\": \"0\",\n        \"withdrawable\": \"972959114646034077150446\",\n        \"total\": \"1172959115631946730511653\"\n      }\n    },\n    {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"epoch\": 4801,\n      \"delegator_address\": \"wallet-address.testnet\",\n      \"validator_address\": \"validator.pool.a763272.a0\",\n      \"balance_time_stamp\": \"2021-01-01T00:00:00Z\",\n      \"balances\": {\n        \"staked\": \"200000000985912653361207\",\n        \"deactivating\": \"0\",\n        \"withdrawable\": \"972959114646034077150446\",\n        \"total\": \"1172959115631946730511653\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e775c359-5ab0-4b03-af66-139868e0e6af",
+              "name": "Invalid network",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "stakes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "network",
+                      "value": "testnet"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77c2819-409c-4b4f-95a9-df33b33e0c5c",
+          "name": "Undelegate",
+          "request": {
+            "name": "Undelegate",
+            "description": {},
+            "url": {
+              "path": [
+                "near",
+                "undelegate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"delegator_pubkey\": \"<string>\",\n  \"key_0\": 6936\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa7fe732-f226-4aad-afe9-c78fcf48ddef",
+              "name": "Undelegate",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"amount\": \"1\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\",\n  \"key_0\": 9857\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"string\",\n    \"unsigned_transaction_serialized\": \"string\",\n    \"signing_payload\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ce78dee-0fd2-462d-8971-3cbb1e1ac47e",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "undelegate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"testnet\",\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"amount\": \"1\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\",\n  \"key_0\": 9857\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f74051d6-bdf1-4e75-869d-ff2ef2eb8538",
+          "name": "Withdraw",
+          "request": {
+            "name": "Withdraw",
+            "description": {},
+            "url": {
+              "path": [
+                "near",
+                "withdraw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegator_address\": \"<string>\",\n  \"validator_address\": \"<string>\",\n  \"delegator_pubkey\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0837201f-c58f-4a90-9065-aeab3bd220f3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\",\n  \"amount\": \"10.0\",\n  \"network\": \"testnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"network\": \"string\",\n    \"unsigned_transaction_serialized\": \"string\",\n    \"signing_payload\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47bc1c1c-43c4-4316-af6f-c21648e04d4e",
+              "name": "Invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\",\n  \"amount\": \"10.0\",\n  \"network\": \"testnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97161f44-5d8b-4e77-8700-c2e58c2ba522",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "near",
+                    "withdraw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegator_address\": \"614b201c102a17b3b75343d801797df13d2a5707acb315d344d92224a19ff91e\",\n  \"validator_address\": \"gargoyle.pool.f863973.m0\",\n  \"delegator_pubkey\": \"ed25519:Fna6vdGiLHi5ibP59f8cBYjQhjbDxD9gbgsfqYUs1q4z\",\n  \"amount\": \"10.0\",\n  \"network\": \"testnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3b45b759-f0e8-43ef-80cb-7104764f8238",
+    "name": "Figment NEAR API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

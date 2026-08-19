@@ -1,0 +1,1426 @@
+openapi: 3.2.0
+info:
+  title: Figment Vaults API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Vaults
+paths:
+  /vaults/transactions/create_vault:
+    post:
+      summary: Create Vault
+      tags:
+      - Vaults
+      operationId: create-vault-transactions
+      parameters: []
+      responses:
+        '200':
+          description: Transaction payload to create a Vault.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '422':
+          description: Invalid transaction
+        '400':
+          description: Bad Request
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                admin_address:
+                  type: string
+                  example: '0xdb007d02efef6640f9cfcfc8d2e0ba39fe4457de'
+                  description: Address of the Vault admin
+              required:
+              - network
+              - admin_address
+        required: true
+  /vaults/{vault_address}:
+    patch:
+      summary: Set Region
+      tags:
+      - Vaults
+      operationId: set-region
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Set Region
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/vault'
+                example:
+                  data:
+                  - id: 95dfa576-c11a-428c-8844-a1744eee95a1
+                    address: '0xb67c867f975e9b6a022dd6b69672345268f0c877'
+                    fee_recipient_address: '0xa6372f319628bef9ad7a902a52e59c14797184be'
+                    network: hoodi
+                    region: ca-central-1
+                    vault_admin_id: 703a145f-a034-469e-a0a9-624130d462d8
+                    admin_address: '0xa73bacbb54faac0144fe749273a552026d0ff334'
+                    validators_manager_address: '0xdd1b638b81b8e447b3acb96e9fa7c7a39e6dc3d7'
+                    fee_bps: 500
+                    capacity_wei: 1
+                    own_mev_escrow: true
+                    reward_splitter_contract_address: '0xa73bacbb54faac0144fe749273a552026d0ff334'
+                    created_at: '2024-05-21T16:32:45Z'
+                    updated_at: '2024-05-21T16:32:45Z'
+                  meta:
+                    pagination:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 1
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                region:
+                  type: string
+                  example: ca-central-1
+                  enum:
+                  - ca-central-1
+                  - eu-west-1
+                  description: Region to provision the Validators in your Vault
+              required:
+              - network
+              - region
+        required: true
+  /vaults/{vault_address}/transactions/configure_figment_vault:
+    post:
+      summary: Configure Figment Validator Vault
+      tags:
+      - Vaults
+      operationId: configure-figment-vault
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Transaction payload to set validator manager and fee recipient address.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+              required:
+              - network
+        required: true
+  /vaults/{vault_address}/transactions/update_allowlist:
+    post:
+      summary: Update Allowlist
+      tags:
+      - Vaults
+      operationId: update-allowlist-transactions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Transaction payload to update a Vault allow list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '400':
+          description: Failed request
+        '422':
+          description: Invalid request
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                wallet_address:
+                  type: array
+                  example: '["0x4c6c8b265103a6b0c9a1f23f776b198237adb69e"]'
+                  description: A list of eth wallet addresses to add or remove from the allow list
+                allowed:
+                  type: boolean
+                  example: true
+                  description: Sets the address to allowed or not allowed
+              required:
+              - network
+              - wallet_address
+              - allowed
+        required: true
+  /vaults/{vault_address}/transactions/deposit:
+    post:
+      summary: Deposit
+      tags:
+      - Vaults
+      operationId: deposit-transactions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Transaction payload to deposit Eth.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '422':
+          description: Transaction failed due to invalid input parameters
+        '400':
+          description: Bad Request
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                from_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the depositor
+                receiver_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the receiver
+                amount:
+                  type: string
+                  pattern: ^\d+(\.\d+)?$
+                  example: '10.0'
+                  description: Amount of ETH to deposit
+              required:
+              - network
+              - from_address
+              - receiver_address
+              - amount
+        required: true
+  /vaults/{vault_address}/transactions/withdraw:
+    post:
+      summary: Withdraw
+      tags:
+      - Vaults
+      operationId: create-withdraw-transactions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Transaction payload to enter in the exit queue.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '400':
+          description: Bad Request
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                from_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the signer
+                receiver_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the receiver
+                assets:
+                  type: string
+                  pattern: ^\d+(\.\d+)?$
+                  example: '10.0'
+                  description: Amount of ETH to withdraw
+              required:
+              - network
+              - from_address
+              - receiver_address
+              - assets
+        required: true
+  /vaults/{vault_address}/transactions/claim_withdrawal:
+    post:
+      summary: Claim Withdrawal
+      tags:
+      - Vaults
+      operationId: create-claim-withdrawal-transactions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Transaction payload to claim the withdrawal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '400':
+          description: Bad Request
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                position_ticket:
+                  type: string
+                  example: '1234'
+                  description: The exit queue ticket received
+                timestamp:
+                  type: string
+                  example: '1717010271'
+                  description: The timestamp when the shares entered the exit queue
+                from_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the signer
+              required:
+              - network
+              - position_ticket
+              - timestamp
+              - from_address
+        required: true
+  /vaults/{vault_address}/allowlist:
+    get:
+      summary: Allowlist
+      tags:
+      - Vaults
+      operationId: show-allowlist
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      responses:
+        '200':
+          description: Allowlist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/stake_wise_allowlist_entry'
+                example:
+                  data:
+                    allowlist:
+                    - created_at: 1719345504000
+                      address: '0xE373733544a50A5Ea8A4Aa0209d30d1Eab13fD2b'
+                    - created_at: 1719321972000
+                      address: '0xC0B0D5F4A73b348A1dD2deD11ED9e409fe7685a8'
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/address/{id}/actions:
+    get:
+      summary: Address Actions
+      tags:
+      - Vaults
+      operationId: show-address-actions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+          description: Wallet Address
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          description: Limit for Address Actions
+        example: '10'
+        required: false
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          description: Offset for Address Actions
+        example: '1'
+        required: false
+      responses:
+        '200':
+          description: Address Actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_depositor_actions'
+                example:
+                  data:
+                    stakerActions:
+                    - id: 0x08cbc471958019c940ca822b8a6e29a1425ce3574cdd2e5644789a24caea0072-139
+                      assets: '0.1'
+                      shares: '0.1'
+                      createdAt: 1716914868000
+                      actionType: Redeemed
+                      link: https://hoodi.etherscan.io/tx/0x08cbc471958019c940ca822b8a6e29a1425ce3574cdd2e5644789a24caea0072
+                    - id: 0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab-8
+                      assets: '0.1'
+                      shares: '0.1'
+                      createdAt: 1716327696000
+                      actionType: Deposited
+                      link: https://hoodi.etherscan.io/tx/0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab
+                    - id: 0x2954b40c0aa829d07e9ab5209d52cb01ffef6737cd81e8327c1895e9ec518a85-17
+                      assets: '0.1'
+                      shares: '0.1'
+                      createdAt: 1716295452000
+                      actionType: Deposited
+                      link: https://hoodi.etherscan.io/tx/0x2954b40c0aa829d07e9ab5209d52cb01ffef6737cd81e8327c1895e9ec518a85
+                    - id: 0x67b822d7cae981e74f369400ef3b87e61c8d8616031fd4c413e310b6fc76167f-93
+                      assets: '0.1'
+                      shares: '0.1'
+                      createdAt: 1716295128000
+                      actionType: Deposited
+                      link: https://hoodi.etherscan.io/tx/0x67b822d7cae981e74f369400ef3b87e61c8d8616031fd4c413e310b6fc76167f
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/address/{id}/balance:
+    get:
+      summary: Address Balance
+      tags:
+      - Vaults
+      operationId: show-address-balance
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+          description: Wallet Address
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      responses:
+        '200':
+          description: Address Balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_depositor_balance'
+                example:
+                  data:
+                    balance: '0.2'
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/address/{id}/rewards:
+    get:
+      summary: List Address Rewards
+      tags:
+      - Vaults
+      operationId: list-address-rewards
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+          description: Wallet Address
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      - name: start_date
+        in: query
+        schema:
+          type: string
+          description: Start date for rewards data. Defaults to 1 month ago.
+        example: '2024-01-01'
+        required: false
+      - name: end_date
+        in: query
+        schema:
+          type: string
+          description: End date for rewards data
+        example: '2024-02-01'
+        required: false
+      responses:
+        '200':
+          description: Address Rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_depositor_rewards'
+                example:
+                  data:
+                    rewards:
+                    - date: '2024-08-14T00:00:00Z'
+                      sum_rewards: '0.008092870114883128'
+                      daily_rewards: '0.003493495227587289'
+                      daily_rewards_eur: '8.54'
+                      daily_rewards_gbp: '7.33'
+                      daily_rewards_usd: '9.41'
+                    - date: '2024-08-15T00:00:00Z'
+                      sum_rewards: '0.012130082097944445'
+                      daily_rewards: '0.004037211983061317'
+                      daily_rewards_eur: '9.46'
+                      daily_rewards_gbp: '8.09'
+                      daily_rewards_usd: '10.4'
+                    - date: '2024-08-16T00:00:00Z'
+                      sum_rewards: '0.014103402730016545'
+                      daily_rewards: '0.001973320632072101'
+                      daily_rewards_eur: '4.71'
+                      daily_rewards_gbp: '4.02'
+                      daily_rewards_usd: '5.17'
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/commission/{commission_address}/actions:
+    get:
+      summary: Commission Actions
+      tags:
+      - Vaults
+      operationId: show-commission-actions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: commission_address
+        in: path
+        schema:
+          type: string
+          description: Address of the commission
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          description: Limit for Staker Actions
+        example: '10'
+        required: false
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          description: Offset for Staker Actions
+        example: '1'
+        required: false
+      responses:
+        '200':
+          description: Commission Actions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_shareholder_actions'
+                example:
+                  data:
+                    actions:
+                    - id: 0x9b516fb296aa5170419316efd6c15c561b1f8dc75c6b62d1be4750b759f09740-2
+                      assets: '0.000000999999999999'
+                      shares: '0.0'
+                      created_at: '2024-08-15T14:21:36Z'
+                      action_type: ExitedAssetsClaimed
+                      link: https://hoodi.etherscan.io/tx/0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/commission/{commission_address}/balance:
+    get:
+      summary: Commission Balance
+      tags:
+      - Vaults
+      operationId: show-commission-balance
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: commission_address
+        in: path
+        schema:
+          type: string
+          description: Address of the commision
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      responses:
+        '200':
+          description: Commission Balance
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_shareholder_balance'
+                example:
+                  data:
+                    balance: '0.000216504418283007'
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/transactions/withdraw_commission:
+    post:
+      summary: Withdraw commission
+      tags:
+      - Vaults
+      operationId: create-withdraw-commission-transactions
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Transaction payload to withdraw comission.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ethereum_transaction'
+                example:
+                  data:
+                    unsigned_transaction_serialized: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+                    unsigned_transaction_hash: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+                    max_transaction_cost: 3999034319785598
+                    calldata: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+        '400':
+          description: Bad Request
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                from_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the signer
+                receiver_address:
+                  type: string
+                  example: '0xa067dace6d518235489d9dcee8d9879703fd99f24'
+                  description: Address of the receiver
+                amount:
+                  type: string
+                  pattern: ^\d+(\.\d+)?$
+                  example: '10.0'
+                  description: Amount of ETH to withdraw
+              required:
+              - network
+              - from_address
+              - receiver_address
+              - amount
+        required: true
+  /vaults/{vault_address}/information/assets_to_shares:
+    post:
+      summary: Assets to Shares
+      tags:
+      - Vaults
+      operationId: assets-to-shares
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Amount of assets converted to shares
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_assets_to_shares'
+                example:
+                  data:
+                    shares: '100148521403922573'
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                assets:
+                  type: string
+                  example: '0.3'
+                  description: Amount of ETH to convert to shares
+              required:
+              - network
+              - assets
+        required: true
+  /vaults/{vault_address}/information/shares_to_assets:
+    post:
+      summary: Shares to Assets
+      tags:
+      - Vaults
+      operationId: shares-to-assets
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      responses:
+        '200':
+          description: Amount of shares converted to assets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_shares_to_assets'
+                example:
+                  data:
+                    assets: '0.100148521403922573'
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: hoodi
+                  enum:
+                  - mainnet
+                  - hoodi
+                  description: Network name
+                shares:
+                  type: string
+                  example: '0.3'
+                  description: Amount of Shares to convert to assets
+              required:
+              - network
+              - shares
+        required: true
+  /vaults/{vault_address}/commission/{commission_address}/exit_requests:
+    get:
+      summary: Commission Exit Requests
+      tags:
+      - Vaults
+      operationId: show-commission-exit_requests
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: commission_address
+        in: path
+        schema:
+          type: string
+          description: Address of the commission
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      responses:
+        '200':
+          description: Commission Exit Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_shareholder_exit_requests'
+                example:
+                  data:
+                    exit_requests:
+                    - position_ticket: '1011053000346910311'
+                      owner: '0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8'
+                      receiver: '0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8'
+                      total_assets: '0.009999999999999999'
+                      exited_assets: '0.009999999999999999'
+                      timestamp: '1726068324'
+                      claimable: true
+                      claimed: false
+                      withdrawal_timestamp: '0'
+                    - position_ticket: '1021053000346910310'
+                      owner: '0xce3460f63e3c7d4cb06bf11a6e980f7231bfc89a'
+                      receiver: '0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8'
+                      total_assets: '0.000009999999999999'
+                      exited_assets: '0.000009999999999999'
+                      timestamp: '1726081992'
+                      claimable: true
+                      claimed: false
+                      withdrawal_timestamp: '0'
+        '401':
+          description: Invalid API key
+  /vaults/{vault_address}/address/{id}/exit_requests:
+    get:
+      summary: Address Exit Requests
+      tags:
+      - Vaults
+      operationId: show-address-exit-requests
+      parameters:
+      - name: vault_address
+        in: path
+        schema:
+          type: string
+          description: Address of the Vault
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+          description: Wallet Address
+        required: true
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      responses:
+        '200':
+          description: Address Exit Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/stake_wise_depositor_exit_requests'
+                example:
+                  data:
+                    exit_requests:
+                    - position_ticket: '1011053000346910311'
+                      owner: '0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8'
+                      receiver: '0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8'
+                      total_assets: '0.009999999999999999'
+                      exited_assets: '0.009999999999999999'
+                      timestamp: '1726068324'
+                      claimable: true
+                      claimed: false
+                      withdrawal_timestamp: '0'
+                    - position_ticket: '1021053000346910310'
+                      owner: '0xce3460f63e3c7d4cb06bf11a6e980f7231bfc89a'
+                      receiver: '0xc0b0d5f4a73b348a1dd2ded11ed9e409fe7685a8'
+                      total_assets: '0.000009999999999999'
+                      exited_assets: '0.000009999999999999'
+                      timestamp: '1726081992'
+                      claimable: true
+                      claimed: false
+                      withdrawal_timestamp: '0'
+        '401':
+          description: Invalid API key
+  /vaults:
+    get:
+      summary: List Vaults
+      tags:
+      - Vaults
+      operationId: list-vaults
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - hoodi
+        example: hoodi
+        required: true
+      responses:
+        '200':
+          description: Validators list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/vault'
+                  meta:
+                    $ref: '#/components/schemas/pagination'
+                example:
+                  data:
+                  - id: 95dfa576-c11a-428c-8844-a1744eee95a1
+                    address: '0xb67c867f975e9b6a022dd6b69672345268f0c877'
+                    fee_recipient_address: '0xa6372f319628bef9ad7a902a52e59c14797184be'
+                    network: hoodi
+                    region: ca-central-1
+                    vault_admin_id: 703a145f-a034-469e-a0a9-624130d462d8
+                    admin_address: '0xa73bacbb54faac0144fe749273a552026d0ff334'
+                    validators_manager_address: '0xdd1b638b81b8e447b3acb96e9fa7c7a39e6dc3d7'
+                    fee_bps: 500
+                    capacity_wei: 1
+                    own_mev_escrow: true
+                    reward_splitter_contract_address: '0xa73bacbb54faac0144fe749273a552026d0ff334'
+                    created_at: '2024-05-21T16:32:45Z'
+                    updated_at: '2024-05-21T16:32:45Z'
+                  meta:
+                    pagination:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 1
+        '401':
+          description: Invalid API key
+components:
+  schemas:
+    stake_wise_shares_to_assets:
+      type: object
+      properties:
+        assets:
+          type: string
+          example: '0.1'
+          description: Amount of shares to convert to assets
+    ethereum_transaction:
+      type: object
+      properties:
+        unsigned_transaction_serialized:
+          type: string
+          example: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+          description: The unsigned transaction payload serialized in hex format
+        unsigned_transaction_hash:
+          type: string
+          example: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+          description: keccak256 hash of the serialized unsigned transaction payload
+        max_transaction_cost:
+          type: integer
+          example: 3999034319785598
+          description: Max transaction cost in gwei
+        calldata:
+          type: string
+          example: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+          description: Calldata for the transaction.
+    pagination:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 1000
+            has_next:
+              type: boolean
+              example: true
+    stake_wise_shareholder_exit_requests:
+      type: object
+      properties:
+        exit_requests:
+          type: array
+          items:
+            type: object
+            properties:
+              position_ticket:
+                type: string
+                example: '1011053000346910311'
+                description: Represents your position in the queue and is calculated based on the queue length and amount of ETH you want to exit
+              owner:
+                type: string
+                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
+                description: The commission_address that initiated the exit request
+              receiver:
+                type: string
+                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
+                description: The address that will receive the assets from the exit request after calling the Claim Withdrawal endpoint
+              timestamp:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+                description: A unix timestamp of when the exit request occurred
+              total_assets:
+                type: string
+                example: '0.000000999999999999'
+                description: Total amount requested to be exited
+              exited_assets:
+                type: string
+                example: '0.000000999999999999'
+                description: Amount exited in the current exit request. When the total amount of assets isn’t fully unbonded, a new exit request for the customer will be created that will exit the remainder exited_assets
+              claimable:
+                type: boolean
+                example: true
+                description: If the exit request is claimable
+              claimed:
+                type: boolean
+                example: false
+                description: If the exit request has been claimed
+              withdrawal_timestamp:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+                description: An estimate unix timestamp of when the receiver address can claim the exit request. This value is ‘0’ if it is passed the time to claim and ‘null’ initially while calculating the withdrawal time estimate
+    stake_wise_shareholder_balance:
+      type: object
+      properties:
+        balance:
+          type: string
+          example: '0.000426071736079811'
+          description: Balance in ETH
+    stake_wise_shareholder_actions:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e-7
+              assets:
+                type: string
+                example: '0.000000999999999999'
+              shares:
+                type: string
+                example: '0.0'
+              created_at:
+                type: timestamp
+                example: 1723764672000
+              action_type:
+                type: string
+                example: ExitedAssetsClaimed
+              link:
+                type: string
+                example: https://hoodi.etherscan.io/tx/0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e
+    stake_wise_depositor_balance:
+      type: object
+      properties:
+        balance:
+          type: string
+          example: '0.2'
+          description: Balance in ETH
+    vault:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 031af36c-508a-4f3d-84dd-f46d9e59428f
+          description: A unique UUID for the vault.
+        network:
+          type: string
+          example: hoodi
+          enum:
+          - mainnet
+          - hoodi
+        address:
+          type: string
+          example: '0xE40F80618324C814cD444434670a44ba4583aE38'
+        fee_recipient_address:
+          type: string
+          nullable: true
+          example: '0x781462762B706AA7c1DA71FBA1a545724928b81f'
+          description: The fee recipient address that receives Execution Layer fees. For Figment-operated validators only.
+        region:
+          type: string
+          nullable: true
+          example: ca-central-1
+          description: The geographic region in which the validator operates. For Figment-operated validators only.
+        vault_admin_id:
+          type: string
+          example: 031af36c-508a-4f3d-84dd-f46d9e59428f
+          description: A unique UUID for the vault admin id.
+        vault_admin_address:
+          type: string
+          nullable: true
+          example: '0x781462762B706AA7c1DA71FBA1a545724928b81f'
+        validators_manager_address:
+          type: string
+          example: 031af36c-508a-4f3d-84dd-f46d9e59428f
+          description: The validator manager address
+        fee_bps:
+          type: integer
+          example: 500
+        capacity_wei:
+          type: integer
+          example: 500
+        own_mev_escrow:
+          type: boolean
+          example: true
+        reward_splitter_contract_address:
+          type: string
+          example: '0xa73bacbb54faac0144fe749273a552026d0ff334'
+        created_at:
+          type: string
+          example: '2023-07-01T00:00:00.000Z'
+          description: The time at which the vault was created.
+        updated_at:
+          type: string
+          example: '2023-07-01T00:00:00.000Z'
+          description: The time at which the vault was updated.
+    stake_wise_depositor_exit_requests:
+      type: object
+      properties:
+        exit_requests:
+          type: array
+          items:
+            type: object
+            properties:
+              position_ticket:
+                type: string
+                example: '1011053000346910311'
+                description: Represents your position in the queue and is calculated based on the queue length and amount of ETH you want to exit
+              owner:
+                type: string
+                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
+                description: The address that initiated the exit request
+              receiver:
+                type: string
+                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
+                description: The address that will receive the assets from the exit request after calling the Claim Withdrawal endpoint
+              timestamp:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+                description: A unix timestamp of when the exit request occurred
+              total_assets:
+                type: string
+                example: '0.000000999999999999'
+                description: Total amount requested to be exited
+              exited_assets:
+                type: string
+                example: '0.000000999999999999'
+                description: Amount exited in the current exit request. When the total amount of assets isn’t fully unbonded, a new exit request for the customer will be created that will exit the remainder exited_assets
+              claimable:
+                type: boolean
+                example: true
+                description: If the exit request is claimable
+              claimed:
+                type: boolean
+                example: false
+                description: If the exit request has been claimed
+              withdrawal_timestamp:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+                description: An estimate unix timestamp of when the receiver address can claim the exit request. This value is ‘0’ if it is passed the time to claim and ‘null’ initially while calculating the withdrawal time estimate.
+    stake_wise_assets_to_shares:
+      type: object
+      properties:
+        shares:
+          type: string
+          example: '0.1'
+          description: Amount of assets to convert to shares
+    stake_wise_allowlist_entry:
+      type: object
+      properties:
+        created_at:
+          type: integer
+          example: 1719345504000
+        address:
+          type: string
+          example: '0xE373733544a50A5Ea8A4Aa0209d30d1Eab13fD2b'
+    stake_wise_depositor_actions:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab-8
+              assets:
+                type: string
+                example: '0.1'
+              shares:
+                type: string
+                example: '0.1'
+              created_at:
+                type: timestamp
+                example: 1716327696000
+              action_type:
+                type: string
+                example: Deposited
+              link:
+                type: string
+                example: https://hoodi.etherscan.io/tx/0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab
+    stake_wise_depositor_rewards:
+      type: object
+      properties:
+        rewards:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+              sum_rewards:
+                type: string
+                example: '0.008092870114883128'
+              daily_rewards:
+                type: string
+                example: '0.003493495227587289'
+              daily_rewards_eur:
+                type: string
+                example: '8.54'
+              daily_rewards_gbp:
+                type: string
+                example: '7.33'
+              daily_rewards_usd:
+                type: string
+                example: '9.41'
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

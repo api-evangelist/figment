@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  title: Figment Addresses API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Addresses
+paths:
+  /addresses:
+    post:
+      summary: Track Address
+      operationId: tracked-address-create
+      parameters: []
+      responses:
+        '201':
+          description: Address created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      protocol:
+                        type: string
+                        example: solana
+                      network:
+                        type: string
+                        example: mainnet
+                      address:
+                        type: string
+                        example: 3ydf2egwcsjvigdqagtcajfcdjayzs4wklxokgerfb8j
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable content
+        '400':
+          description: Bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                protocol:
+                  type: string
+                  example: ethereum
+                  enum:
+                  - agoric
+                  - aleo
+                  - algorand
+                  - aptos
+                  - audius
+                  - avalanche
+                  - axelar
+                  - babylon
+                  - band
+                  - berachain
+                  - bnb
+                  - cardano
+                  - casper
+                  - celestia
+                  - celo
+                  - concordium
+                  - core
+                  - cosmos
+                  - cronos
+                  - dydx
+                  - eigen_layer
+                  - ethereum
+                  - flow
+                  - hyperliquid
+                  - initia
+                  - injective
+                  - iota
+                  - kusama
+                  - lido
+                  - liquid_collective_eth
+                  - livepeer
+                  - lombard
+                  - mantra
+                  - mina
+                  - monad
+                  - moonbeam
+                  - multiversx
+                  - namada
+                  - near
+                  - opentrade_eth
+                  - osmosis
+                  - polkadot
+                  - polygon
+                  - provenance
+                  - sei
+                  - skale
+                  - solana
+                  - stacks
+                  - starknet
+                  - story
+                  - sui
+                  - the_graph
+                  - towns
+                  - vaulta
+                  - wemix
+                  - zama
+                  - zero_gravity
+                  - zeta_chain
+                address:
+                  type: string
+                  example: '0xc08131d2dd8d877b18f2cd035ae936a5d3dda93a'
+                  description: The account address.
+                fee_percentage:
+                  type: number
+                  example: 0.05
+                  description: The gross effective fee for this account as a decimal.
+              required:
+              - protocol
+              - address
+      tags:
+      - Addresses
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

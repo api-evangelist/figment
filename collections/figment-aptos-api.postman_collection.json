@@ -1,0 +1,210 @@
+{
+  "item": [
+    {
+      "id": "b60e056c-a348-4ee2-bc8a-977a56705eda",
+      "name": "Aptos",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2997e1c4-37c6-49c5-be81-00f29292a0a1",
+          "name": "Get staking transaction",
+          "request": {
+            "name": "Get staking transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "aptos",
+                "stakes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"signer_address\": \"<string>\",\n  \"amount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d946cbe-9a82-40e1-ae96-8665cb416b7a",
+              "name": "Successfully got staking tx",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aptos",
+                    "stakes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signer_address\": \"0xabf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a3\",\n  \"amount\": 500000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction_payload\": \"0xabf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a302000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002200a4113560d0b18ba38797f2a899c4b27e0c5b0476be5d8f6be68fba8b1861ed0080065cd1d00000000400d03000000000064000000000000007b2e6766000000000200\",\n  \"signing_payload\": \"0xb5e97db07fa0bd0e5598aa3643a9bc6f6693bddc1a9fec9e674a461eaa00b193abf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a302000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002200a4113560d0b18ba38797f2a899c4b27e0c5b0476be5d8f6be68fba8b1861ed0080065cd1d00000000400d03000000000064000000000000007b2e67660000000002\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69ef25bd-cac9-449e-91d2-d10738566921",
+              "name": "invalid arguments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aptos",
+                    "stakes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signer_address\": \"0xabf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a3\",\n  \"amount\": 500000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60f0854f-2317-4f02-a22c-a1c37a4a2e5b",
+              "name": "Invalid API key usage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aptos",
+                    "stakes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"signer_address\": \"0xabf1e1fd0791abd362a97525da8b5f5169379d06bb66d7e507180c9f557879a3\",\n  \"amount\": 500000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "da1e3e65-335f-4783-b828-c73cad8a6582",
+    "name": "Figment Aptos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

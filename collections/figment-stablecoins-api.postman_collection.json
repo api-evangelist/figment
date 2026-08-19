@@ -1,0 +1,816 @@
+{
+  "item": [
+    {
+      "id": "5e3ff187-3f3f-4980-a32c-e0440c4068af",
+      "name": "Stablecoins",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38a77383-bdb8-4222-befe-3a889ae9efc5",
+          "name": "Approve",
+          "request": {
+            "name": "Approve",
+            "description": {},
+            "url": {
+              "path": [
+                "opentrade",
+                "vaults",
+                ":vault_address",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"depositor_address\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7da6eede-950f-47e7-9656-78eaad723a10",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "vaults",
+                    ":vault_address",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_address\": \"0xF54F2Ddb122F52456E9344d0Ac2F72C7DeB048D3\",\n  \"amount\": \"1000\",\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"signing_payload\": \"0x4e9e36c3032c59ff3dc186713ca6faad075c2c328182b207cda3b064ebd05690\",\n    \"unsigned_transaction_serialized\": \"0x02f87183aa36a781c38459682f008459682f1a8301b77494fd4f11a2aae86165050688c85ec9ed6210c427a980b844095ea7b3000000000000000000000000d1f0774ccff0ce4f36dea57b6a28ab7feb0a01b00000000000000000000000000000000000000000000000000000000005f5e100c0\",\n    \"network\": \"mainnet\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c827b76-9fa9-4d7a-abd1-bf72f584caad",
+          "name": "Balances",
+          "request": {
+            "name": "Balances",
+            "description": {},
+            "url": {
+              "path": [
+                "opentrade",
+                "vaults",
+                ":vault_address",
+                "balances",
+                ":address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault address"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "address",
+                  "description": "(Required) Address of the depositor"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0d50453-2c22-4a9c-ae5f-39c816ec6f6a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "vaults",
+                    ":vault_address",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault address"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Address of the depositor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"token_balance\": \"114781689324\",\n    \"asset_balance\": \"119399097449\",\n    \"asset_symbol\": \"MUSDC\",\n    \"requested_shares_of\": \"2014000600\",\n    \"requested_assets_of\": \"2091559517\",\n    \"exchange_rate\": \"1040227741482692591\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d042fd83-bc1a-472e-833d-08f79f8478bb",
+              "name": "Vault not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "vaults",
+                    ":vault_address",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault address"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Address of the depositor"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71092999-5fb5-464a-a6ce-b6d4bb558f74",
+              "name": "Invalid address",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "vaults",
+                    ":vault_address",
+                    "balances",
+                    ":address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault address"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "address",
+                      "description": "(Required) Address of the depositor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"The record is invalid\",\n    \"details\": [\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      },\n      {\n        \"param\": \"example_field\",\n        \"message\": \"The example_field property has an incorrect value. Must be one of X, Y, or Z.\",\n        \"context\": {},\n        \"code\": 1000\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e57f1ee9-487f-4edb-bbf5-dbf086a875f6",
+          "name": "Deposit",
+          "request": {
+            "name": "Deposit",
+            "description": {},
+            "url": {
+              "path": [
+                "opentrade",
+                "vaults",
+                ":vault_address",
+                "deposit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"depositor_address\": \"<string>\",\n  \"assets\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f725baa3-4842-4d91-88cb-a78f8e86eb53",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "vaults",
+                    ":vault_address",
+                    "deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_address\": \"0xF54F2Ddb122F52456E9344d0Ac2F72C7DeB048D3\",\n  \"assets\": \"1000\",\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"signing_payload\": \"0xd7461f48930e9619e09ac0bb972638cd177dc665e4cda24b737e2aca802ca5fd\",\n    \"unsigned_transaction_serialized\": \"0x02f87183aa36a781c38459682f008459682f1a8304e43d94d1f0774ccff0ce4f36dea57b6a28ab7feb0a01b080b8446e553f65000000000000000000000000000000000000000000000000000000003b9aca00000000000000000000000000f54f2ddb122f52456e9344d0ac2f72c7deb048d3c0\",\n    \"network\": \"mainnet\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab38509f-9c5f-4577-b165-74fdbb4283bb",
+          "name": "Redeem",
+          "request": {
+            "name": "Redeem",
+            "description": {},
+            "url": {
+              "path": [
+                "opentrade",
+                "vaults",
+                ":vault_address",
+                "redeem"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) Vault address"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"depositor_address\": \"<string>\",\n  \"assets\": \"<string>\",\n  \"network\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ce78dc1-77a8-4922-97e1-bb907582a2d9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "vaults",
+                    ":vault_address",
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) Vault address"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_address\": \"0xF54F2Ddb122F52456E9344d0Ac2F72C7DeB048D3\",\n  \"assets\": \"100\",\n  \"network\": \"mainnet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"signing_payload\": \"0xea7cfc66127908a67dd48553d330151f0e437601659d69532ec8f9b9170e6bd0\",\n    \"unsigned_transaction_serialized\": \"0x02f85083aa36a781c38459682f008459682f1a830802c894d1f0774ccff0ce4f36dea57b6a28ab7feb0a01b080a4aa2f892d00000000000000000000000000000000000000000000000000000000386dbda8c0\",\n    \"network\": \"mainnet\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20ea797c-8bf3-486c-9c77-6922fa8f425b",
+          "name": "Rewards",
+          "request": {
+            "name": "Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "opentrade",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46670d98-f6ed-4c12-8fcd-4e8149f5a1e1",
+              "name": "Got rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"start\": \"2024-10-10\",\n  \"end\": \"2024-10-16\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"vault\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward_usdc\": 0.02,\n      \"total_staked_usdc\": 2\n    },\n    {\n      \"address\": \"string\",\n      \"vault\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward_usdc\": 0.02,\n      \"total_staked_usdc\": 2\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "464fb234-49fb-4165-bbae-7ae08fa8baea",
+          "name": "Annual Percentage Rate",
+          "request": {
+            "name": "Annual Percentage Rate",
+            "description": {},
+            "url": {
+              "path": [
+                "opentrade",
+                ":vault_address",
+                "apr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "avg",
+                  "value": "30d",
+                  "description": "The yield period: 30d (30-day trailing), 90d (90-day trailing), ytd (year-to-date). Defaults to 30d."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal",
+                  "value": "2",
+                  "description": "Number of decimal places in the value (2–5). Defaults to 2."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vault_address",
+                  "description": "(Required) The vault address to get APR for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df395f47-1811-442d-aaaa-8c8d3219f988",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    ":vault_address",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "avg",
+                      "value": "30d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) The vault address to get APR for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"date\": \"2026-03-30\",\n      \"value\": \"5.53\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4e942d3-9678-43d4-9131-bba5d1d9f401",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opentrade",
+                    ":vault_address",
+                    "apr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "avg",
+                      "value": "30d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vault_address",
+                      "description": "(Required) The vault address to get APR for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0d20a2d3-f902-4812-b0a5-0e4d725d2a43",
+    "name": "Figment Stablecoins API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

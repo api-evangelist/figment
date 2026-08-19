@@ -1,0 +1,370 @@
+openapi: 3.2.0
+info:
+  title: Figment Vaulta API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Vaulta
+paths:
+  /vaulta/broadcast:
+    post:
+      summary: Broadcast Staking Tx
+      tags:
+      - Vaulta
+      operationId: broadcast-vaulta-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      transaction_hash:
+                        type: string
+                        description: Transaction hash
+                example:
+                  data:
+                    transaction_hash: 8d775ab05ff98fbdbfe78aef86c2684b3e744dcc4ed15de244c0a1789e587a7f
+        '422':
+          description: Invalid network
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: Transaction expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+                title: Signed Transaction
+                properties:
+                  network:
+                    type: string
+                    example: mainnet
+                    enum:
+                    - mainnet
+                    - testnet
+                  signed_transaction:
+                    type: string
+                    example: 928c9268b8a8112c61a60000000003004c8eda6ca02e45000000203b4cab4a012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e45000000007475bd3e012095c3a64ae5b0a900000000a8ed3232182095c3a64ae5b0a9a0860100000000000441000000000000004c8eda6ca02e457015d289deaa32dd012095c3a64ae5b0a900000000a8ed3232192095c3a64ae5b0a900000000000000000110b29a19ab9c255b00
+                    description: The unsigned transaction, serialized with the signature.
+                required:
+                - network
+                - signed_transaction
+              - type: object
+                title: Unsigned Transaction + Signature
+                properties:
+                  network:
+                    type: string
+                    example: mainnet
+                    enum:
+                    - mainnet
+                    - testnet
+                  unsigned_transaction_serialized:
+                    type: string
+                    example: '0x02f902d7050f8459682f008459682f9083010fb59494a2da805867c962148d3832d9afc512034a62c58901bc16d674ec800000b902a44f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a000000000000000000000000000000000000000000000000000000000000002600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000308dc141dc3a91a5b09dca7e9eb1c0f1f6cac2cad68ffc478956b741b1d9318285f31434fbcd7b3ae31697d772ba9d767600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000020010000000000000000000000f60e717ce428e7d1d61e147aa34f1595caa56669000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000060b29edc85070d565b7a5e4f1d86443979231b4152be44b03cfe94c5b96101f51e70eaa488030dd5a8ae10412ae0c64d9716fb7248cc9e94adb8b62e9025de645a46f05b767d9100ef5587c3bc0ebb78f12ff3b821417e97e36dcd8ff2376ca9c400000000000000000000000000000000000000000000000000000000000000010cf3e3a73ec22d7278d7b54ba88ae24013e5370bc263e4b3a26fef09b1b1946dc0'
+                    description: The unsigned transaction received from the staking endpoint.
+                  signature:
+                    type: string
+                    example: 001f5402db8b788d3170d8ced5dc82b7cd70a3e85d0890bbf7a4083a05d4a15948274e1e680284bd980e9075ee6da726dde03e642f64d1511de7e74aa899b193f48c
+                    description: The signature corresponding to the unsigned transaction.
+                required:
+                - network
+                - unsigned_transaction_serialized
+                - signature
+  /vaulta/stake:
+    post:
+      summary: Stake Tx
+      tags:
+      - Vaulta
+      operationId: vaulta-stake-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network of the stake
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: pasiempasiem
+                  description: user's own Vaulta account address
+                amount:
+                  type: integer
+                  example: 1000000
+                  description: Amount to stake
+                network:
+                  type: string
+                  example: testnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  description: Network stake is on.
+                proxy_account_address:
+                  type: string
+                  example: resproxy.spt
+                  description: EOS voting proxy account
+              required:
+              - address
+              - amount
+              - network
+              example:
+                data:
+                  address: pasiempasiem
+                  amount: 1000000
+                  network: testnet
+                  proxy_account_address: resproxy.spt
+        required: true
+  /vaulta/unstake:
+    post:
+      summary: Unstake Tx
+      tags:
+      - Vaulta
+      operationId: vaulta-unstake-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network unstaked from
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: pasiempasiem
+                  description: Address to unstake from
+                amount:
+                  type: integer
+                  example: 10
+                  description: Amount to unstake in REX
+                network:
+                  type: string
+                  example: testnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  description: Network to unstake from.
+              required:
+              - address
+              - amount
+              - network
+              example:
+                data:
+                  address: pasiempasiem
+                  amount: 10
+                  network: testnet
+        required: true
+  /vaulta/vote:
+    post:
+      summary: Vote Tx
+      tags:
+      - Vaulta
+      operationId: vaulta-vote-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network of the vote
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: pasiempasiem
+                  description: user's own Vaulta account address
+                network:
+                  type: string
+                  example: testnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  description: Network vote is on.
+                proxy_account_address:
+                  type: string
+                  example: proxyaccount
+                  description: Proxy account address
+              required:
+              - address
+              - network
+              example:
+                data:
+                  address: pasiempasiem
+                  network: testnet
+                  proxy_account_address: proxyaccount
+        required: true
+  /vaulta/withdraw:
+    post:
+      summary: Withdraw Tx
+      tags:
+      - Vaulta
+      operationId: vaulta-withdraw-tx
+      parameters: []
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        description: Network withdrawn from
+                      unsigned_transaction_serialized:
+                        type: string
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        description: Signing payload
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  example: pasiempasiem
+                  description: Address to withdraw from
+                amount:
+                  type: integer
+                  example: 10
+                  description: Amount to withdraw in A
+                network:
+                  type: string
+                  example: testnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  description: Network withdraw is on.
+              required:
+              - address
+              - amount
+              - network
+              example:
+                data:
+                  address: pasiempasiem
+                  amount: 10
+                  network: testnet
+        required: true
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

@@ -1,0 +1,1082 @@
+openapi: 3.2.0
+info:
+  title: Figment Cardano API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Cardano
+paths:
+  /cardano/broadcast/fireblocks:
+    post:
+      summary: Broadcast Transaction (Fireblocks)
+      tags:
+      - Cardano
+      operationId: cardano-broadcast-fireblocks-transaction
+      parameters: []
+      responses:
+        '201':
+          description: Broadcast Transaction (Fireblocks)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      tx_hash:
+                        type: string
+                        example: aaf020d48ba7ade4a96488f49a206e56329e59b53c38ce5be10fe7594356fb9a
+                        description: Transaction hash
+                example:
+                  data:
+                    tx_hash: aaf020d48ba7ade4a96488f49a206e56329e59b53c38ce5be10fe7594356fb9a
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Fireblocks Transaction
+              properties:
+                network:
+                  type: string
+                  example: preprod
+                  enum:
+                  - mainnet
+                  - preprod
+                unsigned_transaction_serialized:
+                  type: string
+                  example: 84a50081825820870fdc8c57849ac1038e22578eae6d0c0f5be5bf64a1c1cd39a0644c6594717800018182583900e0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed7884acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f1b0000000253e61e4b021a0002ad55048183028200581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f581c8ed5ab11e76094fa2a2ab29fc3a57498d07e68f6fde6f326162eea880e82581ce0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed78581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2fa0f5f6
+                  description: Unsigned transaction serialized received from the staking endpoint.
+                signed_messages:
+                  type: array
+                  description: Signed messages received from Fireblocks response body
+                  items:
+                    type: object
+                    properties:
+                      publicKey:
+                        type: string
+                        example: 372425b3404e0bfae60b33c9563ae012d826066eecb3ddca16678
+                      signature:
+                        type: object
+                        properties:
+                          fullSig:
+                            type: string
+                            example: dca8342d19e00ba20e5070c378184222d97bb024496cddbf6d2905bdd503e252ec65fcee1da8b0a023f383cae7e17a87694447ec
+                        required:
+                        - fullSig
+                    required:
+                    - publicKey
+                    - signature
+              required:
+              - network
+              - unsigned_transaction_serialized
+              - signed_messages
+              example:
+                network: preprod
+                unsigned_transaction_serialized: 84a50081825820870fdc8c57849ac1038e22578eae6d0c0f5be5bf64a1c1cd39a0644c6594717800018182583900e0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed7884acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f1b0000000253e61e4b021a0002ad55048183028200581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2f581c8ed5ab11e76094fa2a2ab29fc3a57498d07e68f6fde6f326162eea880e82581ce0e033ce353e02b7c17bc1bd9df35ce5d89ddb50c1e334f07e21ed78581c84acd54ca2f8ed6c953c055d93c9c4b28a44f8b12569e761b2160e2fa0f5f6
+                signed_messages:
+                - publicKey: 372425b3404e0bfae60b33c9563ae012d826066eecb3ddca16678
+                  signature:
+                    fullSig: dca8342d19e00ba20e5070c378184222d97bb024496cddbf6d2905bdd503e252ec65fcee1da8b0a023f383cae7e17a87694447ec
+        required: true
+  /cardano/broadcast:
+    post:
+      summary: Broadcast Transaction
+      tags:
+      - Cardano
+      operationId: cardano-broadcast-transaction
+      parameters: []
+      responses:
+        '201':
+          description: Broadcast Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      tx_hash:
+                        type: string
+                        example: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+                        description: Transaction hash
+                example:
+                  data:
+                    tx_hash: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Signed Transaction
+              properties:
+                network:
+                  type: string
+                  example: preprod
+                  enum:
+                  - mainnet
+                  - preprod
+                signed_transaction:
+                  type: string
+                  example: 84a500818258205b740bb52ad83d9215bc29d6f3722957e5eb259a2c457901e932babef6aa3476000181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253dab14d021a0002ad55048183028200581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b581cba2edef7d8bceb725ac92dde87900116a458a32667fe27bb412c49e50e82581c4341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc5029581c94857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5ba100818258209ae0eab30411b9b3157e0928379958fc0ad93bf9102215531e65d1582e9f68445840b23a1e2f697ac38f71acd21562c67bb227c73302eb82ddb0ee275f728aae67da33990a0807967a1547ce12a99443e678b7df94c6e5d0afb4b8d5aaf395b72409f5f6
+                  description: The unsigned transaction, serialized with the signature.
+              required:
+              - network
+              - signed_transaction
+  /cardano/epochs/{epoch_number}:
+    get:
+      summary: Epoch
+      tags:
+      - Cardano
+      operationId: cardano-epoch
+      parameters:
+      - name: epoch_number
+        in: path
+        schema:
+          type: string
+          example: latest
+        required: true
+        description: Epoch number or "latest" for the latest epoch
+      - name: network
+        in: query
+        schema:
+          type: string
+          example: preprod
+          enum:
+          - preprod
+          - mainnet
+        required: true
+        description: Network name (mainnet or preprod)
+      responses:
+        '200':
+          description: Returns successful epoch information
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      epoch:
+                        type: integer
+                        example: 263
+                      start_time:
+                        type: integer
+                        example: 1767657600
+                      end_time:
+                        type: integer
+                        example: 1768089600
+                      first_block_time:
+                        type: integer
+                        example: 1767657602
+                      last_block_time:
+                        type: integer
+                        example: 1767908074
+                      block_count:
+                        type: integer
+                        example: 9163
+                      tx_count:
+                        type: integer
+                        example: 7959
+                      output:
+                        type: string
+                        example: '2948355933234693'
+                      fees:
+                        type: string
+                        example: '3314569711'
+                      active_stake:
+                        type: string
+                        example: '467156126908100'
+        '404':
+          description: Not Found
+        '400':
+          description: Bad Request
+        '429':
+          description: when it reaches the rate limit
+        '422':
+          description: Unprocessable Entity
+  /cardano/pools:
+    get:
+      summary: Pools
+      tags:
+      - Cardano
+      operationId: cardano-pools
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          example: preprod
+          enum:
+          - preprod
+          - mainnet
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - pools
+                properties:
+                  pools:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        pool_id:
+                          type: string
+                          example: pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv
+                        live_stake:
+                          type: string
+                          example: '77952719419020'
+                          description: It considers active and pending stakes
+                        live_saturation:
+                          type: number
+                          format: float
+                          example: 102.01
+                          description: It considers active and pending stakes
+                        active_stake:
+                          type: string
+                          example: '77941719419016'
+                          description: It considers active stakes only
+                        active_saturation:
+                          type: number
+                          format: float
+                          example: 99.0
+                          description: It considers active stakes only
+                        public:
+                          type: boolean
+                          description: true if public pool, false if white labeled pool
+                          example: true
+                    example:
+                    - pool_id: pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv
+                      live_stake: '77952719419020'
+                      live_saturation: 102.01
+                      active_stake: '77941719419016'
+                      active_saturation: 99.0
+                      public: true
+                    - pool_id: pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v
+                      live_stake: '49009362050188'
+                      live_saturation: 64.141
+                      active_stake: '49008262050188'
+                      active_saturation: 60.0
+                      public: true
+                    - pool_id: pool15v22rpfg6qx9l0gx0m955gfv7tes0jpa9sy0gjs3a04lv6x9jdr
+                      live_stake: '40698810068260'
+                      live_saturation: 53.12
+                      active_stake: '40588810068260'
+                      active_saturation: 51.1
+                      public: true
+        '429':
+          description: when it reaches the rate limit
+        '422':
+          description: Unprocessable Entity
+  /cardano/rewards_withdrawals:
+    get:
+      summary: Rewards Withdrawals
+      tags:
+      - Cardano
+      operationId: cardano-rewards-withdrawals
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          example: preprod
+          enum:
+          - preprod
+          - mainnet
+        required: false
+        description: Network to get the rewards withdrawals from. Default is mainnet.
+      - name: tx_hash
+        in: query
+        schema:
+          type: string
+          example: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+        required: false
+        description: Transaction hash of the rewards withdrawal.
+      responses:
+        '200':
+          description: Returns the rewards withdrawals
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - rewards_withdrawals
+                properties:
+                  rewards_withdrawals:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          example: '2026-01-16 21:35:47'
+                          description: timestamp of the transaction in UTC
+                        amount_quantity:
+                          type: string
+                          example: '38529434'
+                        amount_units:
+                          type: string
+                          example: lovelace
+                        pool_id:
+                          type: string
+                          example: pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv
+                          description: pool id of the pool where the rewards are withdrawn from
+                        delegator_address:
+                          type: string
+                          example: addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc
+                          description: The address of the delegator who is withdrawing the rewards
+                        destination_address:
+                          type: string
+                          example: addr_1qzmwrkqkr7g5qyyvxwteqhkqs4wwy9k5fpx6j2q7x2q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt
+                          description: The target address where the rewards are sent to
+                        tx_hash:
+                          type: string
+                          example: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+                        tx_status:
+                          type: string
+                          example: confirmed
+                          enum:
+                          - not_found
+                          - in_progress
+                          - confirmed
+                          - failed
+                          - expired
+                          description: 'The current status of the transfer transaction.
+
+                            - **confirmed**: Tansaction has been confirmed.
+
+                            - **in_progress**: Transaction is pending for confirmation.
+
+                            - **failed**: Transaction has failed and will not be confirmed.
+
+                            - **expired**: Transaction has expired and will not be confirmed.
+
+                            - **not_found**: Transaction was not found.
+
+                            '
+                    example:
+                    - timestamp: '2026-01-16 21:35:47'
+                      amount_quantity: '38529434'
+                      amount_units: lovelace
+                      tx_status: confirmed
+                      pool_id: pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv
+                      delegator_address: addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc
+                      destination_address: addr_1qzmwrkqkr7g5qyyvxwteqhkqs4wwy9k5fpx6j2q7x2q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt
+                      tx_hash: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+                  meta:
+                    $ref: '#/components/schemas/pagination'
+  /cardano/delegate:
+    post:
+      summary: Delegate
+      tags:
+      - Cardano
+      operationId: cardano-delegate
+      parameters: []
+      responses:
+        '201':
+          description: Delegate Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: preprod
+                        enum:
+                        - mainnet
+                        - preprod
+                        description: Network to stake on.
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: unsigned_transaction_serialized
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        example: signing_payload
+                        description: Signing payload
+                example:
+                  data:
+                    network: preprod
+                    unsigned_transaction_serialized: unsigned_transaction_serialized
+                    signing_payload: signing_payload
+        '400':
+          description: Bad Request
+        '422':
+          description: Unsupported Network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Register + Delegate
+              properties:
+                network:
+                  type: string
+                  example: preprod
+                  enum:
+                  - mainnet
+                  - preprod
+                  description: Network to stake on.
+                delegator_address:
+                  type: string
+                  example: delegator_address
+                  description: Delegator address
+                validator_address:
+                  type: string
+                  example: validator_address
+                  description: Validator address / Pool ID
+              required:
+              - delegator_address
+              - validator_address
+              - network
+        required: true
+  /cardano/transfer:
+    post:
+      summary: Transfer
+      tags:
+      - Cardano
+      operationId: cardano-transfer
+      parameters: []
+      responses:
+        '201':
+          description: Transfer Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: preprod
+                        enum:
+                        - mainnet
+                        - preprod
+                        description: Network of the transfer
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: unsigned_transaction_serialized
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        example: signing_payload
+                        description: Signing payload
+                example:
+                  data:
+                    network: preprod
+                    unsigned_transaction_serialized: unsigned_transaction_serialized
+                    signing_payload: signing_payload
+        '400':
+          description: Bad Request
+        '422':
+          description: Unsupported Network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Transfer
+              properties:
+                network:
+                  type: string
+                  example: preprod
+                  enum:
+                  - mainnet
+                  - preprod
+                  description: Network of the transfer
+                from:
+                  type: string
+                  example: from
+                  description: From account address
+                to:
+                  type: string
+                  example: to
+                  description: To account address
+                amount:
+                  type: integer
+                  example: 10
+                  description: Amount to transfer
+              required:
+              - from
+              - to
+              - amount
+              - network
+        required: true
+  /cardano/transfers:
+    get:
+      summary: Transfers
+      tags:
+      - Cardano
+      operationId: cardano-transfers
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          example: preprod
+          enum:
+          - preprod
+          - mainnet
+        required: false
+      - name: tx_hash
+        in: query
+        schema:
+          type: string
+          example: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - transfers
+                properties:
+                  transfers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        from:
+                          type: string
+                          example: addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc
+                        to:
+                          type: string
+                          example: addr_1qzmwrkqkr7g5qyyvxwteqhkqs4wwy9k5fpx6j2q7x2q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt
+                        amount_quantity:
+                          type: string
+                          example: '1000000000000000000'
+                        amount_units:
+                          type: string
+                          example: lovelace
+                        tx_epoch:
+                          type: integer
+                          example: 998
+                          description: epoch in which the transaction was included
+                        active_epoch:
+                          type: integer
+                          example: 1000
+                          description: epoch in which the transfered ADA will become eligible for rewards
+                        pool_id:
+                          type: string
+                          example: pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv
+                          description: pool id of the pool that the transaction was sent to
+                        tx_hash:
+                          type: string
+                          example: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+                        tx_status:
+                          type: string
+                          example: confirmed
+                          enum:
+                          - not_found
+                          - in_progress
+                          - confirmed
+                          - failed
+                          - expired
+                          description: 'The current status of the transfer transaction.
+
+                            - **confirmed**: Tansaction has been confirmed.
+
+                            - **in_progress**: Transaction is pending for confirmation.
+
+                            - **failed**: Transaction has failed and will not be confirmed.
+
+                            - **expired**: Transaction has expired and will not be confirmed.
+
+                            - **not_found**: Transaction was not found.
+
+                            '
+                        timestamp:
+                          type: string
+                          example: '2025-10-29T23:18:56.000Z'
+                          description: timestamp of the transaction in UTC
+                    example:
+                    - from: addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc
+                      to: addr_1qzmwrkqkr7g5qyyvxwteqhkqs4wwy9k5fpx6j2q7x2q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt
+                      amount_quantity: '1000000000000000000'
+                      amount_units: lovelace
+                      tx_epoch: 998
+                      active_epoch: 1000
+                      pool_id: pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv
+                      tx_hash: 3cbf058b236a1814f558f4c98416efa7920a53fb0bba40f3706812af188311a7
+                      tx_status: confirmed
+                      timestamp: '2025-10-29T23:18:56.000Z'
+  /cardano/unstake:
+    post:
+      summary: Unstake
+      tags:
+      - Cardano
+      operationId: cardano-unstake
+      parameters: []
+      responses:
+        '201':
+          description: Unstake Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: preprod
+                        enum:
+                        - mainnet
+                        - preprod
+                        description: Network to stake on.
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: unsigned_transaction_serialized
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        example: signing_payload
+                        description: Signing payload
+                example:
+                  data:
+                    network: preprod
+                    unsigned_transaction_serialized: unsigned_transaction_serialized
+                    signing_payload: signing_payload
+        '400':
+          description: Bad Request
+        '422':
+          description: Unsupported Network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Unstake + Deregister
+              properties:
+                network:
+                  type: string
+                  example: preprod
+                  enum:
+                  - mainnet
+                  - preprod
+                  description: Network to stake on.
+                delegator_address:
+                  type: string
+                  example: addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc
+                  description: Delegator address
+              required:
+              - delegator_address
+              - network
+        required: true
+  /cardano/withdraw_rewards:
+    post:
+      summary: Withdraw Rewards
+      tags:
+      - Cardano
+      operationId: cardano-withdraw-rewards
+      parameters: []
+      responses:
+        '201':
+          description: Withdraw Rewards Transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: preprod
+                        enum:
+                        - mainnet
+                        - preprod
+                        description: Network to stake on.
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: 84a4008182582055e97e4581db985557fd6f3eb0cbd3637d82e9ad1abb3e676cd594f193c19e35010181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253a9a4c2021a00029d2d05a1581de094857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b00a0f5f6
+                        description: Unsigned transaction serialized
+                      signing_payload:
+                        type: string
+                        example: 8af4e801d3023835fd709c1623df3a6103bc682871a5ab5b9563815cb2c30340
+                        description: Signing payload
+                      amount:
+                        type: string
+                        example: '307120.360000'
+                        description: Amount of rewards to withdraw in ADA
+                example:
+                  data:
+                    network: preprod
+                    unsigned_transaction_serialized: 84a4008182582055e97e4581db985557fd6f3eb0cbd3637d82e9ad1abb3e676cd594f193c19e35010181825839004341e2150af2a533abcb9104f18fd89c7386c2f2c27914988efc502994857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b1b0000000253a9a4c2021a00029d2d05a1581de094857be3e9281e1b394125b069bedd8cd9ef63d2f237ce79484dfd5b00a0f5f6
+                    signing_payload: 8af4e801d3023835fd709c1623df3a6103bc682871a5ab5b9563815cb2c30340
+                    amount: '307120.360000'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unsupported Network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Withdraw Rewards
+              properties:
+                network:
+                  type: string
+                  example: preprod
+                  enum:
+                  - mainnet
+                  - preprod
+                  description: Network to stake on.
+                delegator_address:
+                  type: string
+                  example: addr_1235rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m34k2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfjaabc
+                  description: Delegator address that will receive the rewards if no target address is provided
+                target_address:
+                  type: string
+                  example: addr_test1qpp5rcs4pte22vatewgsfuv0mzw88pkz7tp8j9yc3m79q2v5s4a786fgrcdnjsf9kp5mahvvm8hk85hjxl88jjzdl4dsfja2tt
+                  description: (Optional) Address to withdraw rewards to. If no target address is provided, the rewards will be sent to the delegator address.
+              required:
+              - delegator_address
+              - network
+        required: true
+  /cardano/rewards_all:
+    post:
+      summary: Rewards
+      tags:
+      - Cardano
+      operationId: get-cardano-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Got rewards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        delegator_address:
+                          type: string
+                          description: Address of the delegator
+                        pool_id:
+                          type: string
+                          description: Pool ID (validator address)
+                        stake_key_hash:
+                          type: string
+                          description: Stake key hash
+                        epoch:
+                          type: integer
+                          example: 450
+                          description: Epoch when reward occurred
+                        timestamp:
+                          type: string
+                          example: '2024-10-11'
+                          description: Date when reward occurred
+                        rewards:
+                          type: array
+                          description: Rewards received (member and/or leader)
+                          items:
+                            type: object
+                            properties:
+                              text:
+                                type: string
+                                example: '1.0'
+                                description: Formatted reward amount as string in ADA
+                              currency:
+                                type: string
+                                example: ADA
+                                description: Currency of the reward
+                              numeric:
+                                type: integer
+                                example: 1000000
+                                description: Numerical representation of reward in Lovelace
+                              type:
+                                type: string
+                                enum:
+                                - member
+                                - leader
+                                example: member
+                                description: Type of reward
+                              exp:
+                                type: integer
+                                example: 6
+                                description: The exponent to use for converting numeric value to ADA
+                        balances:
+                          type: array
+                          description: Account balances
+                          items:
+                            type: object
+                            properties:
+                              text:
+                                type: string
+                                example: '1000.0'
+                                description: Formatted balance amount as string in ADA
+                              currency:
+                                type: string
+                                example: ADA
+                                description: Currency of the balance
+                              numeric:
+                                type: integer
+                                example: 1000000
+                                description: Numerical representation of balance in Lovelace
+                              exp:
+                                type: integer
+                                example: 6
+                                description: The exponent to use for converting numeric value to ADA
+                  meta:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: mainnet
+                        description: Network where rewards occurred
+                      time_rollup:
+                        type: string
+                        example: epoch
+                        description: Time aggregation level
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type:
+                  - string
+                  - integer
+                  example: 2024-10-10 or 8
+                  description: Rewards received on or after this date (YYYY-MM-DD) or epoch (integer)
+                end:
+                  type:
+                  - string
+                  - integer
+                  example: 2024-10-16 or 11
+                  description: Rewards received on or before this date (YYYY-MM-DD) or epoch (integer)
+                delegator_addresses:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - '''addr1...'''
+                  - '''addr2...'''
+                  description: Optional list of delegator addresses to filter by
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - preprod
+                  description: Select preprod Network if you want to test with mock data
+                  default: mainnet
+              required:
+              - start
+              - end
+        required: true
+  /cardano/rewards:
+    post:
+      summary: ADA Rewards
+      operationId: ada-rewards
+      tags:
+      - Cardano
+      parameters: []
+      responses:
+        '200':
+          description: A rewards result set with metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        delegator_addresses:
+                          type: string
+                          example: stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4
+                          description: The delegator address that received the reward.
+                        validator:
+                          type: string
+                          example: pool1fqwnqk3phwa2s5thgym8dw34pv0z67m526uqprnjh93cvzxymef
+                          description: The address of the validator which distributed the rewards
+                        epoch:
+                          type: string
+                          example: '417'
+                          description: The epoch number
+                        timestamp:
+                          type: string
+                          example: '2023-07-21T00:00:00Z'
+                          description: The timestamp of the end of the epoch
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            description: The formula to compute the final rewards in the currency unit is numeric x 10^(-exp). It also includes a type field which can be either member or leader.
+                            properties:
+                              text:
+                                type: string
+                                example: 823.370257 ADA
+                                description: The textual version of the other fields in the rewards object.
+                              currency:
+                                type: string
+                                example: ADA
+                              numeric:
+                                type: integer
+                                example: 823370257
+                              exp:
+                                type: integer
+                                example: 6
+                              type:
+                                type: string
+                                enum:
+                                - member
+                                - leader
+                                example: member
+                        balances:
+                          type: array
+                          items:
+                            type: object
+                            description: The account's staked balance to the pool for the epoch.
+                            properties:
+                              text:
+                                type: string
+                                example: '0'
+                                description: The textual version of the other fields in the balances object.
+                              currency:
+                                type: string
+                                example: ADA
+                              numeric:
+                                type: integer
+                                example: 0
+                              exp:
+                                type: integer
+                                example: 6
+                        stake_key_hash:
+                          type: string
+                          description: The stake key hash portion of the stake address. This is the bech32 decoded stake address with the first byte stripped and then hex encoded. It’s a common alternative way to search for a stake address.
+                          example: b1bc146a5fb0683c4e3836712d115b98619048bc307cc059b6adc76e
+                  meta:
+                    type: object
+                    properties:
+                      protocol:
+                        type: string
+                        example: cardano
+                        description: The name of the protocol queried.
+                      network:
+                        type: string
+                        example: mainnet
+                        description: The name of the network queried.
+                      time_rollup:
+                        type: string
+                        example: epoch
+                        description: The time rollup unit of the rewards.
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                delegator_addresses:
+                  type: array
+                  description: Delegator address for which to fetch rewards
+                  items:
+                    type: string
+                    example: stake1uxcmc9r2t7cxs0zw8qm8ztg3twvxryzghsc8eszek6kuwms23gya4
+                start:
+                  type: string
+                  example: '2023-07-20'
+                  description: Epoch numbers (as integers) or timestamps (as strings "YYYY-MM-DD")
+                end:
+                  type: string
+                  example: '2023-07-21'
+                  description: Epoch numbers (as integers) or timestamps (as strings "YYYY-MM-DD")
+              required:
+              - delegator_addresses
+              - start
+              - end
+components:
+  schemas:
+    pagination:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 1000
+            has_next:
+              type: boolean
+              example: true
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

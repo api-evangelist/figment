@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  title: Figment Validators API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Validators
+paths:
+  /validators:
+    get:
+      summary: List validators visible to the calling organization
+      tags:
+      - Validators
+      operationId: list-validators
+      parameters:
+      - name: page[number]
+        in: query
+        required: false
+        description: Page number, starting at 1.
+        example: 1
+        schema:
+          type: integer
+      - name: page[size]
+        in: query
+        required: false
+        description: Number of items per page.
+        example: 100
+        schema:
+          type: integer
+      - name: protocol
+        in: query
+        required: false
+        description: Filter results to a single protocol (e.g. `solana`, `near`). Returns 400 if the protocol is unknown.
+        example: solana
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        protocol:
+                          type: string
+                          example: solana
+                          description: Protocol the validator runs on.
+                        network:
+                          type: string
+                          example: mainnet
+                          description: Network within the protocol.
+                        address:
+                          type: string
+                          example: CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1
+                          description: Canonical public identifier for the validator on this protocol.
+                        type:
+                          type: string
+                          example: solana_vote
+                          description: Identifier type for the address (e.g. solana_vote, operator, validator, finality_provider).
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        type: object
+                        properties:
+                          current_page:
+                            type: integer
+                            example: 1
+                          total_pages:
+                            type: integer
+                            example: 10
+                          total_item_count:
+                            type: integer
+                            example: 1000
+                          has_next:
+                            type: boolean
+                            example: true
+        '400':
+          description: Unknown protocol filter value
+        '404':
+          description: Endpoint hidden when feature flag is disabled
+        '401':
+          description: Invalid API key
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

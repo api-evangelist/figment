@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Polygon API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Polygon",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "MATIC Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/polygon/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "MATIC Rewards"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,690 @@
+{
+  "item": [
+    {
+      "id": "62e2682c-e449-422f-a377-06d0e53e2d3f",
+      "name": "Rewards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08885fb3-2a44-412c-9a73-f584ec0f5cb0",
+          "name": "Net Rewards",
+          "request": {
+            "name": "Net Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "ethereum",
+                "rewards_net"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca4eaace-fcce-4354-bda6-d5c5d3baa9d7",
+              "name": "Got rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ethereum",
+                    "rewards_net"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"start\": \"2024-10-10\",\n  \"end\": \"2024-10-16\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"wallet\": \"string\",\n      \"timestamp\": \"string\",\n      \"rewards\": [\n        {\n          \"type\": \"execution\",\n          \"pubkey\": \"0x9027ebabf426534ae093b552880616acf5c487a89fb6de124785387200719f17c4161a07a933c335a16b38b2ce907e7f\",\n          \"index\": 2345,\n          \"tx_hash\": \"0x3a340300942ea74c8d8029dc82160609f36c27196e9daf7dd3e69dae81447463\",\n          \"timestamp\": \"2024-10-24T00:01:00Z\",\n          \"block\": 2000034,\n          \"payees\": [\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            },\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            }\n          ],\n          \"network\": \"hoodi\"\n        },\n        {\n          \"type\": \"execution\",\n          \"pubkey\": \"0x9027ebabf426534ae093b552880616acf5c487a89fb6de124785387200719f17c4161a07a933c335a16b38b2ce907e7f\",\n          \"index\": 2345,\n          \"tx_hash\": \"0x3a340300942ea74c8d8029dc82160609f36c27196e9daf7dd3e69dae81447463\",\n          \"timestamp\": \"2024-10-24T00:01:00Z\",\n          \"block\": 2000034,\n          \"payees\": [\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            },\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            }\n          ],\n          \"network\": \"hoodi\"\n        }\n      ]\n    },\n    {\n      \"wallet\": \"string\",\n      \"timestamp\": \"string\",\n      \"rewards\": [\n        {\n          \"type\": \"execution\",\n          \"pubkey\": \"0x9027ebabf426534ae093b552880616acf5c487a89fb6de124785387200719f17c4161a07a933c335a16b38b2ce907e7f\",\n          \"index\": 2345,\n          \"tx_hash\": \"0x3a340300942ea74c8d8029dc82160609f36c27196e9daf7dd3e69dae81447463\",\n          \"timestamp\": \"2024-10-24T00:01:00Z\",\n          \"block\": 2000034,\n          \"payees\": [\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            },\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            }\n          ],\n          \"network\": \"hoodi\"\n        },\n        {\n          \"type\": \"execution\",\n          \"pubkey\": \"0x9027ebabf426534ae093b552880616acf5c487a89fb6de124785387200719f17c4161a07a933c335a16b38b2ce907e7f\",\n          \"index\": 2345,\n          \"tx_hash\": \"0x3a340300942ea74c8d8029dc82160609f36c27196e9daf7dd3e69dae81447463\",\n          \"timestamp\": \"2024-10-24T00:01:00Z\",\n          \"block\": 2000034,\n          \"payees\": [\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            },\n            {\n              \"address\": \"string\",\n              \"amount\": \"string\"\n            }\n          ],\n          \"network\": \"hoodi\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12aed0aa-67a2-4a79-bcd9-42b8da3f204c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ethereum",
+                    "rewards_net"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"hoodi\",\n  \"start\": \"2024-10-10\",\n  \"end\": \"2024-10-16\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "108d84e8-9fc4-407e-8603-670aa8273324",
+          "name": "Rewards",
+          "request": {
+            "name": "Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "injective",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8d0b7d9a-b9b4-47d9-b5f5-954661dd43f7",
+              "name": "Got rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "injective",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"start\": \"2024-10-10\",\n  \"end\": \"2024-10-16\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"validator\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward\": 0.008,\n      \"reward_usd\": 0.02,\n      \"total_staked\": 2\n    },\n    {\n      \"address\": \"string\",\n      \"validator\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward\": 0.008,\n      \"reward_usd\": 0.02,\n      \"total_staked\": 2\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f5b682e-7adf-4ecf-b6dd-4fff380382cc",
+          "name": "Rewards",
+          "request": {
+            "name": "Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "sui",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2e774c5-f199-464c-9acb-e9025b88ec47",
+              "name": "Got rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sui",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"start\": \"2024-10-10\",\n  \"end\": \"2024-10-16\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"validator\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward\": 0.008,\n      \"reward_usd\": 0.02,\n      \"total_staked\": 2\n    },\n    {\n      \"address\": \"string\",\n      \"validator\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward\": 0.008,\n      \"reward_usd\": 0.02,\n      \"total_staked\": 2\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d7eaddc-5c08-45eb-938d-23aa0b4694c2",
+          "name": "Rewards",
+          "request": {
+            "name": "Rewards",
+            "description": {},
+            "url": {
+              "path": [
+                "avalanche",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"network\": \"<string>\",\n  \"start\": \"<string>\",\n  \"end\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "688aebca-c5d9-4c39-9abd-61149d6e680c",
+              "name": "Got rewards",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "avalanche",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"network\": \"mainnet\",\n  \"start\": \"2024-10-10\",\n  \"end\": \"2024-10-16\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"validator\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward\": 0.008,\n      \"reward_usd\": 0.02,\n      \"total_staked\": 2\n    },\n    {\n      \"address\": \"string\",\n      \"validator\": \"string\",\n      \"timestamp\": \"2024-10-24T00:01:00Z\",\n      \"reward\": 0.008,\n      \"reward_usd\": 0.02,\n      \"total_staked\": 2\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ceccd88-0cc4-49e8-8edb-e68f6abb1cd7",
+          "name": "Rewards Rates",
+          "request": {
+            "name": "Rewards Rates",
+            "description": {},
+            "url": {
+              "path": [
+                "sui",
+                "rewards_rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "avg",
+                  "value": "7d",
+                  "description": "If 7d, returns the 7 days moving average. If not, returns the daily spot rates."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal",
+                  "value": "2",
+                  "description": "Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34d7a911-b62f-419f-96f4-a338f5238db3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sui",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": \"3.49\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94fddaf9-00f8-4b65-b76d-771977e10717",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sui",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00377b2c-57b5-4b3f-8c2a-09d8841f9272",
+          "name": "Rewards Rates",
+          "request": {
+            "name": "Rewards Rates",
+            "description": {},
+            "url": {
+              "path": [
+                "cardano",
+                "rewards_rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "avg",
+                  "value": "7d",
+                  "description": "If 7d, returns the 7 days moving average. If not, returns the daily spot rates."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal",
+                  "value": "2",
+                  "description": "Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b6de52a-f0f6-4974-ae23-3b58efec4e5d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"date\": \"2023-08-05\",\n      \"value\": \"3.49\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "799eb380-fdab-443e-bc27-1c6367298336",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cardano",
+                    "rewards_rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "avg",
+                      "value": "7d"
+                    },
+                    {
+                      "key": "decimal",
+                      "value": "2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d0c7aa9c-debf-4b8a-bce9-891f95c536ce",
+    "name": "Figment Rewards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

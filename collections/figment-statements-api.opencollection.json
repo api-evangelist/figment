@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Statements API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/statements",
+            "params": [
+              {
+                "name": "month",
+                "value": "2024-04",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Statements"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

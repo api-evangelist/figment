@@ -1,0 +1,498 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Vaults API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vaults",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/transactions/create_vault",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Vault"
+        },
+        {
+          "info": {
+            "name": "Set Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.figment.io/vaults/:vault_address",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Region"
+        },
+        {
+          "info": {
+            "name": "Configure Figment Validator Vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/transactions/configure_figment_vault",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure Figment Validator Vault"
+        },
+        {
+          "info": {
+            "name": "Update Allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/transactions/update_allowlist",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Allowlist"
+        },
+        {
+          "info": {
+            "name": "Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/transactions/deposit",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deposit"
+        },
+        {
+          "info": {
+            "name": "Withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/transactions/withdraw",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw"
+        },
+        {
+          "info": {
+            "name": "Claim Withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/transactions/claim_withdrawal",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Claim Withdrawal"
+        },
+        {
+          "info": {
+            "name": "Allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/allowlist",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Allowlist"
+        },
+        {
+          "info": {
+            "name": "Address Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/address/:id/actions",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Address Actions"
+        },
+        {
+          "info": {
+            "name": "Address Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/address/:id/balance",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Address Balance"
+        },
+        {
+          "info": {
+            "name": "List Address Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/address/:id/rewards",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "start_date",
+                "value": "2024-01-01",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "2024-02-01",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Address Rewards"
+        },
+        {
+          "info": {
+            "name": "Commission Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/commission/:commission_address/actions",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "commission_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Commission Actions"
+        },
+        {
+          "info": {
+            "name": "Commission Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/commission/:commission_address/balance",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "commission_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Commission Balance"
+        },
+        {
+          "info": {
+            "name": "Withdraw commission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/transactions/withdraw_commission",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw commission"
+        },
+        {
+          "info": {
+            "name": "Assets to Shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/information/assets_to_shares",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assets to Shares"
+        },
+        {
+          "info": {
+            "name": "Shares to Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/vaults/:vault_address/information/shares_to_assets",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Shares to Assets"
+        },
+        {
+          "info": {
+            "name": "Commission Exit Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/commission/:commission_address/exit_requests",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "commission_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Commission Exit Requests"
+        },
+        {
+          "info": {
+            "name": "Address Exit Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults/:vault_address/address/:id/exit_requests",
+            "params": [
+              {
+                "name": "vault_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Address Exit Requests"
+        },
+        {
+          "info": {
+            "name": "List Vaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/vaults",
+            "params": [
+              {
+                "name": "network",
+                "value": "hoodi",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Vaults"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,257 @@
+{
+  "item": [
+    {
+      "id": "4985fbb7-bedc-48bf-a081-9fde22c7bf12",
+      "name": "Validators",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "286fe0e4-3a8c-46b2-a28d-a9beff58e5df",
+          "name": "List validators visible to the calling organization",
+          "request": {
+            "name": "List validators visible to the calling organization",
+            "description": {},
+            "url": {
+              "path": [
+                "validators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "<integer>",
+                  "description": "Page number, starting at 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "<integer>",
+                  "description": "Number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "protocol",
+                  "value": "<string>",
+                  "description": "Filter results to a single protocol (e.g. `solana`, `near`). Returns 400 if the protocol is unknown."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "affd3882-5c5c-42f4-94f5-2d82030668c8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "solana"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"protocol\": \"solana\",\n      \"network\": \"mainnet\",\n      \"address\": \"CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1\",\n      \"type\": \"solana_vote\"\n    },\n    {\n      \"protocol\": \"solana\",\n      \"network\": \"mainnet\",\n      \"address\": \"CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1\",\n      \"type\": \"solana_vote\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"current_page\": 1,\n      \"total_pages\": 10,\n      \"total_item_count\": 1000,\n      \"has_next\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "170bda04-adad-4296-9304-af8dc2d0f1b3",
+              "name": "Unknown protocol filter value",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "solana"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1dc299ba-e882-45c1-a4f0-5b626f1dd4dd",
+              "name": "Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "solana"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb99d8af-fe04-4853-9388-5439e18578a6",
+              "name": "Endpoint hidden when feature flag is disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "protocol",
+                      "value": "solana"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.figment.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "18568ee5-a79b-452e-b78e-1aa60589552a",
+    "name": "Figment Validators API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

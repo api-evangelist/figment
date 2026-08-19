@@ -1,0 +1,1741 @@
+openapi: 3.2.0
+info:
+  title: Figment Solana API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Solana
+paths:
+  /solana/stake:
+    post:
+      summary: Stake
+      tags:
+      - Solana
+      operationId: solana-stake
+      parameters: []
+      responses:
+        '201':
+          description: Staking transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/solana_transaction'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                funding_account:
+                  type: string
+                  example: your-funding-account-pubkey
+                vote_account:
+                  type: string
+                  example: your-vote-account-pubkey
+                amount_sol:
+                  type: number
+                  example: 10.5
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  - devnet
+                nonce_account:
+                  type: string
+                  example: your-nonce-account-pubkey
+                  nullable: true
+                  description: Pubkey of the on-chain nonce account. Enables offline signing without the 60–90s blockhash expiry.
+                nonce_authority:
+                  type: string
+                  example: your-nonce-authority-pubkey
+                  nullable: true
+                  description: Pubkey of the account authorized to advance the nonce. Defaults to the fee payer if omitted.
+              required:
+              - funding_account
+              - vote_account
+              - amount_sol
+              - network
+  /solana/broadcast:
+    post:
+      summary: Broadcast
+      tags:
+      - Solana
+      operationId: solana-broadcast
+      parameters: []
+      responses:
+        '201':
+          description: Transaction broadcasted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transaction_hash:
+                    type: string
+                    example: CvjSFceVoRm8QJUtp1tVTZc1EABSL3HPyrZ9PXckLrJHU5hV3akB5StKJeeSsoUpPVvpzPjZwMi5YYt3e3oq7wE
+                    description: The hash of the transaction
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction_payload:
+                  type: string
+                  example: your-signed-transaction-payload
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  - devnet
+              required:
+              - transaction_payload
+              - network
+  /solana/undelegate:
+    post:
+      summary: Undelegate
+      tags:
+      - Solana
+      operationId: solana-undelegate
+      parameters: []
+      responses:
+        '201':
+          description: undelegate transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/solana_transaction'
+        '422':
+          description: Stake account is not active
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stake_account:
+                  type: string
+                  example: your-stake-account-pubkey
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  - devnet
+                nonce_account:
+                  type: string
+                  example: your-nonce-account-pubkey
+                  nullable: true
+                  description: Pubkey of the on-chain nonce account. Enables offline signing without the 60–90s blockhash expiry.
+                nonce_authority:
+                  type: string
+                  example: your-nonce-authority-pubkey
+                  nullable: true
+                  description: Pubkey of the account authorized to advance the nonce. Defaults to the fee payer if omitted.
+              required:
+              - stake_account
+              - network
+  /solana/withdraw:
+    post:
+      summary: Withdraw
+      tags:
+      - Solana
+      operationId: solana-withdraw
+      parameters: []
+      responses:
+        '201':
+          description: withdraw transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/solana_transaction'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stake_account:
+                  type: string
+                  example: your-stake-account-pubkey
+                recipient_account:
+                  type: string
+                  example: your-recipient-account-pubkey
+                amount_sol:
+                  type: number
+                  example: 10.5
+                network:
+                  type: string
+                  example: mainnet
+                  enum:
+                  - mainnet
+                  - testnet
+                  - devnet
+                nonce_account:
+                  type: string
+                  example: your-nonce-account-pubkey
+                  nullable: true
+                  description: Pubkey of the on-chain nonce account. Enables offline signing without the 60–90s blockhash expiry.
+                nonce_authority:
+                  type: string
+                  example: your-nonce-authority-pubkey
+                  nullable: true
+                  description: Pubkey of the account authorized to advance the nonce. Defaults to the fee payer if omitted.
+              required:
+              - stake_account
+              - recipient_account
+              - amount_sol
+              - network
+  /solana/stakes:
+    get:
+      summary: Stakes
+      tags:
+      - Solana
+      operationId: solana-stakes
+      parameters:
+      - name: network
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - testnet
+          - devnet
+      - name: groups
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter using comma-separated group uuids.
+        example: be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5
+      - name: stake_authority
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by stake authority public key.
+        example: 4qjmvyPVkJG5Jc9g8fY3QHxYm4rKz2JtEpVc7WxD5nE3
+      - name: withdraw_authority
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by withdraw authority public key.
+        example: 7sJmFvyPVkJG5Jc9g8fY3QHxYm4rKz2JtEpVc7WxD5nE3
+      responses:
+        '200':
+          description: List Stakes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/tracked_solana_stake_account'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /solana/rewards:
+    post:
+      summary: Rewards
+      operationId: sol-rewards
+      tags:
+      - Solana
+      parameters: []
+      responses:
+        '200':
+          description: A rewards result set with metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        stake_account:
+                          type: string
+                          description: Returns the stake account that received the rewards.
+                        validator:
+                          type: string
+                          description: Returns the validator that distributed the rewards.
+                        stake_authority:
+                          type: string
+                          description: Returns the stake authority of the stake account.
+                        withdraw_authority:
+                          type: string
+                          description: Returns the withdraw authority of the stake account.
+                        epoch:
+                          type: string
+                          description: The epoch number. Only available on epoch time_rollup
+                        timestamp:
+                          type: string
+                          description: The timestamp at the end of the epoch.
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            description: The formula to compute the final rewards in the currency unit is numeric x 10^(-exp).
+                            properties:
+                              text:
+                                type: string
+                                description: The textual version of the other fields in the rewards object.
+                              currency:
+                                type: string
+                              numeric:
+                                type: integer
+                              exp:
+                                type: integer
+                              type:
+                                type: string
+                                description: The type of reward. Either "mev" or "protocol"
+                        balances:
+                          type: array
+                          items:
+                            type: object
+                            description: The account's current balance.
+                            properties:
+                              text:
+                                type: string
+                                description: The textual version of the other fields in the rewards object.
+                              currency:
+                                type: string
+                              numeric:
+                                type: integer
+                              exp:
+                                type: integer
+                  meta:
+                    type: object
+                    properties:
+                      protocol:
+                        type: string
+                        description: The name of the protocol queried.
+                      network:
+                        type: string
+                        description: The name of the network queried.
+                      time_rollup:
+                        type: string
+                        description: The unit of the rollup.
+              example:
+                data:
+                - stake_account: 2yoofMr4N78WPxVK8MU8Yy26dfRZbPw5WDzTRCA9uv95
+                  rewards:
+                  - text: '0.001390828'
+                    currency: SOL
+                    numeric: 1390828
+                    exp: 9
+                    type: protocol
+                  - text: '0.000220507'
+                    currency: SOL
+                    numeric: 220507
+                    exp: 9
+                    type: mev
+                  balances:
+                  - text: '3.340325069'
+                    currency: SOL
+                    numeric: 3340325069
+                    exp: 9
+                  epoch: 584
+                  timestamp: '2024-03-07T18:42:36Z'
+                  validator: CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1
+                  stake_authority: EToJFrGakntRnwL8LLikLgXoAfBjgwYhwwYvfVRcrgLL
+                  withdraw_authority: EToJFrGakntRnwL8LLikLgXoAfBjgwYhwwYvfVRcrgLL
+                meta:
+                  protocol: solana
+                  network: mainnet
+                  time_rollup: epoch
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - $ref: '#/components/schemas/sol_rewards_req_by_stake_account'
+              - $ref: '#/components/schemas/sol_rewards_req_by_stake_authority'
+              - $ref: '#/components/schemas/sol_rewards_req_by_withdraw_authority'
+              - $ref: '#/components/schemas/sol_rewards_req_by_groups'
+  /solana/rewards_rates:
+    get:
+      tags:
+      - Solana
+      summary: Reward Rates
+      operationId: sol-rewards-rates
+      parameters:
+      - in: query
+        name: figment
+        schema:
+          type: boolean
+          default: false
+        required: false
+        description: If `true`, for [our main public validator](https://www.validators.app/validators/Fd7btgySsrjuo25CJCj7oE7VPMyezDhnx7pZkj2v69Nk) only. Otherwise, for the whole network.
+      - in: query
+        name: avg
+        schema:
+          type: string
+          enum:
+          - 7d
+          default: 7d
+        required: false
+        description: If `7d`, returns the 7 days moving average. If not, returns the daily spot rates.
+      - in: query
+        name: decimal
+        schema:
+          type: integer
+          default: 2
+        required: false
+        description: Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5.
+      responses:
+        '200':
+          description: List of rewards rates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          example: '2023-07-05'
+                          description: Specific date associated with value (staking reward rates).
+                        value:
+                          type: string
+                          example: '10.37'
+                          description: Staking reward rates, in %.
+                        protocol:
+                          type: string
+                          example: '6.81'
+                          description: Protocol (inflationary) portion of the staking reward rates, in %.
+                        mev:
+                          type: string
+                          example: '2.91'
+                          description: Mev portion of the staking reward rates, in %.
+              example:
+                data:
+                - date: '2024-11-26'
+                  value: '10.37'
+                  protocol: '6.81'
+                  mev: '2.91'
+                - date: '2024-11-25'
+                  value: '10.37'
+                  protocol: '6.81'
+                  mev: '2.91'
+                - date: '2024-11-24'
+                  value: '10.60'
+                  protocol: '6.82'
+                  mev: '3.78'
+                - date: '2024-11-23'
+                  value: '11.71'
+                  protocol: '6.87'
+                  mev: '4.84'
+                - date: '2024-11-21'
+                  value: '11.93'
+                  protocol: '6.78'
+                  mev: '4.65'
+        '400':
+          description: Parameter error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rewards_error'
+  /solana/allocated_rewards:
+    post:
+      summary: Allocated Rewards
+      tags:
+      - Solana
+      operationId: solana-allocated-rewards
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/x-ndjson:
+              schema:
+                type: object
+                properties:
+                  stake_account:
+                    type: string
+                    example: HsHmF24mA182PgXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                  stake_authority:
+                    type: string
+                    example: AQbak1dRySjKfSXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                  withdraw_authority:
+                    type: string
+                    nullable: true
+                    example: AQbak1dRySjKfSXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                  validator:
+                    type: string
+                    example: GvZEwtCHZ7YtXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                  epoch:
+                    type: integer
+                    example: 581
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2024-03-01T14:58:33Z'
+                  rewards:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                          - protocol
+                          - mev
+                          - priority_fees
+                          example: protocol
+                        numeric:
+                          type: string
+                          nullable: true
+                          example: '1234567890'
+                        exp:
+                          type: integer
+                          example: 9
+                        currency:
+                          type: string
+                          example: SOL
+                      required:
+                      - type
+                      - exp
+                      - currency
+                required:
+                - stake_account
+                - stake_authority
+                - epoch
+                - timestamp
+                - rewards
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  enum:
+                  - mainnet
+                  example: mainnet
+                  description: Network to query. Only mainnet is supported.
+                start:
+                  type:
+                  - string
+                  - integer
+                  example: 581
+                  description: 'Start of the range. Either an epoch (integer) or a date (YYYY-MM-DD). Maximum range: 90 days or 45 epochs.'
+                end:
+                  type:
+                  - string
+                  - integer
+                  example: 590
+                  description: 'End of the range. Must be the same type as start. Maximum range: 90 days or 45 epochs.'
+                stake_accounts:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - HsHmF24mA182Pg...
+                  description: Filter results to specific stake account addresses.
+                stake_authorities:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - AQbak1dRySjKfS...
+                  description: Filter results to specific stake authority addresses.
+                withdraw_authorities:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - AQbak1dRySjKfS...
+                  description: Filter results to specific withdraw authority addresses.
+              required:
+              - network
+              - start
+              - end
+  /solana/activities:
+    get:
+      summary: Activities
+      tags:
+      - Solana
+      operationId: solana-activities
+      description: 'Returns Solana staking activities for the authenticated organization.
+
+
+        ## Activity types
+
+
+        | `type`         | Description |
+
+        |----------------|-------------|
+
+        | `delegation`   | Stake account delegated to a validator |
+
+        | `undelegation` | Stake account deactivated and removed from validator |
+
+        | `withdrawal`   | SOL withdrawn back to wallet after cooldown |
+
+
+        All Solana activities are on-chain. `tx.status` reflects the transaction status
+
+        (`in_progress`, `confirmed`, `failed`, `expired`).
+
+        '
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - testnet
+          - devnet
+        example: mainnet
+        required: true
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - delegation
+          - undelegation
+          - withdrawal
+        description: Filter by activity type.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - pending
+          - complete
+          - failed
+        description: Filter by activity-life status.
+      - name: page
+        in: query
+        required: false
+        style: deepObject
+        schema:
+          type: object
+          properties:
+            number:
+              type: integer
+              example: 2
+              minimum: 1
+              description: The page number.
+            size:
+              type: integer
+              example: 10
+              minimum: 1
+              maximum: 100
+              description: Number of items to include in the response.
+      responses:
+        '200':
+          description: List of activities, newest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      oneOf:
+                      - type: object
+                        title: Delegation
+                        description: Stake account delegated to a validator.
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                            example: 3f1c9b2a-8e4d-4a6b-9c1e-2d5f7a8b0c3d
+                            description: Activity UUID.
+                          status:
+                            type: string
+                            enum:
+                            - pending
+                            - complete
+                            - failed
+                            example: pending
+                            description: Activity-life status (warmup/cooldown), not the on-chain status.
+                          network:
+                            type: string
+                            enum:
+                            - mainnet
+                            - testnet
+                            - devnet
+                            example: mainnet
+                          protocol:
+                            type: string
+                            example: solana
+                          amount:
+                            type: number
+                            example: 1.0
+                            description: Amount in the asset major unit.
+                          currency:
+                            type: string
+                            example: SOL
+                          timestamp:
+                            type: string
+                            example: '2024-03-12T00:00:00.000Z'
+                          estimated_completed_at:
+                            type:
+                            - string
+                            - 'null'
+                            description: Estimated activity completion time, when known.
+                          delegation_address:
+                            type:
+                            - string
+                            - 'null'
+                            description: The wallet that originated the activity — for Solana, the stake authority (not the stake account).
+                          tx:
+                            type: object
+                            description: On-chain transaction axis. Distinct from the activity-life `status`.
+                            properties:
+                              hash:
+                                type:
+                                - string
+                                - 'null'
+                                example: solTxAbc…
+                                description: Transaction hash, when one exists.
+                              status:
+                                type:
+                                - string
+                                - 'null'
+                                enum:
+                                - in_progress
+                                - confirmed
+                                - failed
+                                - expired
+                                - null
+                                example: confirmed
+                                description: On-chain/transaction status, resolved via tx-tracking for SOL.
+                          details:
+                            type:
+                            - object
+                            - 'null'
+                            description: Type-specific details. Null for activity types that have none.
+                          type:
+                            type: string
+                            enum:
+                            - delegation
+                            example: delegation
+                      - type: object
+                        title: Undelegation
+                        description: Stake account deactivated and removed from validator.
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                            example: 3f1c9b2a-8e4d-4a6b-9c1e-2d5f7a8b0c3d
+                            description: Activity UUID.
+                          status:
+                            type: string
+                            enum:
+                            - pending
+                            - complete
+                            - failed
+                            example: pending
+                            description: Activity-life status (warmup/cooldown), not the on-chain status.
+                          network:
+                            type: string
+                            enum:
+                            - mainnet
+                            - testnet
+                            - devnet
+                            example: mainnet
+                          protocol:
+                            type: string
+                            example: solana
+                          amount:
+                            type: number
+                            example: 1.0
+                            description: Amount in the asset major unit.
+                          currency:
+                            type: string
+                            example: SOL
+                          timestamp:
+                            type: string
+                            example: '2024-03-12T00:00:00.000Z'
+                          estimated_completed_at:
+                            type:
+                            - string
+                            - 'null'
+                            description: Estimated activity completion time, when known.
+                          delegation_address:
+                            type:
+                            - string
+                            - 'null'
+                            description: The wallet that originated the activity — for Solana, the stake authority (not the stake account).
+                          tx:
+                            type: object
+                            description: On-chain transaction axis. Distinct from the activity-life `status`.
+                            properties:
+                              hash:
+                                type:
+                                - string
+                                - 'null'
+                                example: solTxAbc…
+                                description: Transaction hash, when one exists.
+                              status:
+                                type:
+                                - string
+                                - 'null'
+                                enum:
+                                - in_progress
+                                - confirmed
+                                - failed
+                                - expired
+                                - null
+                                example: confirmed
+                                description: On-chain/transaction status, resolved via tx-tracking for SOL.
+                          details:
+                            type:
+                            - object
+                            - 'null'
+                            description: Type-specific details. Null for activity types that have none.
+                          type:
+                            type: string
+                            enum:
+                            - undelegation
+                            example: undelegation
+                      - type: object
+                        title: Withdrawal
+                        description: SOL withdrawn back to wallet after cooldown.
+                        properties:
+                          id:
+                            type: string
+                            format: uuid
+                            example: 3f1c9b2a-8e4d-4a6b-9c1e-2d5f7a8b0c3d
+                            description: Activity UUID.
+                          status:
+                            type: string
+                            enum:
+                            - pending
+                            - complete
+                            - failed
+                            example: pending
+                            description: Activity-life status (warmup/cooldown), not the on-chain status.
+                          network:
+                            type: string
+                            enum:
+                            - mainnet
+                            - testnet
+                            - devnet
+                            example: mainnet
+                          protocol:
+                            type: string
+                            example: solana
+                          amount:
+                            type: number
+                            example: 1.0
+                            description: Amount in the asset major unit.
+                          currency:
+                            type: string
+                            example: SOL
+                          timestamp:
+                            type: string
+                            example: '2024-03-12T00:00:00.000Z'
+                          estimated_completed_at:
+                            type:
+                            - string
+                            - 'null'
+                            description: Estimated activity completion time, when known.
+                          delegation_address:
+                            type:
+                            - string
+                            - 'null'
+                            description: The wallet that originated the activity — for Solana, the stake authority (not the stake account).
+                          tx:
+                            type: object
+                            description: On-chain transaction axis. Distinct from the activity-life `status`.
+                            properties:
+                              hash:
+                                type:
+                                - string
+                                - 'null'
+                                example: solTxAbc…
+                                description: Transaction hash, when one exists.
+                              status:
+                                type:
+                                - string
+                                - 'null'
+                                enum:
+                                - in_progress
+                                - confirmed
+                                - failed
+                                - expired
+                                - null
+                                example: confirmed
+                                description: On-chain/transaction status, resolved via tx-tracking for SOL.
+                          details:
+                            type:
+                            - object
+                            - 'null'
+                            description: Type-specific details. Null for activity types that have none.
+                          type:
+                            type: string
+                            enum:
+                            - withdrawal
+                            example: withdrawal
+                  meta:
+                    type: object
+                    properties:
+                      pagination:
+                        type: object
+                        properties:
+                          current_page:
+                            type: integer
+                            example: 1
+                          total_pages:
+                            type: integer
+                            example: 10
+                          total_item_count:
+                            type: integer
+                            example: 1000
+                          has_next:
+                            type: boolean
+                            example: true
+                example:
+                  data:
+                  - id: 9f7c5b8a-4e0d-4a2b-3c7e-8d1f4a6b9c0d
+                    type: delegation
+                    status: pending
+                    network: mainnet
+                    protocol: solana
+                    amount: 10.0
+                    currency: SOL
+                    timestamp: '2024-03-12T08:02:17Z'
+                    estimated_completed_at: null
+                    delegation_address: StakeAuth1111111111111111111111111111111111
+                    tx:
+                      hash: solTxAbcDef123456789
+                      status: confirmed
+                    details: null
+                  - id: 0a8d6c9b-5f1e-4b3c-4d8f-9e2a5b7c0d1e
+                    type: undelegation
+                    status: pending
+                    network: mainnet
+                    protocol: solana
+                    amount: 10.0
+                    currency: SOL
+                    timestamp: '2024-03-15T10:00:00Z'
+                    estimated_completed_at: null
+                    delegation_address: StakeAuth1111111111111111111111111111111111
+                    tx:
+                      hash: solTxUndelegate9876
+                      status: confirmed
+                    details: null
+                  - id: 1b9e7d0c-6a2f-4c4d-5e9a-0f3b6c8d1e2f
+                    type: withdrawal
+                    status: complete
+                    network: mainnet
+                    protocol: solana
+                    amount: 10.0
+                    currency: SOL
+                    timestamp: '2024-03-20T10:00:00Z'
+                    estimated_completed_at: null
+                    delegation_address: StakeAuth1111111111111111111111111111111111
+                    tx:
+                      hash: solTxWithdraw9876543
+                      status: confirmed
+                    details: null
+                  meta:
+                    pagination:
+                      current_page: 1
+                      total_pages: 1
+                      total_item_count: 3
+  /solana/activities/{id}:
+    get:
+      summary: Activity
+      tags:
+      - Solana
+      operationId: get-solana-activity
+      description: Fetch a single Solana activity by UUID or transaction hash. See the index endpoint for activity type documentation.
+      parameters:
+      - name: network
+        in: query
+        schema:
+          type: string
+          enum:
+          - mainnet
+          - testnet
+          - devnet
+        example: mainnet
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Activity UUID or transaction hash.
+      responses:
+        '200':
+          description: A single activity.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  title: Delegation
+                  description: Stake account delegated to a validator.
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 3f1c9b2a-8e4d-4a6b-9c1e-2d5f7a8b0c3d
+                      description: Activity UUID.
+                    status:
+                      type: string
+                      enum:
+                      - pending
+                      - complete
+                      - failed
+                      example: pending
+                      description: Activity-life status (warmup/cooldown), not the on-chain status.
+                    network:
+                      type: string
+                      enum:
+                      - mainnet
+                      - testnet
+                      - devnet
+                      example: mainnet
+                    protocol:
+                      type: string
+                      example: solana
+                    amount:
+                      type: number
+                      example: 1.0
+                      description: Amount in the asset major unit.
+                    currency:
+                      type: string
+                      example: SOL
+                    timestamp:
+                      type: string
+                      example: '2024-03-12T00:00:00.000Z'
+                    estimated_completed_at:
+                      type:
+                      - string
+                      - 'null'
+                      description: Estimated activity completion time, when known.
+                    delegation_address:
+                      type:
+                      - string
+                      - 'null'
+                      description: The wallet that originated the activity — for Solana, the stake authority (not the stake account).
+                    tx:
+                      type: object
+                      description: On-chain transaction axis. Distinct from the activity-life `status`.
+                      properties:
+                        hash:
+                          type:
+                          - string
+                          - 'null'
+                          example: solTxAbc…
+                          description: Transaction hash, when one exists.
+                        status:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - in_progress
+                          - confirmed
+                          - failed
+                          - expired
+                          - null
+                          example: confirmed
+                          description: On-chain/transaction status, resolved via tx-tracking for SOL.
+                    details:
+                      type:
+                      - object
+                      - 'null'
+                      description: Type-specific details. Null for activity types that have none.
+                    type:
+                      type: string
+                      enum:
+                      - delegation
+                      example: delegation
+                - type: object
+                  title: Undelegation
+                  description: Stake account deactivated and removed from validator.
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 3f1c9b2a-8e4d-4a6b-9c1e-2d5f7a8b0c3d
+                      description: Activity UUID.
+                    status:
+                      type: string
+                      enum:
+                      - pending
+                      - complete
+                      - failed
+                      example: pending
+                      description: Activity-life status (warmup/cooldown), not the on-chain status.
+                    network:
+                      type: string
+                      enum:
+                      - mainnet
+                      - testnet
+                      - devnet
+                      example: mainnet
+                    protocol:
+                      type: string
+                      example: solana
+                    amount:
+                      type: number
+                      example: 1.0
+                      description: Amount in the asset major unit.
+                    currency:
+                      type: string
+                      example: SOL
+                    timestamp:
+                      type: string
+                      example: '2024-03-12T00:00:00.000Z'
+                    estimated_completed_at:
+                      type:
+                      - string
+                      - 'null'
+                      description: Estimated activity completion time, when known.
+                    delegation_address:
+                      type:
+                      - string
+                      - 'null'
+                      description: The wallet that originated the activity — for Solana, the stake authority (not the stake account).
+                    tx:
+                      type: object
+                      description: On-chain transaction axis. Distinct from the activity-life `status`.
+                      properties:
+                        hash:
+                          type:
+                          - string
+                          - 'null'
+                          example: solTxAbc…
+                          description: Transaction hash, when one exists.
+                        status:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - in_progress
+                          - confirmed
+                          - failed
+                          - expired
+                          - null
+                          example: confirmed
+                          description: On-chain/transaction status, resolved via tx-tracking for SOL.
+                    details:
+                      type:
+                      - object
+                      - 'null'
+                      description: Type-specific details. Null for activity types that have none.
+                    type:
+                      type: string
+                      enum:
+                      - undelegation
+                      example: undelegation
+                - type: object
+                  title: Withdrawal
+                  description: SOL withdrawn back to wallet after cooldown.
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 3f1c9b2a-8e4d-4a6b-9c1e-2d5f7a8b0c3d
+                      description: Activity UUID.
+                    status:
+                      type: string
+                      enum:
+                      - pending
+                      - complete
+                      - failed
+                      example: pending
+                      description: Activity-life status (warmup/cooldown), not the on-chain status.
+                    network:
+                      type: string
+                      enum:
+                      - mainnet
+                      - testnet
+                      - devnet
+                      example: mainnet
+                    protocol:
+                      type: string
+                      example: solana
+                    amount:
+                      type: number
+                      example: 1.0
+                      description: Amount in the asset major unit.
+                    currency:
+                      type: string
+                      example: SOL
+                    timestamp:
+                      type: string
+                      example: '2024-03-12T00:00:00.000Z'
+                    estimated_completed_at:
+                      type:
+                      - string
+                      - 'null'
+                      description: Estimated activity completion time, when known.
+                    delegation_address:
+                      type:
+                      - string
+                      - 'null'
+                      description: The wallet that originated the activity — for Solana, the stake authority (not the stake account).
+                    tx:
+                      type: object
+                      description: On-chain transaction axis. Distinct from the activity-life `status`.
+                      properties:
+                        hash:
+                          type:
+                          - string
+                          - 'null'
+                          example: solTxAbc…
+                          description: Transaction hash, when one exists.
+                        status:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - in_progress
+                          - confirmed
+                          - failed
+                          - expired
+                          - null
+                          example: confirmed
+                          description: On-chain/transaction status, resolved via tx-tracking for SOL.
+                    details:
+                      type:
+                      - object
+                      - 'null'
+                      description: Type-specific details. Null for activity types that have none.
+                    type:
+                      type: string
+                      enum:
+                      - withdrawal
+                      example: withdrawal
+                example:
+                  id: 9f7c5b8a-4e0d-4a2b-3c7e-8d1f4a6b9c0d
+                  type: delegation
+                  status: pending
+                  network: mainnet
+                  protocol: solana
+                  amount: 10.0
+                  currency: SOL
+                  timestamp: '2024-03-12T08:02:17Z'
+                  estimated_completed_at: null
+                  delegation_address: StakeAuth1111111111111111111111111111111111
+                  tx:
+                    hash: solTxAbcDef123456789
+                    status: confirmed
+                  details: null
+  /solana/merge:
+    post:
+      summary: Merge
+      tags:
+      - Solana
+      operationId: build-solana-merge-tx
+      parameters: []
+      responses:
+        '201':
+          description: transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: devnet
+                        description: Solana network to build transaction for
+                        enum:
+                        - mainnet
+                        - testnet
+                        - devnet
+                      signing_payload:
+                        type: string
+                        example: 0xSigningPayload
+                        description: Hex encoded payload to sign
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Hex encoded transaction payload
+                      unsigned_tx_serialized_hex:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Hex encoded transaction payload
+                      unsigned_tx_serialized_base64:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Base64 encoded transaction payload
+                      last_valid_block_height:
+                        type: number
+                        example: 359339325
+                        nullable: true
+                        description: Block height after which the transaction payload will be expired
+                      nonce_value:
+                        type: string
+                        nullable: true
+                        example: GNP8nFAjKFBxL6Bfmti9gBGxCRF7gMaGmEiKfJKpJAaG
+                        description: The nonce value used as the transaction's blockhash. Present when nonce_account is provided.
+                      is_durable_nonce:
+                        type: boolean
+                        nullable: true
+                        description: True when a durable nonce is used. last_valid_block_height will be null.
+        '422':
+          description: Invalid request
+        '400':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: devnet
+                  description: Solana network to build transaction for
+                  enum:
+                  - mainnet
+                  - testnet
+                  - devnet
+                source_stake_account:
+                  type: string
+                  example: 4N8VxfxDqHpsPT6w73TzV4qVjp9SGqAfLPAfJsQZCegS
+                  description: Source stake account pubkey
+                destination_stake_account:
+                  type: string
+                  example: XW5uYizJd7wQBtVv6dGXFb5emxp8Vh5Vhxqtq9cNsKc
+                  description: Destination stake account pubkey
+                funding_account_pubkey:
+                  type: string
+                  example: 77Q11RZr3an6xwPs2gEXkpz2CeZ8bsCmYs9VYviAU6jf
+                  description: Pubkey of the account that will fund the transaction. Defaults to the stake authority of the source stake account.
+                nonce_account:
+                  type: string
+                  example: your-nonce-account-pubkey
+                  nullable: true
+                  description: Pubkey of the on-chain nonce account. Enables offline signing without the 60–90s blockhash expiry.
+                nonce_authority:
+                  type: string
+                  example: your-nonce-authority-pubkey
+                  nullable: true
+                  description: Pubkey of the account authorized to advance the nonce. Defaults to the fee payer if omitted.
+              required:
+              - network
+              - source_stake_account
+              - destination_stake_account
+  /solana/split:
+    post:
+      summary: Split
+      tags:
+      - Solana
+      operationId: build-solana-split-tx
+      parameters: []
+      responses:
+        '201':
+          description: transaction created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        example: devnet
+                        description: Solana network to build transaction for
+                        enum:
+                        - mainnet
+                        - testnet
+                        - devnet
+                      signing_payload:
+                        type: string
+                        example: 0xSigningPayload
+                        description: Hex encoded payload to sign
+                      unsigned_transaction_serialized:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Hex encoded transaction payload
+                      unsigned_tx_serialized_hex:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Hex encoded transaction payload
+                      unsigned_tx_serialized_base64:
+                        type: string
+                        example: 0xSerializedTransaction
+                        description: Base64 encoded transaction payload
+                      destination_stake_account_pubkey:
+                        type: string
+                        example: 4ca4gDieqrADT2LwvwK2M6qz9WBSJcP6Q2J2MA6PBfzC
+                        description: Pubkey of the destination stake account
+                      last_valid_block_height:
+                        type: number
+                        example: 359339325
+                        nullable: true
+                        description: Block height after which the transaction payload will be expired
+                      nonce_value:
+                        type: string
+                        nullable: true
+                        example: GNP8nFAjKFBxL6Bfmti9gBGxCRF7gMaGmEiKfJKpJAaG
+                        description: The nonce value used as the transaction's blockhash. Present when nonce_account is provided.
+                      is_durable_nonce:
+                        type: boolean
+                        nullable: true
+                        description: True when a durable nonce is used. last_valid_block_height will be null.
+        '422':
+          description: Invalid request
+        '400':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                network:
+                  type: string
+                  example: devnet
+                  description: Solana network to build transaction for
+                  enum:
+                  - mainnet
+                  - testnet
+                  - devnet
+                stake_account:
+                  type: string
+                  example: 4N8VxfxDqHpsPT6w73TzV4qVjp9SGqAfLPAfJsQZCegS
+                  description: Source stake account pubkey
+                funding_account_pubkey:
+                  type: string
+                  example: 4N8VxfxDqHpsPT6w73TzV4qVjp9SGqAfLPAfJsQZCegS
+                  description: Pubkey of the account that will fund the transaction. Defaults to the stake authority of the source stake account.
+                amount_sol:
+                  type: number
+                  example: 10.5
+                  description: Amount of SOL to split to the new stake account
+                nonce_account:
+                  type: string
+                  example: your-nonce-account-pubkey
+                  nullable: true
+                  description: Pubkey of the on-chain nonce account. Enables offline signing without the 60–90s blockhash expiry.
+                nonce_authority:
+                  type: string
+                  example: your-nonce-authority-pubkey
+                  nullable: true
+                  description: Pubkey of the account authorized to advance the nonce. Defaults to the fee payer if omitted.
+              required:
+              - network
+              - amount_sol
+              - stake_account
+components:
+  schemas:
+    tracked_solana_stake_account:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 031af36c-508a-4f3d-84dd-f46d9e59428f
+          description: A unique UUID for the stake account.
+        network:
+          type: string
+          example: devnet
+          enum:
+          - mainnet
+          - testnet
+          - devnet
+        stake_account:
+          type: string
+        status:
+          type: string
+        vote_account:
+          type: string
+          nullable: true
+        stake_authority:
+          type: string
+          nullable: true
+        withdraw_authority:
+          type: string
+          nullable: true
+        balance:
+          type: string
+          nullable: true
+        active_balance:
+          type: string
+          nullable: true
+        inactive_balance:
+          type: string
+          nullable: true
+        balance_usd:
+          type: string
+          nullable: true
+        active_balance_usd:
+          type: string
+          nullable: true
+        inactive_balance_usd:
+          type: string
+          nullable: true
+    sol_rewards_req_by_stake_account:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by stake account
+        properties:
+          stake_accounts:
+            type: array
+            description: Stake Account addresses.
+            items:
+              type: string
+              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
+        required:
+        - stake_accounts
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
+    sol_rewards_req_by_withdraw_authority:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by withdraw authority
+        properties:
+          withdraw_authorities:
+            type: array
+            description: Withdraw authority addresses.
+            items:
+              type: string
+              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
+        required:
+        - withdraw_authorities
+    solana_transaction:
+      type: object
+      properties:
+        unsigned_transaction_serialized:
+          type: string
+          example: 0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d845490355ff6299455677fe89a2ed65e74330b9d21200e5d6b66e0959cafda22e7447a11ce519ed8243e85b8aadded47943b6f79235f8beaa1dcd0e7cecdb030200080a5ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a356869b8e0bdb0624debb7c1dab0365fae980eb8e612fc6627ac0dd1c693a5015bef600000000000000000000000000000000000000000000000000000000000000000306466fe5211732ffecadba72c39be7bc8ce5bbc5f7126b2c439b3a40000000ddf42a04800a54de2e583f94f17b089725b772d1333526271241532776d2ffc606a1d8179137542a983437bdfe2a7ab2557f535c8a78722b68a49dc00000000006a1d817a502050b680791e6ce6db88e1e5b7150f61fc6790a4eb4d10000000006a7d51718c774c928566398691d5eb68b5eb8a39b4b6d5c73555b210000000006a7d517192c5c51218cc94c3d4af17f58daee089ba1fd44e3dbd98a0000000006a7d517193584d0feed9bb3431d13206be544281b57b8566cc5375ff4000000cfba7719d3267f0cb2f320ab3ec5a415ba51b8e2067327e593044a360c169c8104020200013400000000c0c62d0000000000c80000000000000006a1d8179137542a983437bdfe2a7ab2557f535c8a78722b68a49dc0000000000502010874000000005ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a356865ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a35686000000000000000000000000000000005ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a3568603000903204e00000000000005060104070906000402000000
+          description: The unsigned transaction payload serialized in hex format
+        unsigned_tx_serialized_hex:
+          type: string
+          example: 0200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d845490355ff6299455677fe89a2ed65e74330b9d21200e5d6b66e0959cafda22e7447a11ce519ed8243e85b8aadded47943b6f79235f8beaa1dcd0e7cecdb030200080a5ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a356869b8e0bdb0624debb7c1dab0365fae980eb8e612fc6627ac0dd1c693a5015bef600000000000000000000000000000000000000000000000000000000000000000306466fe5211732ffecadba72c39be7bc8ce5bbc5f7126b2c439b3a40000000ddf42a04800a54de2e583f94f17b089725b772d1333526271241532776d2ffc606a1d8179137542a983437bdfe2a7ab2557f535c8a78722b68a49dc00000000006a1d817a502050b680791e6ce6db88e1e5b7150f61fc6790a4eb4d10000000006a7d51718c774c928566398691d5eb68b5eb8a39b4b6d5c73555b210000000006a7d517192c5c51218cc94c3d4af17f58daee089ba1fd44e3dbd98a0000000006a7d517193584d0feed9bb3431d13206be544281b57b8566cc5375ff4000000cfba7719d3267f0cb2f320ab3ec5a415ba51b8e2067327e593044a360c169c8104020200013400000000c0c62d0000000000c80000000000000006a1d8179137542a983437bdfe2a7ab2557f535c8a78722b68a49dc0000000000502010874000000005ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a356865ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a35686000000000000000000000000000000005ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a3568603000903204e00000000000005060104070906000402000000
+          description: The unsigned transaction payload serialized in hex format
+        unsigned_tx_serialized_base64:
+          type: string
+          example: MDIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw\nMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw\nMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMGQ4NDU0\nOTAzNTVmZjYyOTk0NTU2NzdmZTg5YTJlZDY1ZTc0MzMwYjlkMjEyMDBlNWQ2\nYjY2ZTA5NTljYWZkYTIyZTc0NDdhMTFjZTUxOWVkODI0M2U4NWI4YWFkZGVk\nNDc5NDNiNmY3OTIzNWY4YmVhYTFkY2QwZTdjZWNkYjAzMDIwMDA4MGE1YWM5\nOWNkYzYzMTM5Y2E2Y2ZhYTllYmNmMmI4ZTU2ZGE5OWViMDFkNDQ1YzgxODA4\nODk3NmRhY2QxYTM1Njg2OWI4ZTBiZGIwNjI0ZGViYjdjMWRhYjAzNjVmYWU5\nODBlYjhlNjEyZmM2NjI3YWMwZGQxYzY5M2E1MDE1YmVmNjAwMDAwMDAwMDAw\nMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw\nMDAwMDAwMDAwMzA2NDY2ZmU1MjExNzMyZmZlY2FkYmE3MmMzOWJlN2JjOGNl\nNWJiYzVmNzEyNmIyYzQzOWIzYTQwMDAwMDAwZGRmNDJhMDQ4MDBhNTRkZTJl\nNTgzZjk0ZjE3YjA4OTcyNWI3NzJkMTMzMzUyNjI3MTI0MTUzMjc3NmQyZmZj\nNjA2YTFkODE3OTEzNzU0MmE5ODM0MzdiZGZlMmE3YWIyNTU3ZjUzNWM4YTc4\nNzIyYjY4YTQ5ZGMwMDAwMDAwMDAwNmExZDgxN2E1MDIwNTBiNjgwNzkxZTZj\nZTZkYjg4ZTFlNWI3MTUwZjYxZmM2NzkwYTRlYjRkMTAwMDAwMDAwMDZhN2Q1\nMTcxOGM3NzRjOTI4NTY2Mzk4NjkxZDVlYjY4YjVlYjhhMzliNGI2ZDVjNzM1\nNTViMjEwMDAwMDAwMDA2YTdkNTE3MTkyYzVjNTEyMThjYzk0YzNkNGFmMTdm\nNThkYWVlMDg5YmExZmQ0NGUzZGJkOThhMDAwMDAwMDAwNmE3ZDUxNzE5MzU4\nNGQwZmVlZDliYjM0MzFkMTMyMDZiZTU0NDI4MWI1N2I4NTY2Y2M1Mzc1ZmY0\nMDAwMDAwY2ZiYTc3MTlkMzI2N2YwY2IyZjMyMGFiM2VjNWE0MTViYTUxYjhl\nMjA2NzMyN2U1OTMwNDRhMzYwYzE2OWM4MTA0MDIwMjAwMDEzNDAwMDAwMDAw\nYzBjNjJkMDAwMDAwMDAwMGM4MDAwMDAwMDAwMDAwMDAwNmExZDgxNzkxMzc1\nNDJhOTgzNDM3YmRmZTJhN2FiMjU1N2Y1MzVjOGE3ODcyMmI2OGE0OWRjMDAw\nMDAwMDAwMDUwMjAxMDg3NDAwMDAwMDAwNWFjOTljZGM2MzEzOWNhNmNmYWE5\nZWJjZjJiOGU1NmRhOTllYjAxZDQ0NWM4MTgwODg5NzZkYWNkMWEzNTY4NjVh\nYzk5Y2RjNjMxMzljYTZjZmFhOWViY2YyYjhlNTZkYTk5ZWIwMWQ0NDVjODE4\nMDg4OTc2ZGFjZDFhMzU2ODYwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw\nMDAwMDVhYzk5Y2RjNjMxMzljYTZjZmFhOWViY2YyYjhlNTZkYTk5ZWIwMWQ0\nNDVjODE4MDg4OTc2ZGFjZDFhMzU2ODYwMzAwMDkwMzIwNGUwMDAwMDAwMDAw\nMDAwNTA2MDEwNDA3MDkwNjAwMDQwMjAwMDAwMA==\n
+          description: The unsigned transaction payload serialized in base64 format
+        signing_payload:
+          type: string
+          example: 0200080a5ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a356869b8e0bdb0624debb7c1dab0365fae980eb8e612fc6627ac0dd1c693a5015bef600000000000000000000000000000000000000000000000000000000000000000306466fe5211732ffecadba72c39be7bc8ce5bbc5f7126b2c439b3a40000000ddf42a04800a54de2e583f94f17b089725b772d1333526271241532776d2ffc606a1d8179137542a983437bdfe2a7ab2557f535c8a78722b68a49dc00000000006a1d817a502050b680791e6ce6db88e1e5b7150f61fc6790a4eb4d10000000006a7d51718c774c928566398691d5eb68b5eb8a39b4b6d5c73555b210000000006a7d517192c5c51218cc94c3d4af17f58daee089ba1fd44e3dbd98a0000000006a7d517193584d0feed9bb3431d13206be544281b57b8566cc5375ff4000000cfba7719d3267f0cb2f320ab3ec5a415ba51b8e2067327e593044a360c169c8104020200013400000000c0c62d0000000000c80000000000000006a1d8179137542a983437bdfe2a7ab2557f535c8a78722b68a49dc0000000000502010874000000005ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a356865ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a35686000000000000000000000000000000005ac99cdc63139ca6cfaa9ebcf2b8e56da99eb01d445c818088976dacd1a3568603000903204e00000000000005060104070906000402000000
+          description: The message from the unsigned transaction payload in serialized in hex format
+        last_valid_block_height:
+          type: integer
+          example: 291621448
+          nullable: true
+          description: Block height that the transaction payload is valid until (null for durable nonce transactions)
+        stake_account:
+          type: string
+          example: tfUTBG4BH5Cg9PdhNHiohL1fjXWkEyi6S9qZsBdT2HLQ
+          description: Stake Account Pubkey generated for a staking transaction
+        network:
+          type: string
+          example: devnet
+          description: Network for the transaction
+        nonce_value:
+          type: string
+          nullable: true
+          example: GNP8nFAjKFBxL6Bfmti9gBGxCRF7gMaGmEiKfJKpJAaG
+          description: The nonce value used as the transaction's blockhash. Present only when `nonce_account` was provided in the request.
+        is_durable_nonce:
+          type: boolean
+          nullable: true
+          description: Indicates that this transaction uses a durable nonce. When `true`, `last_valid_block_height` will be `null`.
+    sol_rewards_req_by_groups:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by groups
+        properties:
+          groups:
+            type: string
+            description: Filter using comma-separated group uuids.
+            example: be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5
+        required:
+        - groups
+    sol_rewards_req_common:
+      type: object
+      properties:
+        start:
+          type: integer
+          example: 447
+          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
+        end:
+          type: integer
+          example: 458
+          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
+      required:
+      - start
+      - end
+    sol_rewards_req_by_stake_authority:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by stake authority
+        properties:
+          stake_authorities:
+            type: array
+            description: Stake authority addresses.
+            items:
+              type: string
+              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
+        required:
+        - stake_authorities
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

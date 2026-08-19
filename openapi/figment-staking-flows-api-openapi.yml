@@ -1,0 +1,172 @@
+openapi: 3.2.0
+info:
+  title: Figment Staking Flows API
+  version: 2.0.0+1190.1
+  termsOfService: https://figment.io/staking-terms-of-use
+servers:
+- url: https://api.figment.io
+tags:
+- name: Staking Flows
+paths:
+  /flows:
+    post:
+      summary: Start new Flow
+      tags:
+      - Staking Flows
+      operationId: create-flow
+      parameters: []
+      responses:
+        '201':
+          description: Flow created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/flow'
+        '400':
+          description: User error
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Unprocessable entity
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Invalid API key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                flow:
+                  type: object
+                  properties:
+                    protocol:
+                      type: string
+                    network:
+                      type: string
+                    operation:
+                      type: string
+                  required:
+                  - protocol
+                  - network
+                  - operation
+    get:
+      summary: Get flows
+      tags:
+      - Staking Flows
+      operationId: get-flows
+      responses:
+        '200':
+          description: Flows retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/flow'
+  /flows/{id}:
+    get:
+      summary: Get flow
+      tags:
+      - Staking Flows
+      operationId: get-flow
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Flow retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/flow'
+  /flows/{id}/next:
+    put:
+      summary: Transition Flow
+      tags:
+      - Staking Flows
+      operationId: flow-next
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Flow transitioned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/flow'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                inputs:
+                  type: object
+        required: true
+components:
+  schemas:
+    meta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 100
+    flow:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+        protocol:
+          type: string
+          nullable: false
+        network:
+          type: string
+          nullable: false
+        operation:
+          type: string
+        state:
+          type: string
+        actions:
+          type: array
+        data:
+          type: object
+        created_at:
+          type: string
+        updated_at:
+          type: string
+x-readme:
+  explorer-enabled: false
+  proxy-enabled: false
+  headers:
+  - key: x-api-key
+    value: your-api-key-here

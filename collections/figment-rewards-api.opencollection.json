@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Figment Rewards API",
+    "version": "2.0.0+1190.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rewards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Net Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/ethereum/rewards_net",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Net Rewards"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/injective/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/sui/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.figment.io/avalanche/rewards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rewards"
+        },
+        {
+          "info": {
+            "name": "Rewards Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/sui/rewards_rates",
+            "params": [
+              {
+                "name": "avg",
+                "value": "7d",
+                "type": "query",
+                "description": "If 7d, returns the 7 days moving average. If not, returns the daily spot rates."
+              },
+              {
+                "name": "decimal",
+                "value": "2",
+                "type": "query",
+                "description": "Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5."
+              }
+            ]
+          },
+          "docs": "Rewards Rates"
+        },
+        {
+          "info": {
+            "name": "Rewards Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.figment.io/cardano/rewards_rates",
+            "params": [
+              {
+                "name": "avg",
+                "value": "7d",
+                "type": "query",
+                "description": "If 7d, returns the 7 days moving average. If not, returns the daily spot rates."
+              },
+              {
+                "name": "decimal",
+                "value": "2",
+                "type": "query",
+                "description": "Specifies the number of desired decimal to be returned. Accepts values between 2 (default) and 5."
+              }
+            ]
+          },
+          "docs": "Rewards Rates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
