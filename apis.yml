@@ -20,6 +20,19 @@ specificationVersion: '0.23'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
+- Staking
+- Blockchain
+- Digital Assets
+- Proof of Stake
+- Validators
+- Institutional Finance
+- rewards-reporting
+- Ethereum
+- Solana
+- Web3 Infrastructure
+- Custody
+- x402
+tags_raw:
 - staking
 - blockchain
 - digital-assets
@@ -43,6 +56,11 @@ apis:
   humanURL: https://docs.figment.io/mcp
   baseURL: https://docs.figment.io/mcp
   tags:
+  - MCP
+  - agent-native
+  - Documentation
+  - Staking
+  tags_raw:
   - mcp
   - agent-native
   - documentation
@@ -632,6 +650,8 @@ apis:
   humanURL: https://docs.figment.io/reference/getting-started-1
   baseURL: https://api.figment.io
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -722,6 +742,8 @@ apis:
   humanURL: https://docs.figment.io/reference/getting-started-1
   baseURL: https://api.figment.io
   tags:
+  - Vault
+  tags_raw:
   - Vaults
   properties:
   - type: OpenAPI
