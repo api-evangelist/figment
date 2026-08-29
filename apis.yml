@@ -12,6 +12,18 @@ description: >-
   Avalanche, Sui, Aptos, Vaulta, OpenTrade stablecoin yield vaults, and an x402 payment facilitator.
   Figment also publishes Elements, a React component library for embeddable staking widgets, and a
   documentation MCP server for agents.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.figment.io/wp-content/uploads/2024/06/Site-Preview.jpg
 url: https://raw.githubusercontent.com/api-evangelist/figment/refs/heads/main/apis.yml
 x-type: company
