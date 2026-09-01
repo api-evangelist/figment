@@ -32,17 +32,17 @@ specificationVersion: '0.23'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
-- staking
+- Staking
 - Blockchain
-- digital-assets
-- proof-of-stake
-- validators
-- institutional-finance
+- Digital Assets
+- Proof of Stake
+- Validators
+- Institutional Finance
 - rewards-reporting
-- ethereum
-- solana
-- web3-infrastructure
-- custody
+- Ethereum
+- Solana
+- Web3 Infrastructure
+- Custody
 - x402
 tags_raw:
 - staking
@@ -71,7 +71,7 @@ apis:
   - MCP
   - agent-native
   - Documentation
-  - staking
+  - Staking
   tags_raw:
   - mcp
   - agent-native
