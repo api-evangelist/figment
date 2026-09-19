@@ -51,7 +51,7 @@ tags:
 - Blockchain
 - Digital Assets
 - Proof of Stake
-- Validators
+- Validator
 - Institutional Finance
 - rewards-reporting
 - Ethereum
@@ -709,6 +709,8 @@ apis:
   humanURL: https://docs.figment.io/reference/getting-started-1
   baseURL: https://api.figment.io
   tags:
+  - Validator
+  tags_raw:
   - Validators
   properties:
   - type: OpenAPI
