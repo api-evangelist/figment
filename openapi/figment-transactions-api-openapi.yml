@@ -38,6 +38,8 @@ paths:
               - network
               - transaction_payload
         required: true
+      operationId: postInjectiveTransactionsBroadcast
+      x-operation-id-source: derived
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

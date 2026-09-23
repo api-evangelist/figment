@@ -119,6 +119,21 @@ paths:
           description: Invalid API key
 components:
   schemas:
+    blockfrost_project:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+        network:
+          type: string
+          nullable: false
+        project_id:
+          type: string
+          nullable: false
+        created:
+          type: string
+          nullable: false
     staking_api_error:
       type: object
       properties:
@@ -143,21 +158,6 @@ components:
           - message
       required:
       - error
-    blockfrost_project:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: false
-        network:
-          type: string
-          nullable: false
-        project_id:
-          type: string
-          nullable: false
-        created:
-          type: string
-          nullable: false
     meta:
       type: object
       properties:

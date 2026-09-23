@@ -1127,127 +1127,15 @@ components:
           type: string
           example: '0.1'
           description: Amount of shares to convert to assets
-    ethereum_transaction:
+    stake_wise_allowlist_entry:
       type: object
       properties:
-        unsigned_transaction_serialized:
-          type: string
-          example: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
-          description: The unsigned transaction payload serialized in hex format
-        unsigned_transaction_hash:
-          type: string
-          example: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
-          description: keccak256 hash of the serialized unsigned transaction payload
-        max_transaction_cost:
+        created_at:
           type: integer
-          example: 3999034319785598
-          description: Max transaction cost in gwei
-        calldata:
+          example: 1719345504000
+        address:
           type: string
-          example: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
-          description: Calldata for the transaction.
-    pagination:
-      type: object
-      properties:
-        pagination:
-          type: object
-          properties:
-            current_page:
-              type: integer
-              example: 1
-            total_pages:
-              type: integer
-              example: 10
-            total_item_count:
-              type: integer
-              example: 1000
-            has_next:
-              type: boolean
-              example: true
-    stake_wise_shareholder_exit_requests:
-      type: object
-      properties:
-        exit_requests:
-          type: array
-          items:
-            type: object
-            properties:
-              position_ticket:
-                type: string
-                example: '1011053000346910311'
-                description: Represents your position in the queue and is calculated based on the queue length and amount of ETH you want to exit
-              owner:
-                type: string
-                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
-                description: The commission_address that initiated the exit request
-              receiver:
-                type: string
-                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
-                description: The address that will receive the assets from the exit request after calling the Claim Withdrawal endpoint
-              timestamp:
-                type: string
-                example: '2024-08-14T00:00:00Z'
-                description: A unix timestamp of when the exit request occurred
-              total_assets:
-                type: string
-                example: '0.000000999999999999'
-                description: Total amount requested to be exited
-              exited_assets:
-                type: string
-                example: '0.000000999999999999'
-                description: Amount exited in the current exit request. When the total amount of assets isn’t fully unbonded, a new exit request for the customer will be created that will exit the remainder exited_assets
-              claimable:
-                type: boolean
-                example: true
-                description: If the exit request is claimable
-              claimed:
-                type: boolean
-                example: false
-                description: If the exit request has been claimed
-              withdrawal_timestamp:
-                type: string
-                example: '2024-08-14T00:00:00Z'
-                description: An estimate unix timestamp of when the receiver address can claim the exit request. This value is ‘0’ if it is passed the time to claim and ‘null’ initially while calculating the withdrawal time estimate
-    stake_wise_shareholder_balance:
-      type: object
-      properties:
-        balance:
-          type: string
-          example: '0.000426071736079811'
-          description: Balance in ETH
-    stake_wise_shareholder_actions:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: 0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e-7
-              assets:
-                type: string
-                example: '0.000000999999999999'
-              shares:
-                type: string
-                example: '0.0'
-              created_at:
-                type: timestamp
-                example: 1723764672000
-              action_type:
-                type: string
-                example: ExitedAssetsClaimed
-              link:
-                type: string
-                example: https://hoodi.etherscan.io/tx/0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e
-    stake_wise_depositor_balance:
-      type: object
-      properties:
-        balance:
-          type: string
-          example: '0.2'
-          description: Balance in ETH
+          example: '0xE373733544a50A5Ea8A4Aa0209d30d1Eab13fD2b'
     vault:
       type: object
       properties:
@@ -1306,6 +1194,39 @@ components:
           type: string
           example: '2023-07-01T00:00:00.000Z'
           description: The time at which the vault was updated.
+    stake_wise_depositor_actions:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab-8
+              assets:
+                type: string
+                example: '0.1'
+              shares:
+                type: string
+                example: '0.1'
+              created_at:
+                type: timestamp
+                example: 1716327696000
+              action_type:
+                type: string
+                example: Deposited
+              link:
+                type: string
+                example: https://hoodi.etherscan.io/tx/0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab
+    stake_wise_depositor_balance:
+      type: object
+      properties:
+        balance:
+          type: string
+          example: '0.2'
+          description: Balance in ETH
     stake_wise_depositor_exit_requests:
       type: object
       properties:
@@ -1350,48 +1271,6 @@ components:
                 type: string
                 example: '2024-08-14T00:00:00Z'
                 description: An estimate unix timestamp of when the receiver address can claim the exit request. This value is ‘0’ if it is passed the time to claim and ‘null’ initially while calculating the withdrawal time estimate.
-    stake_wise_assets_to_shares:
-      type: object
-      properties:
-        shares:
-          type: string
-          example: '0.1'
-          description: Amount of assets to convert to shares
-    stake_wise_allowlist_entry:
-      type: object
-      properties:
-        created_at:
-          type: integer
-          example: 1719345504000
-        address:
-          type: string
-          example: '0xE373733544a50A5Ea8A4Aa0209d30d1Eab13fD2b'
-    stake_wise_depositor_actions:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: 0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab-8
-              assets:
-                type: string
-                example: '0.1'
-              shares:
-                type: string
-                example: '0.1'
-              created_at:
-                type: timestamp
-                example: 1716327696000
-              action_type:
-                type: string
-                example: Deposited
-              link:
-                type: string
-                example: https://hoodi.etherscan.io/tx/0x854f766c2e64b219bbfb613c59a7a506eea08e63eb38beb75a349a1b12f789ab
     stake_wise_depositor_rewards:
       type: object
       properties:
@@ -1418,6 +1297,127 @@ components:
               daily_rewards_usd:
                 type: string
                 example: '9.41'
+    ethereum_transaction:
+      type: object
+      properties:
+        unsigned_transaction_serialized:
+          type: string
+          example: '0x02f90135824268248459682f008501b0f8d21a8308667b949741f8e49ffa322714511b5d17bd052698eafa43843b9aca00b901049a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000c0'
+          description: The unsigned transaction payload serialized in hex format
+        unsigned_transaction_hash:
+          type: string
+          example: '0x7de4a33e6cb731239cbf58c915b666cb9680cf14cc2d144d0bad5d7140c84fa7'
+          description: keccak256 hash of the serialized unsigned transaction payload
+        max_transaction_cost:
+          type: integer
+          example: 3999034319785598
+          description: Max transaction cost in gwei
+        calldata:
+          type: string
+          example: '0x9a0d79ad0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000020ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000001f400000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000000'
+          description: Calldata for the transaction.
+    stake_wise_shareholder_actions:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e-7
+              assets:
+                type: string
+                example: '0.000000999999999999'
+              shares:
+                type: string
+                example: '0.0'
+              created_at:
+                type: timestamp
+                example: 1723764672000
+              action_type:
+                type: string
+                example: ExitedAssetsClaimed
+              link:
+                type: string
+                example: https://hoodi.etherscan.io/tx/0x8535d751c6c020e6eae637746ef16d1c8703e6d295b24bf3e317aa67ec12957e
+    pagination:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 1000
+            has_next:
+              type: boolean
+              example: true
+    stake_wise_shareholder_balance:
+      type: object
+      properties:
+        balance:
+          type: string
+          example: '0.000426071736079811'
+          description: Balance in ETH
+    stake_wise_shareholder_exit_requests:
+      type: object
+      properties:
+        exit_requests:
+          type: array
+          items:
+            type: object
+            properties:
+              position_ticket:
+                type: string
+                example: '1011053000346910311'
+                description: Represents your position in the queue and is calculated based on the queue length and amount of ETH you want to exit
+              owner:
+                type: string
+                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
+                description: The commission_address that initiated the exit request
+              receiver:
+                type: string
+                example: '0x924927cfd967488ef317fc7a96c71907795c8538'
+                description: The address that will receive the assets from the exit request after calling the Claim Withdrawal endpoint
+              timestamp:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+                description: A unix timestamp of when the exit request occurred
+              total_assets:
+                type: string
+                example: '0.000000999999999999'
+                description: Total amount requested to be exited
+              exited_assets:
+                type: string
+                example: '0.000000999999999999'
+                description: Amount exited in the current exit request. When the total amount of assets isn’t fully unbonded, a new exit request for the customer will be created that will exit the remainder exited_assets
+              claimable:
+                type: boolean
+                example: true
+                description: If the exit request is claimable
+              claimed:
+                type: boolean
+                example: false
+                description: If the exit request has been claimed
+              withdrawal_timestamp:
+                type: string
+                example: '2024-08-14T00:00:00Z'
+                description: An estimate unix timestamp of when the receiver address can claim the exit request. This value is ‘0’ if it is passed the time to claim and ‘null’ initially while calculating the withdrawal time estimate
+    stake_wise_assets_to_shares:
+      type: object
+      properties:
+        shares:
+          type: string
+          example: '0.1'
+          description: Amount of assets to convert to shares
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

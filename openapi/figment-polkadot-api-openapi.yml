@@ -319,6 +319,57 @@ paths:
                 $ref: '#/components/schemas/rewards_error'
 components:
   schemas:
+    revoke_proxy:
+      type: object
+      properties:
+        stash_account_address:
+          type: string
+          example: 5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh
+          description: A valid Polkadot address.
+        controller_account_address:
+          type: string
+          example: 5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd
+          description: A valid Polkadot address.
+        network:
+          type: string
+          example: polkadot
+          enum:
+          - polkadot
+          - westend
+      required:
+      - stash_account_address
+      - controller_account_address
+      - network
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
     nomination_proxy:
       type: object
       properties:
@@ -359,57 +410,6 @@ components:
             message:
               type: string
               example: An error has occurred.
-    error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: The record is invalid
-            details:
-              type: array
-              items:
-                type: object
-                required:
-                - param
-                - message
-                - context
-                - code
-                properties:
-                  param:
-                    type: string
-                    example: example_field
-                  message:
-                    type: string
-                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
-                  code:
-                    type: integer
-                    example: 1000
-                  context:
-                    type: object
-    revoke_proxy:
-      type: object
-      properties:
-        stash_account_address:
-          type: string
-          example: 5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh
-          description: A valid Polkadot address.
-        controller_account_address:
-          type: string
-          example: 5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd
-          description: A valid Polkadot address.
-        network:
-          type: string
-          example: polkadot
-          enum:
-          - polkadot
-          - westend
-      required:
-      - stash_account_address
-      - controller_account_address
-      - network
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

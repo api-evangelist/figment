@@ -60,6 +60,16 @@ paths:
           description: Invalid API key
 components:
   schemas:
+    partners_tracked_validator:
+      type: object
+      properties:
+        pubkey:
+          type: string
+          example: '0xd1ef8d468ef53d82368d2026e321ab2c6d44f44c33b7b9f22369bf6dcf37fb0208f82dd6b485325ce1bbf5aec7ad45bb'
+          description: The pubkey for the validator. Must be prefixed with `0x`.
+        withdrawal_address:
+          type: string
+          example: '0xE40F80618324C814cD444434670a44ba4583aE38'
     pagination:
       type: object
       properties:
@@ -78,16 +88,6 @@ components:
             has_next:
               type: boolean
               example: true
-    partners_tracked_validator:
-      type: object
-      properties:
-        pubkey:
-          type: string
-          example: '0xd1ef8d468ef53d82368d2026e321ab2c6d44f44c33b7b9f22369bf6dcf37fb0208f82dd6b485325ce1bbf5aec7ad45bb'
-          description: The pubkey for the validator. Must be prefixed with `0x`.
-        withdrawal_address:
-          type: string
-          example: '0xE40F80618324C814cD444434670a44ba4583aE38'
 x-readme:
   explorer-enabled: false
   proxy-enabled: false
