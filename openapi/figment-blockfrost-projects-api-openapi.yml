@@ -119,6 +119,21 @@ paths:
           description: Invalid API key
 components:
   schemas:
+    meta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 100
     blockfrost_project:
       type: object
       properties:
@@ -158,21 +173,6 @@ components:
           - message
       required:
       - error
-    meta:
-      type: object
-      properties:
-        pagination:
-          type: object
-          properties:
-            current_page:
-              type: integer
-              example: 1
-            total_pages:
-              type: integer
-              example: 10
-            total_item_count:
-              type: integer
-              example: 100
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

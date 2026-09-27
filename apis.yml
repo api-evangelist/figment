@@ -84,7 +84,7 @@ apis:
   baseURL: https://docs.figment.io/mcp
   tags:
   - MCP
-  - agent-native
+  - Agent-Native
   - Documentation
   - Staking
   tags_raw:

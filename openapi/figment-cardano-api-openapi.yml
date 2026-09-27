@@ -1047,15 +1047,6 @@ paths:
               - end
 components:
   schemas:
-    rewards_error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: An error has occurred.
     pagination:
       type: object
       properties:
@@ -1074,6 +1065,15 @@ components:
             has_next:
               type: boolean
               example: true
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

@@ -94,27 +94,6 @@ paths:
           description: Invalid API key
 components:
   schemas:
-    monthly_statement:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 61989868-2cfc-4027-b350-e239ddb1e10d
-          description: A unique UUID for the monthly statement.
-        type:
-          type: string
-          example: staking_rewards
-          enum:
-          - staking_rewards
-          - revenue_share
-          - white_label_validator
-        month:
-          type: string
-          example: 2024-04
-          description: Year and month of the monthly statement.
-        csv_data:
-          type: string
-          description: The monthly statement data in CSV format.
     error:
       type: object
       properties:
@@ -163,6 +142,27 @@ components:
             has_next:
               type: boolean
               example: true
+    monthly_statement:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 61989868-2cfc-4027-b350-e239ddb1e10d
+          description: A unique UUID for the monthly statement.
+        type:
+          type: string
+          example: staking_rewards
+          enum:
+          - staking_rewards
+          - revenue_share
+          - white_label_validator
+        month:
+          type: string
+          example: 2024-04
+          description: Year and month of the monthly statement.
+        csv_data:
+          type: string
+          description: The monthly statement data in CSV format.
 x-readme:
   explorer-enabled: false
   proxy-enabled: false
