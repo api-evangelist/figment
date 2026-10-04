@@ -1538,64 +1538,6 @@ paths:
               - stake_account
 components:
   schemas:
-    sol_rewards_req_common:
-      type: object
-      properties:
-        start:
-          type: integer
-          example: 447
-          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
-        end:
-          type: integer
-          example: 458
-          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
-      required:
-      - start
-      - end
-    sol_rewards_req_by_withdraw_authority:
-      allOf:
-      - $ref: '#/components/schemas/sol_rewards_req_common'
-      - type: object
-        title: Search by withdraw authority
-        properties:
-          withdraw_authorities:
-            type: array
-            description: Withdraw authority addresses.
-            items:
-              type: string
-              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
-        required:
-        - withdraw_authorities
-    error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: The record is invalid
-            details:
-              type: array
-              items:
-                type: object
-                required:
-                - param
-                - message
-                - context
-                - code
-                properties:
-                  param:
-                    type: string
-                    example: example_field
-                  message:
-                    type: string
-                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
-                  code:
-                    type: integer
-                    example: 1000
-                  context:
-                    type: object
     solana_transaction:
       type: object
       properties:
@@ -1637,20 +1579,34 @@ components:
           type: boolean
           nullable: true
           description: Indicates that this transaction uses a durable nonce. When `true`, `last_valid_block_height` will be `null`.
-    sol_rewards_req_by_stake_authority:
+    sol_rewards_req_by_stake_account:
       allOf:
       - $ref: '#/components/schemas/sol_rewards_req_common'
       - type: object
-        title: Search by stake authority
+        title: Search by stake account
         properties:
-          stake_authorities:
+          stake_accounts:
             type: array
-            description: Stake authority addresses.
+            description: Stake Account addresses.
             items:
               type: string
               example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
         required:
-        - stake_authorities
+        - stake_accounts
+    sol_rewards_req_by_withdraw_authority:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by withdraw authority
+        properties:
+          withdraw_authorities:
+            type: array
+            description: Withdraw authority addresses.
+            items:
+              type: string
+              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
+        required:
+        - withdraw_authorities
     rewards_error:
       type: object
       properties:
@@ -1660,6 +1616,20 @@ components:
             message:
               type: string
               example: An error has occurred.
+    sol_rewards_req_common:
+      type: object
+      properties:
+        start:
+          type: integer
+          example: 447
+          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
+        end:
+          type: integer
+          example: 458
+          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
+      required:
+      - start
+      - end
     tracked_solana_stake_account:
       type: object
       properties:
@@ -1705,20 +1675,20 @@ components:
         inactive_balance_usd:
           type: string
           nullable: true
-    sol_rewards_req_by_stake_account:
+    sol_rewards_req_by_stake_authority:
       allOf:
       - $ref: '#/components/schemas/sol_rewards_req_common'
       - type: object
-        title: Search by stake account
+        title: Search by stake authority
         properties:
-          stake_accounts:
+          stake_authorities:
             type: array
-            description: Stake Account addresses.
+            description: Stake authority addresses.
             items:
               type: string
               example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
         required:
-        - stake_accounts
+        - stake_authorities
     sol_rewards_req_by_groups:
       allOf:
       - $ref: '#/components/schemas/sol_rewards_req_common'
@@ -1731,6 +1701,36 @@ components:
             example: be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5
         required:
         - groups
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

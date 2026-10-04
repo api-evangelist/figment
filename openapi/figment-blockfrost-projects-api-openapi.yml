@@ -119,6 +119,36 @@ paths:
           description: Invalid API key
 components:
   schemas:
+    meta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 100
+    blockfrost_project:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+        network:
+          type: string
+          nullable: false
+        project_id:
+          type: string
+          nullable: false
+        created:
+          type: string
+          nullable: false
     staking_api_error:
       type: object
       properties:
@@ -143,36 +173,6 @@ components:
           - message
       required:
       - error
-    blockfrost_project:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: false
-        network:
-          type: string
-          nullable: false
-        project_id:
-          type: string
-          nullable: false
-        created:
-          type: string
-          nullable: false
-    meta:
-      type: object
-      properties:
-        pagination:
-          type: object
-          properties:
-            current_page:
-              type: integer
-              example: 1
-            total_pages:
-              type: integer
-              example: 10
-            total_item_count:
-              type: integer
-              example: 100
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

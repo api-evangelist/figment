@@ -442,6 +442,15 @@ paths:
               - end
 components:
   schemas:
+    rewards_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
     error:
       type: object
       properties:
@@ -472,15 +481,6 @@ components:
                     example: 1000
                   context:
                     type: object
-    rewards_error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: An error has occurred.
 x-readme:
   explorer-enabled: false
   proxy-enabled: false
