@@ -119,6 +119,30 @@ paths:
           description: Invalid API key
 components:
   schemas:
+    staking_api_error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              nullable: false
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  param:
+                    type: string
+                  message:
+                    type: string
+                  context:
+                    type: object
+          required:
+          - message
+      required:
+      - error
     meta:
       type: object
       properties:
@@ -149,30 +173,6 @@ components:
         created:
           type: string
           nullable: false
-    staking_api_error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              nullable: false
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  param:
-                    type: string
-                  message:
-                    type: string
-                  context:
-                    type: object
-          required:
-          - message
-      required:
-      - error
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

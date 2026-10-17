@@ -350,15 +350,27 @@ components:
       - proxy_account_address
       - qtx_dot_bonded
       - network
-    rewards_error:
+    revoke_proxy:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: An error has occurred.
+        stash_account_address:
+          type: string
+          example: 5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh
+          description: A valid Polkadot address.
+        controller_account_address:
+          type: string
+          example: 5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd
+          description: A valid Polkadot address.
+        network:
+          type: string
+          example: polkadot
+          enum:
+          - polkadot
+          - westend
+      required:
+      - stash_account_address
+      - controller_account_address
+      - network
     error:
       type: object
       properties:
@@ -389,27 +401,15 @@ components:
                     example: 1000
                   context:
                     type: object
-    revoke_proxy:
+    rewards_error:
       type: object
       properties:
-        stash_account_address:
-          type: string
-          example: 5CUwmRuV8e5yV15eaktTwW4AMkBnf2anJvehKNq9ZugXBvUh
-          description: A valid Polkadot address.
-        controller_account_address:
-          type: string
-          example: 5FH7R79Ph88uC4xJaWv3UXRxVrYVfuRPcPuQiiRJ5B8zKbCd
-          description: A valid Polkadot address.
-        network:
-          type: string
-          example: polkadot
-          enum:
-          - polkadot
-          - westend
-      required:
-      - stash_account_address
-      - controller_account_address
-      - network
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: An error has occurred.
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

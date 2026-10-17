@@ -94,6 +94,36 @@ paths:
           description: Invalid API key
 components:
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
     pagination:
       type: object
       properties:
@@ -133,36 +163,6 @@ components:
         csv_data:
           type: string
           description: The monthly statement data in CSV format.
-    error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: The record is invalid
-            details:
-              type: array
-              items:
-                type: object
-                required:
-                - param
-                - message
-                - context
-                - code
-                properties:
-                  param:
-                    type: string
-                    example: example_field
-                  message:
-                    type: string
-                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
-                  code:
-                    type: integer
-                    example: 1000
-                  context:
-                    type: object
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

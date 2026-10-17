@@ -1538,6 +1538,64 @@ paths:
               - stake_account
 components:
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              example: The record is invalid
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - param
+                - message
+                - context
+                - code
+                properties:
+                  param:
+                    type: string
+                    example: example_field
+                  message:
+                    type: string
+                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
+                  code:
+                    type: integer
+                    example: 1000
+                  context:
+                    type: object
+    sol_rewards_req_common:
+      type: object
+      properties:
+        start:
+          type: integer
+          example: 447
+          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
+        end:
+          type: integer
+          example: 458
+          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
+      required:
+      - start
+      - end
+    sol_rewards_req_by_withdraw_authority:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by withdraw authority
+        properties:
+          withdraw_authorities:
+            type: array
+            description: Withdraw authority addresses.
+            items:
+              type: string
+              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
+        required:
+        - withdraw_authorities
     solana_transaction:
       type: object
       properties:
@@ -1593,43 +1651,32 @@ components:
               example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
         required:
         - stake_accounts
-    sol_rewards_req_by_withdraw_authority:
+    sol_rewards_req_by_stake_authority:
       allOf:
       - $ref: '#/components/schemas/sol_rewards_req_common'
       - type: object
-        title: Search by withdraw authority
+        title: Search by stake authority
         properties:
-          withdraw_authorities:
+          stake_authorities:
             type: array
-            description: Withdraw authority addresses.
+            description: Stake authority addresses.
             items:
               type: string
               example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
         required:
-        - withdraw_authorities
-    rewards_error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              example: An error has occurred.
-    sol_rewards_req_common:
-      type: object
-      properties:
-        start:
-          type: integer
-          example: 447
-          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
-        end:
-          type: integer
-          example: 458
-          description: Either epoch (number) or timestamps (strings formatted like "YYYY-MM-DD").
-      required:
-      - start
-      - end
+        - stake_authorities
+    sol_rewards_req_by_groups:
+      allOf:
+      - $ref: '#/components/schemas/sol_rewards_req_common'
+      - type: object
+        title: Search by groups
+        properties:
+          groups:
+            type: string
+            description: Filter using comma-separated group uuids.
+            example: be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5
+        required:
+        - groups
     tracked_solana_stake_account:
       type: object
       properties:
@@ -1675,33 +1722,7 @@ components:
         inactive_balance_usd:
           type: string
           nullable: true
-    sol_rewards_req_by_stake_authority:
-      allOf:
-      - $ref: '#/components/schemas/sol_rewards_req_common'
-      - type: object
-        title: Search by stake authority
-        properties:
-          stake_authorities:
-            type: array
-            description: Stake authority addresses.
-            items:
-              type: string
-              example: 4GCemsBJbwpG7AjczRw1YqG6BBpamAW75UkRtnmapqkF
-        required:
-        - stake_authorities
-    sol_rewards_req_by_groups:
-      allOf:
-      - $ref: '#/components/schemas/sol_rewards_req_common'
-      - type: object
-        title: Search by groups
-        properties:
-          groups:
-            type: string
-            description: Filter using comma-separated group uuids.
-            example: be982d21-ff93-4092-b56a-f40bac865400,a0ba2333-c541-41f0-ad89-e29a268a3ee5
-        required:
-        - groups
-    error:
+    rewards_error:
       type: object
       properties:
         error:
@@ -1709,28 +1730,7 @@ components:
           properties:
             message:
               type: string
-              example: The record is invalid
-            details:
-              type: array
-              items:
-                type: object
-                required:
-                - param
-                - message
-                - context
-                - code
-                properties:
-                  param:
-                    type: string
-                    example: example_field
-                  message:
-                    type: string
-                    example: The example_field property has an incorrect value. Must be one of X, Y, or Z.
-                  code:
-                    type: integer
-                    example: 1000
-                  context:
-                    type: object
+              example: An error has occurred.
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

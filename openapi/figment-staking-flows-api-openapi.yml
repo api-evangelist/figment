@@ -125,21 +125,6 @@ paths:
         required: true
 components:
   schemas:
-    meta:
-      type: object
-      properties:
-        pagination:
-          type: object
-          properties:
-            current_page:
-              type: integer
-              example: 1
-            total_pages:
-              type: integer
-              example: 10
-            total_item_count:
-              type: integer
-              example: 100
     flow:
       type: object
       properties:
@@ -164,6 +149,21 @@ components:
           type: string
         updated_at:
           type: string
+    meta:
+      type: object
+      properties:
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              example: 1
+            total_pages:
+              type: integer
+              example: 10
+            total_item_count:
+              type: integer
+              example: 100
 x-readme:
   explorer-enabled: false
   proxy-enabled: false

@@ -272,27 +272,43 @@ components:
       required:
       - data
       - meta
-    FigmentError:
+    ProtocolBody:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              example: invalid_request
-            message:
-              type: string
-              example: missing paymentPayload or paymentRequirements
-            request_id:
-              type: string
-              example: 0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f
-          required:
-          - code
-          - message
-          - request_id
+        x402Version:
+          type: number
+          enum:
+          - 2
+          description: x402 protocol version. Must be 2; this facilitator does not accept V1.
+        paymentPayload:
+          $ref: '#/components/schemas/PaymentPayload'
+        paymentRequirements:
+          $ref: '#/components/schemas/PaymentRequirements'
       required:
-      - error
+      - x402Version
+      - paymentPayload
+      - paymentRequirements
+    SupportedResponse:
+      type: object
+      properties:
+        kinds:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedKind'
+        extensions:
+          type: array
+          items:
+            type: string
+        signers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      required:
+      - kinds
+      - extensions
+      - signers
     PaymentRequirements:
       type: object
       properties:
@@ -336,123 +352,6 @@ components:
         maxTimeoutSeconds: 120
         extra:
           feePayer: FacilitatorSigner1111111111111111111111111
-    SettlementReportResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SettlementReportRow'
-        meta:
-          type: object
-          properties:
-            start_date:
-              type: string
-              example: '2026-05-10'
-            end_date:
-              type: string
-              example: '2026-07-09'
-            network:
-              type:
-              - string
-              - 'null'
-              example: null
-            token:
-              type:
-              - string
-              - 'null'
-              example: USDC
-            merchant_addresses:
-              type:
-              - array
-              - 'null'
-              items:
-                type: string
-              example: null
-          required:
-          - start_date
-          - end_date
-          - network
-          - token
-          - merchant_addresses
-      required:
-      - data
-      - meta
-    SupportedKind:
-      type: object
-      properties:
-        x402Version:
-          type: number
-        scheme:
-          type: string
-        network:
-          type: string
-          description: CAIP-2-like network identifier in the form `scheme:network`.
-          pattern: ^[^:]+:[^:]+$
-          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
-        extra:
-          type: object
-          additionalProperties: {}
-      required:
-      - x402Version
-      - scheme
-      - network
-    SettleResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        errorReason:
-          type: string
-        errorMessage:
-          type: string
-        payer:
-          type: string
-        transaction:
-          type: string
-        network:
-          type: string
-          description: CAIP-2-like network identifier in the form `scheme:network`.
-          pattern: ^[^:]+:[^:]+$
-          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
-        amount:
-          type: string
-        extensions:
-          type: object
-          additionalProperties: {}
-        extra:
-          type: object
-          additionalProperties: {}
-      required:
-      - success
-      - transaction
-      - network
-    PartnerUsageRow:
-      type: object
-      properties:
-        merchantOrganizationId:
-          type:
-          - string
-          - 'null'
-        merchantOrganizationName:
-          type:
-          - string
-          - 'null'
-        endpoint:
-          type: string
-          example: https://api.merchant.test/widget
-        count:
-          type: number
-          example: 42
-        volumeUsd:
-          type: string
-          example: '1234.560000'
-      required:
-      - merchantOrganizationId
-      - merchantOrganizationName
-      - endpoint
-      - count
-      - volumeUsd
     PaymentPayload:
       type: object
       properties:
@@ -550,43 +449,88 @@ components:
             feePayer: FacilitatorSigner1111111111111111111111111
         payload:
           transaction: AQAB...base64-encoded-partially-signed-solana-tx...
-    SupportedResponse:
+    FigmentError:
       type: object
       properties:
-        kinds:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupportedKind'
-        extensions:
-          type: array
-          items:
-            type: string
-        signers:
+        error:
           type: object
-          additionalProperties:
-            type: array
-            items:
+          properties:
+            code:
               type: string
+              example: invalid_request
+            message:
+              type: string
+              example: missing paymentPayload or paymentRequirements
+            request_id:
+              type: string
+              example: 0d2a8c2e-3a7e-4f3d-9c7b-1a2b3c4d5e6f
+          required:
+          - code
+          - message
+          - request_id
       required:
-      - kinds
-      - extensions
-      - signers
-    ProtocolBody:
+      - error
+    SupportedKind:
       type: object
       properties:
         x402Version:
           type: number
-          enum:
-          - 2
-          description: x402 protocol version. Must be 2; this facilitator does not accept V1.
-        paymentPayload:
-          $ref: '#/components/schemas/PaymentPayload'
-        paymentRequirements:
-          $ref: '#/components/schemas/PaymentRequirements'
+        scheme:
+          type: string
+        network:
+          type: string
+          description: CAIP-2-like network identifier in the form `scheme:network`.
+          pattern: ^[^:]+:[^:]+$
+          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+        extra:
+          type: object
+          additionalProperties: {}
       required:
       - x402Version
-      - paymentPayload
-      - paymentRequirements
+      - scheme
+      - network
+    SettlementReportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SettlementReportRow'
+        meta:
+          type: object
+          properties:
+            start_date:
+              type: string
+              example: '2026-05-10'
+            end_date:
+              type: string
+              example: '2026-07-09'
+            network:
+              type:
+              - string
+              - 'null'
+              example: null
+            token:
+              type:
+              - string
+              - 'null'
+              example: USDC
+            merchant_addresses:
+              type:
+              - array
+              - 'null'
+              items:
+                type: string
+              example: null
+          required:
+          - start_date
+          - end_date
+          - network
+          - token
+          - merchant_addresses
+      required:
+      - data
+      - meta
     VerifyResponse:
       type: object
       properties:
@@ -606,6 +550,62 @@ components:
           additionalProperties: {}
       required:
       - isValid
+    PartnerUsageRow:
+      type: object
+      properties:
+        merchantOrganizationId:
+          type:
+          - string
+          - 'null'
+        merchantOrganizationName:
+          type:
+          - string
+          - 'null'
+        endpoint:
+          type: string
+          example: https://api.merchant.test/widget
+        count:
+          type: number
+          example: 42
+        volumeUsd:
+          type: string
+          example: '1234.560000'
+      required:
+      - merchantOrganizationId
+      - merchantOrganizationName
+      - endpoint
+      - count
+      - volumeUsd
+    SettleResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorReason:
+          type: string
+        errorMessage:
+          type: string
+        payer:
+          type: string
+        transaction:
+          type: string
+        network:
+          type: string
+          description: CAIP-2-like network identifier in the form `scheme:network`.
+          pattern: ^[^:]+:[^:]+$
+          example: solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1
+        amount:
+          type: string
+        extensions:
+          type: object
+          additionalProperties: {}
+        extra:
+          type: object
+          additionalProperties: {}
+      required:
+      - success
+      - transaction
+      - network
     SettlementReportRow:
       type: object
       properties:
